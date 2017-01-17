@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zsms", "zsms\zsms.csproj", "{29291294-8144-41A5-B87E-C80022DF5C67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zsmsclient", "zsmsclient\zsmsclient.csproj", "{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29291294-8144-41A5-B87E-C80022DF5C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29291294-8144-41A5-B87E-C80022DF5C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29291294-8144-41A5-B87E-C80022DF5C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29291294-8144-41A5-B87E-C80022DF5C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
