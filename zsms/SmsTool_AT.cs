@@ -34,7 +34,19 @@ namespace zsms
 
         public override string getMsg()
         {
-            throw new NotImplementedException();
+            String r = sendAt("AT+COPS?").ToLower();
+
+            if(r.Contains("china mobile"))
+            {
+                return "中国移动";
+            }
+            else if(r.Contains("china unicom"))
+            {
+                return "中国联通";
+            }
+            return "未知";
+            
+
         }
 
         public override void init()
@@ -134,11 +146,11 @@ namespace zsms
         }
 
 
-        private String sendAt(String str)
+        public String sendAt(String str)
         {
             return sendAt(str, 30000);
         }
-        private String sendAt(String str,int timeout)
+        public String sendAt(String str,int timeout)
         {
             Console.WriteLine("准备命令:" + str);
 
@@ -149,6 +161,8 @@ namespace zsms
                     throw new Exception("tool is Dispose");
                 }
 
+
+              
                 try
                 {
                     Console.WriteLine("开始发送命令:" + str);
@@ -156,7 +170,7 @@ namespace zsms
                     {
                         init();
                     }
-
+                    sp.DiscardOutBuffer();
                     sp.Write(str + "\n");
                     var b = are_sendAt.WaitOne(timeout);
 
