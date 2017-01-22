@@ -7,6 +7,7 @@ using Dal;
 using Model;
 using easysql;
 using zsms;
+using config;
 namespace service
 {
     public class SmsServerThread : BaseThread
@@ -16,26 +17,27 @@ namespace service
         private BaseSmsTool smsTool = null;
         public SmsServerThread() : base("短信服务线程")
         {
-            List<SmsTemplate> stList = new List<SmsTemplate>();
-            stList.Add(new SmsTemplate()
+            switch (Config.smsTool.ToLower())
             {
-                code = "SMS_5001004",
-                content = "淮北vrv指标${msg}"
-            });
-            stList.Add(new SmsTemplate()
-            {
-                code = "SMS_5030714",
-                content = "一体化${msg}"
-            });
+                case "alidayu":
+                    List<SmsTemplate> stList = new List<SmsTemplate>();
+                    foreach (dynamic template in Config.smsTemplateList)
+                    {
+                        stList.Add(new SmsTemplate()
+                        {
+                            code = template.code,
+                            content = template.content,
+                        });
+                    }
+                    smsTool = new SmsTool_Alidayu(Config.aliDayu_smsFreeSignName, Config.aliDayu_smsTemplateCode, Config.alidayu_url, Config.alidayu_appkey, Config.alidayu_secret, stList);
+                    break;
+                case "at":
+                    smsTool = new SmsTool_AT(Config.at_portName, Config.at_bandRate);
+                    break;
+            }
 
-            stList.Add(new SmsTemplate()
-            {
-                code = "SMS_26180244",
-                content = "您好${name}今天是${time}"
-            });
 
-            smsTool = new SmsTool_Alidayu("燎火", "SMS_5075620", "http://gw.api.taobao.com/router/rest", "23300185", "8b5196bef2e1ebcf5d1f75503e2a4cd8", stList);
-            smsTool.init();
+                 smsTool.init();
         }
         public override void Dispose()
         {

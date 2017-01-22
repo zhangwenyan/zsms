@@ -22,8 +22,8 @@ namespace zsms
     /// </summary>
     public class SmsTool_Alidayu : BaseSmsTool
     {
-        private String SmsFreeSignName;//签名
-        private String SmsTemplateCode;//基本模板编号
+        private String smsFreeSignName;//签名
+        private String smsTemplateCode;//基本模板编号
         private String alidayu_url;
         private String alidayu_appkey;
         private String alidayu_secret;
@@ -34,15 +34,15 @@ namespace zsms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="SmsFreeSignName">签名</param>
-        /// <param name="SmsTemplateCode">模板编号</param>
+        /// <param name="smsFreeSignName">签名</param>
+        /// <param name="smsTemplateCode">模板编号</param>
         /// <param name="alidayu_url">阿里云api地址:http://gw.api.taobao.com/router/rest</param>
         /// <param name="alidayu_appkey">appey</param>
         /// <param name="alidayu_secret">secret</param>
-        public SmsTool_Alidayu(String SmsFreeSignName,String SmsTemplateCode,String alidayu_url,String alidayu_appkey,String alidayu_secret)
+        public SmsTool_Alidayu(String smsFreeSignName,String smsTemplateCode,String alidayu_url,String alidayu_appkey,String alidayu_secret)
         {
-            this.SmsFreeSignName = SmsFreeSignName;
-            this.SmsTemplateCode = SmsTemplateCode;
+            this.smsFreeSignName = smsFreeSignName;
+            this.smsTemplateCode = smsTemplateCode;
             this.alidayu_url = alidayu_url;
             this.alidayu_appkey = alidayu_appkey;
             this.alidayu_secret = alidayu_secret;
@@ -51,16 +51,16 @@ namespace zsms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="SmsFreeSignName">签名</param>
-        /// <param name="SmsTemplateCode">模板编号</param>
+        /// <param name="smsFreeSignName">签名</param>
+        /// <param name="smsTemplateCode">模板编号</param>
         /// <param name="alidayu_url">阿里云api地址:http://gw.api.taobao.com/router/rest</param>
         /// <param name="alidayu_appkey">appey</param>
         /// <param name="alidayu_secret">secret</param>
         /// <param name="smsTemplateList">模板list</param>
-        public SmsTool_Alidayu(String SmsFreeSignName, String SmsTemplateCode, String alidayu_url, String alidayu_appkey, String alidayu_secret,List<SmsTemplate> smsTemplateList)
+        public SmsTool_Alidayu(String smsFreeSignName, String smsTemplateCode, String alidayu_url, String alidayu_appkey, String alidayu_secret,List<SmsTemplate> smsTemplateList)
         {
-            this.SmsFreeSignName = SmsFreeSignName;
-            this.SmsTemplateCode = SmsTemplateCode;
+            this.smsFreeSignName = smsFreeSignName;
+            this.smsTemplateCode = smsTemplateCode;
             this.alidayu_url = alidayu_url;
             this.alidayu_appkey = alidayu_appkey;
             this.alidayu_secret = alidayu_secret;
@@ -88,7 +88,7 @@ namespace zsms
             ITopClient client = new DefaultTopClient(alidayu_url, alidayu_appkey, alidayu_secret, "json");
             AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
             req.SmsType = "normal";
-            req.SmsFreeSignName = this.SmsFreeSignName;
+            req.SmsFreeSignName = this.smsFreeSignName;
 
 
             String smsTemplateCode = null;
@@ -130,7 +130,7 @@ namespace zsms
 
             if(smsTemplateCode == null)
             {//使用基本模板
-                smsTemplateCode = SmsTemplateCode;
+                smsTemplateCode = this.smsTemplateCode;
                 smsParam = Newtonsoft.Json.JsonConvert.SerializeObject(new
                 {
                     msg = esms.Msg

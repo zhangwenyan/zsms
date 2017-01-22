@@ -1,0 +1,29 @@
+﻿{
+	"smsTool":"aliDayu",
+  "aliDayu": {
+    "smsFreeSignName": "燎火",
+    "smsTemplateCode": "SMS_5075620",
+    "alidayu_url": "http://gw.api.taobao.com/router/rest",
+    "alidayu_appkey": "23300185",
+    "alidayu_secret": "8b5196bef2e1ebcf5d1f75503e2a4cd8",
+    "smsTemplateList": [
+      {
+        "code": "SMS_5001004",
+        "content": "淮北vrv指标${msg}"
+      },
+      {
+        "code": "SMS_5030714",
+        "content": "一体化${msg}"
+      },
+      {
+        "code": "SMS_26180244",
+        "content": "您好${name}今天是${time}"
+      }
+    ]
+  },
+  "at": {
+    "portName": "com8",
+    "bandRate": "9600"
+  }
+
+}
