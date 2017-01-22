@@ -19,6 +19,6 @@ namespace zsms
         public int Id { get; set; }
         public String Mbno { get; set; }
         public String Msg { get; set; }
-        public DateTime DT { get; set; }
+
     }
 }

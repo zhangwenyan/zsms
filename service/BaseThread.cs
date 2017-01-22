@@ -4,27 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace zsmsclient
+namespace service
 {
+    public delegate void DGStr(String str);
     public abstract class BaseThread:IDisposable
     {
+
+        public event DGStr onMsg;
+        protected void addMsg(String str)
+        {
+            Log.Debug(str);
+            if (onMsg != null)
+            {
+                onMsg(str);
+            }
+        }
+
         protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Thread thread;
 
 
-        private String name;
+        public String Name { get; set; }
         public BaseThread(String name)
         {
-            this.name = name;
+            this.Name = name;
         }
         
         public BaseThread createRun()
         {
             thread = new System.Threading.Thread(threadMethod);
-            thread.Name = this.name;
+            thread.Name = this.Name;
             thread.IsBackground = true;
             thread.Start();
-            Log.Debug(thread.Name + " 启动成功");
+            addMsg(thread.Name + " 启动成功");
             return this;
         }
         public void threadMethod()

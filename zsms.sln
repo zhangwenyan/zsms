@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zsms", "zsms\zsms.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zsmsclient", "zsmsclient\zsmsclient.csproj", "{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{03CD4F94-DB24-4906-9BA6-FF40B8317F98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{44C53AC7-3DDB-4010-B8E6-E22B5D621071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "config", "config\config.csproj", "{571AFFB5-818B-488F-9658-3C68FDD03AA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "service\service.csproj", "{BD3F0E93-E8D9-4EAC-9EC0-CA463C8AEF47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZControl", "ZControl\ZControl.csproj", "{F9D75142-E087-45D5-863B-090645984E8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,26 @@ Global
 		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2769C31-BB66-4D2E-A1D4-D86E3A4DEA40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CD4F94-DB24-4906-9BA6-FF40B8317F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CD4F94-DB24-4906-9BA6-FF40B8317F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CD4F94-DB24-4906-9BA6-FF40B8317F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CD4F94-DB24-4906-9BA6-FF40B8317F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C53AC7-3DDB-4010-B8E6-E22B5D621071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C53AC7-3DDB-4010-B8E6-E22B5D621071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C53AC7-3DDB-4010-B8E6-E22B5D621071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C53AC7-3DDB-4010-B8E6-E22B5D621071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{571AFFB5-818B-488F-9658-3C68FDD03AA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{571AFFB5-818B-488F-9658-3C68FDD03AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{571AFFB5-818B-488F-9658-3C68FDD03AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{571AFFB5-818B-488F-9658-3C68FDD03AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD3F0E93-E8D9-4EAC-9EC0-CA463C8AEF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD3F0E93-E8D9-4EAC-9EC0-CA463C8AEF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD3F0E93-E8D9-4EAC-9EC0-CA463C8AEF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD3F0E93-E8D9-4EAC-9EC0-CA463C8AEF47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9D75142-E087-45D5-863B-090645984E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9D75142-E087-45D5-863B-090645984E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9D75142-E087-45D5-863B-090645984E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9D75142-E087-45D5-863B-090645984E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

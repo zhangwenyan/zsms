@@ -17,94 +17,160 @@ namespace zsmsclient
         {
             InitializeComponent();
         }
-        private BaseSmsTool smsTool;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            String mbno = textBox1.Text;
-            String msg = textBox2.Text;
-            addMsg("开始发送短信:" + mbno + "," + msg);
-            new Thread(delegate ()
-            {
-                try
-                {
-                    smsTool.sendSms(new ESms(mbno, msg));
-                    addMsg("发送短信完成:" + mbno + "," + msg);
-                }
-                catch (Exception ex)
-                {
-                    addMsg("发送短信出错:" + mbno + "," + msg+":"+ex.Message);
-                }
-            }).Start();
-          
-        }
-
+        protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private service.Main service;
         public void addMsg(String str)
         {
-            DG dg = delegate ()
-            {
-                textBox3.AppendText(str + "\r\n");
+            Log.Info(str);
+            DG dg = delegate () {
+                if (txt_msg.TextLength > 10000)
+                {
+                    //清理一半
+                    txt_msg.Text.Remove(0, 5000);
+                }
+                txt_msg.AppendText(DateTime.Now.ToString("HH:mm:ss") + " " + str + "\r\n");
             };
-            if (Disposing || IsDisposed)
+            if (!txt_msg.Disposing && !this.IsDisposed)
             {
-                return;
+                this.BeginInvoke(dg);
             }
-            Invoke(dg);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            smsTool = new SmsTool_AT("com8", 9600);
-            List<SmsTemplate> stList = new List<SmsTemplate>();
-            stList.Add(new SmsTemplate()
-            {
-                code = "SMS_5001004",
-                content = "淮北vrv指标${msg}"
-            });
-            stList.Add(new SmsTemplate()
-            {
-                code = "SMS_5030714",
-                content = "一体化${msg}"
-            });
+            Log.Debug("程序启动");
 
-            stList.Add(new SmsTemplate()
-            {
-                code = "SMS_26180244",
-                content = "您好${name}今天是${time}"
-            });
 
-            smsTool = new SmsTool_Alidayu("燎火", "SMS_5075620", "http://gw.api.taobao.com/router/rest", "23300185", "8b5196bef2e1ebcf5d1f75503e2a4cd8",stList);
-            smsTool.init();
-            smsTool.onSmsRecover += onSmsRecover;
-        }
-        private void onSmsRecover(RSms rsms)
-        {
-            addMsg("收到短信:" + rsms.Mbno + "," + rsms.Msg);
+
+            if (config.Config.autoStartService)
+            {
+                startService();
+               
+            }
+            
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            smsTool.Dispose();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            addMsg(smsTool.getMsg());
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            try
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                String r = ((SmsTool_AT)smsTool).sendAt(textBox1.Text);
-                addMsg(r);
-            }catch(Exception ex)
-            {
-                addMsg(ex.Message);
+                e.Cancel = true;    //取消"关闭窗口"事件
+                minimize();
+                return;
             }
+        }
+
+        /// <summary>
+        /// 最小化
+        /// </summary>
+        private void minimize()
+        {
+            this.WindowState = FormWindowState.Minimized;
+            notifyIcon1.Visible = true;
+            this.Hide();
+            notifyIcon1.BalloonTipText = this.Text + "正在后台运行";
+            notifyIcon1.BalloonTipTitle = "提示";
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.None;
+            notifyIcon1.Icon = this.Icon;
+            notifyIcon1.ShowBalloonTip(10000);
+        }
+        /// <summary>
+        /// 从最小化显示出来
+        /// </summary>
+        private void showWin()
+        {
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            textBox3.Clear();
+            txt_msg.Clear();
+        }
+
+        private void 发送短信ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_SendSms();
+        }
+        private void 待发短信ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_OutBoxList();
+
+        }
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closeApp();
+        }
+        //关闭程序
+        private void closeApp()
+        {
+
+            if (service != null)
+            {
+                try
+                {
+                    service.Dispose();
+                }catch(Exception ex)
+                {
+                    Log.Error("服务销毁出错", ex);
+                }
+            }
+            this.Dispose();
+        }
+
+        private void startService()
+        {
+            stopService();
+            btn_startService.Enabled = false;
+            btn_stopService.Enabled = true;
+            //开启后台服务
+            service = new service.Main();
+            service.onMsg += addMsg;
+            service.start();
+        }
+        private void stopService()
+        {
+            btn_startService.Enabled = true;
+            btn_stopService.Enabled = false;
+            if (service != null)
+            {
+                service.Dispose();
+            }
+        }
+        private void btn_stopService_Click(object sender, EventArgs e)
+        {
+            stopService();
+        }
+
+        private void btn_startService_Click(object sender, EventArgs e)
+        {
+            startService();
+        }
+
+        private void 短信设备配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_SmsToolSetting();
+
+        }
+
+        private void 数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_DatabaseSetting();
+        }
+
+        private void 退出ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            closeApp();
+        }
+
+        private void 打开主界面ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showWin();
+        }
+
+        private void 最小化ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            minimize();
         }
     }
 }

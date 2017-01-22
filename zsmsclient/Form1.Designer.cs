@@ -28,115 +28,236 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.txt_msg = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.短信ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.待发短信ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.发送短信ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_startService = new System.Windows.Forms.Button();
+            this.btn_stopService = new System.Windows.Forms.Button();
+            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.短信设备配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.打开主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.最小化ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txt_msg
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 25);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "17681109309";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(53, 114);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(197, 58);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "ye";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txt_msg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(332, 26);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(294, 328);
-            this.textBox3.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(165, 198);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "发送短信";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(165, 249);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "getMsg";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(44, 198);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "sendAt";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.txt_msg.Location = new System.Drawing.Point(12, 65);
+            this.txt_msg.Multiline = true;
+            this.txt_msg.Name = "txt_msg";
+            this.txt_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_msg.Size = new System.Drawing.Size(434, 401);
+            this.txt_msg.TabIndex = 2;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(259, 331);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(378, 33);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(67, 23);
+            this.button4.Size = new System.Drawing.Size(67, 28);
             this.button4.TabIndex = 6;
-            this.button4.Text = "clear";
+            this.button4.Text = "清空";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.文件ToolStripMenuItem,
+            this.短信ToolStripMenuItem,
+            this.操作ToolStripMenuItem,
+            this.设置ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(458, 28);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 文件ToolStripMenuItem
+            // 
+            this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.最小化ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
+            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.文件ToolStripMenuItem.Text = "文件";
+            // 
+            // 退出ToolStripMenuItem
+            // 
+            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            // 
+            // 短信ToolStripMenuItem
+            // 
+            this.短信ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.待发短信ToolStripMenuItem});
+            this.短信ToolStripMenuItem.Name = "短信ToolStripMenuItem";
+            this.短信ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.短信ToolStripMenuItem.Text = "短信";
+            // 
+            // 待发短信ToolStripMenuItem
+            // 
+            this.待发短信ToolStripMenuItem.Name = "待发短信ToolStripMenuItem";
+            this.待发短信ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.待发短信ToolStripMenuItem.Text = "待发短信";
+            this.待发短信ToolStripMenuItem.Click += new System.EventHandler(this.待发短信ToolStripMenuItem_Click);
+            // 
+            // 操作ToolStripMenuItem
+            // 
+            this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.发送短信ToolStripMenuItem});
+            this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
+            this.操作ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.操作ToolStripMenuItem.Text = "操作";
+            // 
+            // 发送短信ToolStripMenuItem
+            // 
+            this.发送短信ToolStripMenuItem.Name = "发送短信ToolStripMenuItem";
+            this.发送短信ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.发送短信ToolStripMenuItem.Text = "发送短信";
+            this.发送短信ToolStripMenuItem.Click += new System.EventHandler(this.发送短信ToolStripMenuItem_Click);
+            // 
+            // btn_startService
+            // 
+            this.btn_startService.Location = new System.Drawing.Point(12, 33);
+            this.btn_startService.Name = "btn_startService";
+            this.btn_startService.Size = new System.Drawing.Size(107, 28);
+            this.btn_startService.TabIndex = 8;
+            this.btn_startService.Text = "开启服务";
+            this.btn_startService.UseVisualStyleBackColor = true;
+            this.btn_startService.Click += new System.EventHandler(this.btn_startService_Click);
+            // 
+            // btn_stopService
+            // 
+            this.btn_stopService.Location = new System.Drawing.Point(129, 33);
+            this.btn_stopService.Name = "btn_stopService";
+            this.btn_stopService.Size = new System.Drawing.Size(107, 28);
+            this.btn_stopService.TabIndex = 9;
+            this.btn_stopService.Text = "关闭服务";
+            this.btn_stopService.UseVisualStyleBackColor = true;
+            this.btn_stopService.Click += new System.EventHandler(this.btn_stopService_Click);
+            // 
+            // 设置ToolStripMenuItem
+            // 
+            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.短信设备配置ToolStripMenuItem,
+            this.数据库配置ToolStripMenuItem});
+            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.设置ToolStripMenuItem.Text = "设置";
+            // 
+            // 短信设备配置ToolStripMenuItem
+            // 
+            this.短信设备配置ToolStripMenuItem.Name = "短信设备配置ToolStripMenuItem";
+            this.短信设备配置ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.短信设备配置ToolStripMenuItem.Text = "短信设备配置";
+            this.短信设备配置ToolStripMenuItem.Click += new System.EventHandler(this.短信设备配置ToolStripMenuItem_Click);
+            // 
+            // 数据库配置ToolStripMenuItem
+            // 
+            this.数据库配置ToolStripMenuItem.Name = "数据库配置ToolStripMenuItem";
+            this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.数据库配置ToolStripMenuItem.Text = "数据库配置";
+            this.数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.数据库配置ToolStripMenuItem_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.打开主界面ToolStripMenuItem,
+            this.退出ToolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(160, 56);
+            // 
+            // 打开主界面ToolStripMenuItem
+            // 
+            this.打开主界面ToolStripMenuItem.Name = "打开主界面ToolStripMenuItem";
+            this.打开主界面ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.打开主界面ToolStripMenuItem.Text = "打开主界面";
+            this.打开主界面ToolStripMenuItem.Click += new System.EventHandler(this.打开主界面ToolStripMenuItem_Click);
+            // 
+            // 退出ToolStripMenuItem1
+            // 
+            this.退出ToolStripMenuItem1.Name = "退出ToolStripMenuItem1";
+            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.退出ToolStripMenuItem1.Text = "退出";
+            this.退出ToolStripMenuItem1.Click += new System.EventHandler(this.退出ToolStripMenuItem1_Click);
+            // 
+            // 最小化ToolStripMenuItem
+            // 
+            this.最小化ToolStripMenuItem.Name = "最小化ToolStripMenuItem";
+            this.最小化ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.最小化ToolStripMenuItem.Text = "最小化";
+            this.最小化ToolStripMenuItem.Click += new System.EventHandler(this.最小化ToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 366);
+            this.ClientSize = new System.Drawing.Size(458, 478);
+            this.Controls.Add(this.btn_stopService);
+            this.Controls.Add(this.btn_startService);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_msg);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "zsmsclient";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txt_msg;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 短信ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 待发短信ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 操作ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 发送短信ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.Button btn_startService;
+        private System.Windows.Forms.Button btn_stopService;
+        private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 短信设备配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 数据库配置ToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 打开主界面ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 最小化ToolStripMenuItem;
     }
 }
 
