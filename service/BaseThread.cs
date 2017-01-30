@@ -30,7 +30,7 @@ namespace service
             this.Name = name;
         }
         
-        public BaseThread createRun()
+        public virtual BaseThread createRun()
         {
             thread = new System.Threading.Thread(threadMethod);
             thread.Name = this.Name;

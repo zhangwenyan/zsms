@@ -26,5 +26,10 @@ namespace zsms
         public String V4 { get; set; }
 
 
+        public override string ToString()
+        {
+            return Mbno + ":" + Msg;
+        }
+
     }
 }

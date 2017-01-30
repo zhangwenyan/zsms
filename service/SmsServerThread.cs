@@ -13,6 +13,18 @@ namespace service
     public class SmsServerThread : BaseThread
     {
         private Sms_OutBoxDal sms_OutBoxDal = DalFactory.createSms_OutBoxDal();
+        private Sms_InBoxDal sms_inBoxDal = DalFactory.createSms_InBoxDal();
+
+        public void sendSms(ESms esms)
+        {
+            if (smsTool == null)
+            {
+                throw new Exception("找不到短信设备");
+            }
+
+            smsTool.sendSms(esms);
+        }
+
 
         private BaseSmsTool smsTool = null;
         public SmsServerThread() : base("短信服务线程")
@@ -31,18 +43,69 @@ namespace service
                     }
                     smsTool = new SmsTool_Alidayu(Config.aliDayu_smsFreeSignName, Config.aliDayu_smsTemplateCode, Config.alidayu_url, Config.alidayu_appkey, Config.alidayu_secret, stList);
                     break;
-                case "at":
-                    smsTool = new SmsTool_AT(Config.at_portName, Config.at_bandRate);
+                case "modem":
+                    smsTool = new SmsTool_AT(Config.modem_portName, Config.modem_bandRate,Config.modem_smsRecover);
                     break;
+
             }
 
 
-                 smsTool.init();
+            if (smsTool == null)
+            {
+                throw new Exception("短信配置错误");
+            }
+
+            smsTool.onSmsRecover += onSmsRec;
+
+
         }
+        private void onSmsRec(RSms rsms)
+        {
+            addMsg("接收到短信:" + rsms);
+
+            sms_inBoxDal.add(new Sms_InBoxModel()
+            {
+                Mbno = rsms.Mbno,
+                Msg = rsms.Msg,
+                ArriveTime = rsms.DT
+            });
+
+        }
+
+        public override BaseThread createRun()
+        {
+            while (!isDispose)
+            {
+                try
+                {
+                    smsTool.init();
+                    addMsg(smsTool.getMsg());
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("短信设备初始化出错", ex);
+                    addMsg("短信设备初始化出错:"+ex.Message);
+                    re0.WaitOne(config.Config.errorWaitTime);
+                }
+            }
+            if (isDispose)
+            {
+                throw new Exception("线程已销毁");
+            }
+            return base.createRun();
+        }
+
+
+
         public override void Dispose()
         {
             re0.Set();
             this.isDispose = true;
+            if (smsTool != null)
+            {
+                smsTool.Dispose();
+            }
         }
         protected override void heartbeat()
         {
@@ -59,12 +122,41 @@ namespace service
                     addMsg("开始发送短信:" + outBox);
                 try
                 {
-                    smsTool.sendSms(new ESms()
+
+                    var i = 0;
+                    var tryCount = Config.tryCount;
+                    while (!isDispose)
                     {
-                        Id = outBox.Id,
-                        Mbno = outBox.Mbno,
-                        Msg = outBox.Msg
-                    });
+                        i++;
+                        try
+                        {
+                            smsTool.sendSms(new ESms()
+                            {
+                                Id = outBox.Id,
+                                Mbno = outBox.Mbno,
+                                Msg = outBox.Msg
+                            });
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            if (i >= tryCount)
+                            {
+                                throw ex;
+                            }
+                            else
+                            {
+                                addMsg("发送短信失败(" + i + "/" + tryCount + "),失败信息:"+ex.Message);
+                                Log.Error("发送短信错误("+i+"/"+tryCount+")", ex);
+                                re0.WaitOne(Config.errorWaitTime);
+                            }
+                        }
+                    }
+                    if (isDispose)
+                    {
+                        return;
+                    }
+
                     addMsg("发送短信(" + outBox + ")成功");
                     //将该短信从数据库里面转换为成功短信
                     sms_OutBoxDal.changeToSendedById(outBox.Id);

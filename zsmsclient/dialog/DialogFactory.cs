@@ -54,5 +54,65 @@ namespace zsmsclient.dialog
             return _Frame_DatabaseSetting;
         }
 
+        private static Frame_SendedOutBoxList _Frame_SendedOutBoxList;
+        public static Frame_SendedOutBoxList showFrame_SendedOutBoxList()
+        {
+            if(_Frame_SendedOutBoxList==null || _Frame_SendedOutBoxList.IsDisposed)
+            {
+                _Frame_SendedOutBoxList = new Frame_SendedOutBoxList();
+            }
+            _Frame_SendedOutBoxList.Show();
+            _Frame_SendedOutBoxList.Focus();
+            return _Frame_SendedOutBoxList;
+        }
+
+
+        private static Frame_BadOutBoxList _Frame_BadOutBoxList;
+        public static Frame_BadOutBoxList showFrame_BadOutBoxList()
+        {
+            if (_Frame_BadOutBoxList == null || _Frame_BadOutBoxList.IsDisposed)
+            {
+                _Frame_BadOutBoxList = new Frame_BadOutBoxList();
+            }
+            _Frame_BadOutBoxList.Show();
+            _Frame_BadOutBoxList.Focus();
+            return _Frame_BadOutBoxList;
+        }
+
+        private static Frame_InBoxList _Frame_InBoxList;
+        public static Frame_InBoxList showFrame_InBoxList()
+        {
+            if (_Frame_InBoxList == null || _Frame_InBoxList.IsDisposed)
+            {
+                _Frame_InBoxList = new Frame_InBoxList();
+            }
+            _Frame_InBoxList.Show();
+            _Frame_InBoxList.Focus();
+            return _Frame_InBoxList;
+        }
+
+        private static Frame_OtherSetting _Frame_OtherSetting;
+        public static Frame_OtherSetting showFrame_OtherSetting()
+        {
+            if (_Frame_OtherSetting == null || _Frame_OtherSetting.IsDisposed)
+            {
+                _Frame_OtherSetting = new Frame_OtherSetting();
+            }
+            _Frame_OtherSetting.Show();
+            _Frame_OtherSetting.Focus();
+            return _Frame_OtherSetting;
+        }
+
+        private static Frame_StartSetting _Frame_StartSetting;
+        public static Frame_StartSetting showFrame_StartSetting()
+        {
+            if (_Frame_StartSetting == null || _Frame_StartSetting.IsDisposed)
+            {
+                _Frame_StartSetting = new Frame_StartSetting();
+            }
+            _Frame_StartSetting.Show();
+            _Frame_StartSetting.Focus();
+            return _Frame_StartSetting;
+        }
     }
 }

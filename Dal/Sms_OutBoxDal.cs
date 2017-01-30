@@ -56,7 +56,7 @@ namespace Dal
 
         public List<Sms_OutBoxModel> queryByPage(int page, int rows, out int total)
         {
-           return dh.QueryByPage<Sms_OutBoxModel>(tbname, null, page, rows, out total);
+           return dh.QueryByPage<Sms_OutBoxModel>(tbname, null, page, rows, out total,Restrain.Order("sendTime"));
         }
 
         public void changeToBad(int id,String badWhy)

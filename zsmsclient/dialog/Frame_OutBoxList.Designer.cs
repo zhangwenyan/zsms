@@ -49,6 +49,7 @@
             this.ClientSize = new System.Drawing.Size(607, 405);
             this.Controls.Add(this.zDataGridView1);
             this.Name = "Frame_OutBoxList";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frame_OutBoxList";
             this.Load += new System.EventHandler(this.Frame_OutBoxList_Load);
             this.ResumeLayout(false);

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "service\service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZControl", "ZControl\ZControl.csproj", "{F9D75142-E087-45D5-863B-090645984E8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouoUtil", "YouoUtil\YouoUtil.csproj", "{091C0F2F-59D8-4E19-B994-4D14BCB86D80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F9D75142-E087-45D5-863B-090645984E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9D75142-E087-45D5-863B-090645984E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9D75142-E087-45D5-863B-090645984E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091C0F2F-59D8-4E19-B994-4D14BCB86D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091C0F2F-59D8-4E19-B994-4D14BCB86D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091C0F2F-59D8-4E19-B994-4D14BCB86D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091C0F2F-59D8-4E19-B994-4D14BCB86D80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

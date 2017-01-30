@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using zsms;
 using System.Threading;
+using System.Configuration;
+using config;
+
 namespace zsmsclient
 {
     public partial class Form1 : Form
@@ -37,16 +40,44 @@ namespace zsmsclient
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             Log.Debug("程序启动");
+            if (Config.justOne)
+            {
+                //获取欲启动进程名
+                string strProcessName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+                ////获取版本号 
+                //CommonData.VersionNumber = Application.ProductVersion; 
+                //检查进程是否已经启动，已经启动则显示报错信息退出程序。 
+                if (System.Diagnostics.Process.GetProcessesByName(strProcessName).Length > 1)
+                {
+                    addMsg(strProcessName + "已经运行！将在10秒后自动关闭");
+                    new Thread(delegate ()
+                    {
+                        Thread.Sleep(10000);
+                        DG dg = delegate ()
+                        {
+                            closeApp();
+                        };
+                        Invoke(dg);
+                    }).Start();
+                    return;
+                }
+            }
+
+
 
 
 
             if (config.Config.autoStartService)
             {
                 startService();
-               
             }
-            
+
+            if (config.Config.autoMinimize)
+            {
+                minimize();
+            }
 
         }
 
@@ -126,7 +157,10 @@ namespace zsmsclient
             //开启后台服务
             service = new service.Main();
             service.onMsg += addMsg;
-            service.start();
+            new Thread(delegate ()
+            {
+                service.start();
+            }).Start();
         }
         private void stopService()
         {
@@ -134,7 +168,10 @@ namespace zsmsclient
             btn_stopService.Enabled = false;
             if (service != null)
             {
-                service.Dispose();
+                new Thread(delegate ()
+                {
+                    service.Dispose();
+                }).Start();
             }
         }
         private void btn_stopService_Click(object sender, EventArgs e)
@@ -171,6 +208,51 @@ namespace zsmsclient
         private void 最小化ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             minimize();
+        }
+
+        private void 已发短信ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_SendedOutBoxList();
+        }
+
+        private void 失败短信ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_BadOutBoxList();
+        }
+
+        private void 接收短信ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_InBoxList();
+        }
+
+        private void 日志ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", System.Environment.CurrentDirectory + "\\Log");
+        }
+
+        private void 其他设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_OtherSetting();
+        }
+
+        private void 启动设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.DialogFactory.showFrame_StartSetting();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_DoubleClick(object sender, EventArgs e)
+        {
+            showWin();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            dialog.DialogFactory.showFrame_SendSms();
         }
     }
 }

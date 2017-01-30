@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using zsms;
 
 namespace service
 {
@@ -12,6 +14,14 @@ namespace service
         private List<BaseThread> threadList = null;
         public event DGStr onMsg;
 
+
+        public void addMsg(String str)
+        {
+            if (onMsg != null)
+            {
+                onMsg(str);
+            }
+        }
 
         public void Dispose()
         {
@@ -31,19 +41,40 @@ namespace service
         }
 
 
+        public void sendSms(ESms esms)
+        {
+            smsServerThread.sendSms(esms);
+        }
+
+        private SmsServerThread smsServerThread;
+
+
         public void start()
         {
             threadList = new List<BaseThread>();
 
             #region 启动短信线程
-            var smsServerThread = new SmsServerThread();
+            smsServerThread = new SmsServerThread();
             smsServerThread.onMsg += onMsg;
             threadList.Add(smsServerThread);
             #endregion 启动短信线程
 
             threadList.ForEach(th =>
             {
-                th.createRun();
+               
+                    new Thread(delegate ()
+                    {
+                        try
+                        {
+                            th.createRun();
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                            addMsg(th.Name + "启动失败(" + ex.Message + ")");
+                        }
+                    }).Start();
+             
             });
         }
 

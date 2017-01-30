@@ -22,6 +22,7 @@ namespace zsmsclient.dialog
         private void Frame_OutBoxList_Load(object sender, EventArgs e)
         {
             zDataGridView1.QueryMethod = queryMethod;
+            zDataGridView1.reload();
         }
         private List<object> queryMethod(int page, int rows, out int total)
         {

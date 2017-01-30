@@ -9,8 +9,11 @@ namespace config
 {
     public class Config
     {
-        public static String databaseType = ConfigurationManager.AppSettings["databaseType"] ?? "mysql";
-        public static String connstr = ConfigurationManager.AppSettings["connstr"] ?? "server=127.0.0.1;database=smsdb;Persist Security Info=False;uid=root;pwd=youotech";
+
+        public static bool justOne = bool.Parse(ConfigurationManager.AppSettings["justOne"] ?? "true");
+        public static String zsmsSetting = "zsms.setting";
+        public static String databaseType = ConfigurationManager.AppSettings["databaseType"];
+        public static String connstr = ConfigurationManager.AppSettings["connstr"];
         
         /// <summary>
         /// 发送短信间隔
@@ -23,13 +26,18 @@ namespace config
         public static bool autoStartService = bool.Parse(ConfigurationManager.AppSettings["autoStartService"] ?? "true");
 
 
+        public static bool autoMinimize = bool.Parse(ConfigurationManager.AppSettings["autoMinimize"] ?? "false");
 
 
-        public static String smsTool = ConfigurationManager.AppSettings["smsTool"];
 
 
-        public static String at_portName = null;
-        public static int at_bandRate = 0;
+        public static String smsTool = null;
+        public static int errorWaitTime = 0;//失败等待时间
+        public static int tryCount = 0;//尝试次数
+
+        public static String modem_portName = null;
+        public static int modem_bandRate = 0;
+        public static bool modem_smsRecover = false;
 
 
         public static String aliDayu_smsFreeSignName = null;
@@ -39,15 +47,30 @@ namespace config
         public static String alidayu_secret = null;
         public static List<dynamic> smsTemplateList = null;
 
+
         public static bool inited = init();
 
 
         public static bool init()
         {
-            String str = FileUtil.FileToString("zsms.setting");
+            String str = FileUtil.FileToString(zsmsSetting);
             var dy = JsonConvert.DeserializeObject<dynamic>(str);
+
+            if (String.IsNullOrEmpty(databaseType))
+            {
+                databaseType = dy.databaseType;
+            }
+            if (String.IsNullOrEmpty(connstr))
+            {
+                connstr = dy.connStr;
+            }
+
+
+
             smsTool = dy.smsTool;
-            var aliDayu = dy.aliDayu;
+            errorWaitTime = dy.errorWaitTime;
+            tryCount = dy.tryCount;
+            var aliDayu = dy.smsTools.aliDayu;
             aliDayu_smsFreeSignName = aliDayu.smsFreeSignName;
             aliDayu_smsTemplateCode = aliDayu.smsTemplateCode;
             alidayu_url = aliDayu.alidayu_url;
@@ -61,10 +84,10 @@ namespace config
             }
 
 
-            var at = dy.at;
-            at_portName = at.portName;
-            at_bandRate = at.bandRate;
-
+            var modem = dy.smsTools.modem;
+            modem_portName = modem.portName;
+            modem_bandRate = modem.bandRate;
+            modem_smsRecover = modem.smsRecover;
 
             return true;
         }

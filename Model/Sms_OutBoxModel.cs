@@ -28,5 +28,10 @@ namespace Model
         public string V4 { set; get; }
         public string V5 { set; get; }
 
+
+        public override string ToString()
+        {
+            return "@"+Mbno + ":" + Msg;
+        }
     }
 }
