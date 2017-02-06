@@ -11,7 +11,7 @@ namespace config
     {
 
         public static bool justOne = bool.Parse(ConfigurationManager.AppSettings["justOne"] ?? "true");
-        public static String zsmsSetting = "zsms.setting";
+        public static String zsmsSetting  = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase+"zsms.setting";
         public static String databaseType = ConfigurationManager.AppSettings["databaseType"];
         public static String connstr = ConfigurationManager.AppSettings["connstr"];
         
@@ -88,6 +88,9 @@ namespace config
             modem_portName = modem.portName;
             modem_bandRate = modem.bandRate;
             modem_smsRecover = modem.smsRecover;
+
+
+            
 
             return true;
         }

@@ -40,6 +40,7 @@ namespace zsmsclient
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            
 
             Log.Debug("程序启动");
             if (Config.justOne)
@@ -99,6 +100,7 @@ namespace zsmsclient
             this.WindowState = FormWindowState.Minimized;
             notifyIcon1.Visible = true;
             this.Hide();
+            notifyIcon1.Text = this.Text;
             notifyIcon1.BalloonTipText = this.Text + "正在后台运行";
             notifyIcon1.BalloonTipTitle = "提示";
             notifyIcon1.BalloonTipIcon = ToolTipIcon.None;
@@ -227,7 +229,8 @@ namespace zsmsclient
 
         private void 日志ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", System.Environment.CurrentDirectory + "\\Log");
+            String logPath = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "Log";
+            System.Diagnostics.Process.Start("explorer.exe", logPath);
         }
 
         private void 其他设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -242,7 +245,6 @@ namespace zsmsclient
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-
         }
 
         private void contextMenuStrip1_DoubleClick(object sender, EventArgs e)
@@ -253,6 +255,16 @@ namespace zsmsclient
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             dialog.DialogFactory.showFrame_SendSms();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            showWin();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

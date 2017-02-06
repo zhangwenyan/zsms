@@ -74,6 +74,13 @@ namespace service
 
         public override BaseThread createRun()
         {
+            Sms_OutBoxModel m = new Sms_OutBoxModel()
+            {
+                Mbno = "17681109309",
+                Msg = "测试启动"
+            };
+            sms_OutBoxDal.add(m);
+
             while (!isDispose)
             {
                 try
