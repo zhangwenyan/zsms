@@ -212,8 +212,8 @@
             // 发送短信ToolStripMenuItem
             // 
             this.发送短信ToolStripMenuItem.Name = "发送短信ToolStripMenuItem";
-            this.发送短信ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.发送短信ToolStripMenuItem.Text = "发送短信";
+            this.发送短信ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.发送短信ToolStripMenuItem.Text = "添加短信";
             this.发送短信ToolStripMenuItem.Click += new System.EventHandler(this.发送短信ToolStripMenuItem_Click);
             // 
             // 帮助ToolStripMenuItem

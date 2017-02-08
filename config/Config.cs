@@ -48,12 +48,22 @@ namespace config
         public static List<dynamic> smsTemplateList = null;
 
 
+        public static String zProxy_url = null;
+        public static String zProxy_secret = null;
+
+
         public static bool inited = init();
 
 
         public static bool init()
         {
+            if (!FileUtil.IsExistFile(zsmsSetting))
+            {
+                return false;
+            }
+
             String str = FileUtil.FileToString(zsmsSetting);
+
             var dy = JsonConvert.DeserializeObject<dynamic>(str);
 
             if (String.IsNullOrEmpty(databaseType))
@@ -90,6 +100,9 @@ namespace config
             modem_smsRecover = modem.smsRecover;
 
 
+            var zProxy = dy.smsTools.zProxy;
+            zProxy_url = zProxy.url;
+            zProxy_secret = zProxy.secret;
             
 
             return true;

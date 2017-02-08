@@ -52,15 +52,23 @@
             this.rb_modem = new System.Windows.Forms.RadioButton();
             this.rb_alidayu = new System.Windows.Forms.RadioButton();
             this.rb_plugin = new System.Windows.Forms.RadioButton();
+            this.rb_zProxy = new System.Windows.Forms.RadioButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txt_zProxy_url = new System.Windows.Forms.TextBox();
+            this.txt_zProxy_sercet = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(26, 55);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -281,7 +289,7 @@
             // rb_plugin
             // 
             this.rb_plugin.AutoSize = true;
-            this.rb_plugin.Location = new System.Drawing.Point(391, 18);
+            this.rb_plugin.Location = new System.Drawing.Point(468, 20);
             this.rb_plugin.Name = "rb_plugin";
             this.rb_plugin.Size = new System.Drawing.Size(58, 19);
             this.rb_plugin.TabIndex = 6;
@@ -289,11 +297,69 @@
             this.rb_plugin.Text = "插件";
             this.rb_plugin.UseVisualStyleBackColor = true;
             // 
+            // rb_zProxy
+            // 
+            this.rb_zProxy.AutoSize = true;
+            this.rb_zProxy.Location = new System.Drawing.Point(379, 18);
+            this.rb_zProxy.Name = "rb_zProxy";
+            this.rb_zProxy.Size = new System.Drawing.Size(58, 19);
+            this.rb_zProxy.TabIndex = 6;
+            this.rb_zProxy.TabStop = true;
+            this.rb_zProxy.Text = "代理";
+            this.rb_zProxy.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txt_zProxy_sercet);
+            this.tabPage3.Controls.Add(this.txt_zProxy_url);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(780, 359);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "代理";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(114, 106);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Url:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(114, 174);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(90, 15);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "认证字符串:";
+            // 
+            // txt_zProxy_url
+            // 
+            this.txt_zProxy_url.Location = new System.Drawing.Point(218, 103);
+            this.txt_zProxy_url.Name = "txt_zProxy_url";
+            this.txt_zProxy_url.Size = new System.Drawing.Size(384, 25);
+            this.txt_zProxy_url.TabIndex = 2;
+            // 
+            // txt_zProxy_sercet
+            // 
+            this.txt_zProxy_sercet.Location = new System.Drawing.Point(218, 164);
+            this.txt_zProxy_sercet.Name = "txt_zProxy_sercet";
+            this.txt_zProxy_sercet.Size = new System.Drawing.Size(384, 25);
+            this.txt_zProxy_sercet.TabIndex = 3;
+            // 
             // Frame_SmsToolSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 502);
+            this.ClientSize = new System.Drawing.Size(856, 516);
+            this.Controls.Add(this.rb_zProxy);
             this.Controls.Add(this.rb_plugin);
             this.Controls.Add(this.rb_alidayu);
             this.Controls.Add(this.rb_modem);
@@ -310,6 +376,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,5 +409,11 @@
         private System.Windows.Forms.RadioButton rb_alidayu;
         private System.Windows.Forms.CheckBox cb_smsRecover;
         private System.Windows.Forms.RadioButton rb_plugin;
+        private System.Windows.Forms.RadioButton rb_zProxy;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_zProxy_sercet;
+        private System.Windows.Forms.TextBox txt_zProxy_url;
     }
 }

@@ -46,6 +46,9 @@ namespace service
                 case "modem":
                     smsTool = new SmsTool_AT(Config.modem_portName, Config.modem_bandRate,Config.modem_smsRecover);
                     break;
+                case "zproxy":
+                    smsTool = new SmsTool_ZProxy(Config.zProxy_url,Config.zProxy_secret);
+                    break;
                 case "plugin":
                     smsTool = new PluginSmsTool.PluginSmsTool();
                     break;

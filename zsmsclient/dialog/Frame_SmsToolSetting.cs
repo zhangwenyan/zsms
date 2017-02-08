@@ -38,6 +38,9 @@ namespace zsmsclient.dialog
             txt_smsFreeSignName.Text = Config.aliDayu_smsFreeSignName;
             txt_smsTemplateCode.Text = Config.aliDayu_smsTemplateCode;
 
+            txt_zProxy_url.Text = Config.zProxy_url;
+            txt_zProxy_sercet.Text = Config.zProxy_secret;
+
 
 
             switch (Config.smsTool.ToLower())
@@ -50,6 +53,9 @@ namespace zsmsclient.dialog
                     break;
                 case "plugin":
                     rb_plugin.Checked = true;
+                    break;
+                case "zproxy":
+                    rb_zProxy.Checked = true;
                     break;
             }
 
@@ -79,6 +85,10 @@ namespace zsmsclient.dialog
             {
                 smsTool = "plugin";
             }
+            else if (rb_zProxy.Checked)
+            {
+                smsTool = "zProxy";
+            }
 
             dy.smsTool = smsTool;
             dy.smsTools.modem.portName = cb_portName.Text;
@@ -92,6 +102,10 @@ namespace zsmsclient.dialog
             dy.smsTools.aliDayu.alidayu_url = txt_alidayu_url.Text;
             dy.smsTools.aliDayu.alidayu_appkey = txt_alidayu_appkey.Text;
             dy.smsTools.aliDayu.alidayu_secret = txt_alidayu_secret.Text;
+
+
+            dy.smsTools.zProxy.url = txt_zProxy_url.Text;
+            dy.smsTools.zProxy.sercet = txt_zProxy_sercet.Text;
 
 
             str = JsonConvert.SerializeObject(dy);

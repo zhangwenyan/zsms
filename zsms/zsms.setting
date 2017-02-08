@@ -1,5 +1,5 @@
 ﻿{
-  "smsTool": "plugin",
+  "smsTool": "zproxy",
   "errorWaitTime": "3000", //失败等待时间
   "tryCount": 4, //尝试次数
   "databaseType": "sqlserver",//数据库类型(sqlserver,mysql),如果app.config中配置了则以app.config为准
@@ -29,7 +29,11 @@
     "modem": {
       "portName": "com7",
       "bandRate": "9600",
-      "smsRecover":true
+      "smsRecover": true
+    },
+    "zProxy": {
+      "url": "http://localhost:5689/api.ashx",
+      "secret": "admin@888888"
     }
 
   }
