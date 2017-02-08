@@ -48,6 +48,9 @@ namespace zsmsclient.dialog
                 case "alidayu":
                     rb_alidayu.Checked = true;
                     break;
+                case "plugin":
+                    rb_plugin.Checked = true;
+                    break;
             }
 
 
@@ -72,7 +75,10 @@ namespace zsmsclient.dialog
             {
                 smsTool = "alidayu";
             }
-
+            else if (rb_plugin.Checked)
+            {
+                smsTool = "plugin";
+            }
 
             dy.smsTool = smsTool;
             dy.smsTools.modem.portName = cb_portName.Text;
@@ -86,8 +92,6 @@ namespace zsmsclient.dialog
             dy.smsTools.aliDayu.alidayu_url = txt_alidayu_url.Text;
             dy.smsTools.aliDayu.alidayu_appkey = txt_alidayu_appkey.Text;
             dy.smsTools.aliDayu.alidayu_secret = txt_alidayu_secret.Text;
-
-
 
 
             str = JsonConvert.SerializeObject(dy);

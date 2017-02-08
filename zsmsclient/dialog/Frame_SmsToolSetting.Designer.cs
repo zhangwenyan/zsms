@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cb_smsRecover = new System.Windows.Forms.CheckBox();
             this.txt_baudRate = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rb_modem = new System.Windows.Forms.RadioButton();
             this.rb_alidayu = new System.Windows.Forms.RadioButton();
-            this.cb_smsRecover = new System.Windows.Forms.CheckBox();
+            this.rb_plugin = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -81,6 +82,16 @@
             this.tabPage1.Text = "短信猫";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // cb_smsRecover
+            // 
+            this.cb_smsRecover.AutoSize = true;
+            this.cb_smsRecover.Location = new System.Drawing.Point(78, 274);
+            this.cb_smsRecover.Name = "cb_smsRecover";
+            this.cb_smsRecover.Size = new System.Drawing.Size(89, 19);
+            this.cb_smsRecover.TabIndex = 5;
+            this.cb_smsRecover.Text = "接收短信";
+            this.cb_smsRecover.UseVisualStyleBackColor = true;
             // 
             // txt_baudRate
             // 
@@ -259,7 +270,7 @@
             // rb_alidayu
             // 
             this.rb_alidayu.AutoSize = true;
-            this.rb_alidayu.Location = new System.Drawing.Point(222, 18);
+            this.rb_alidayu.Location = new System.Drawing.Point(225, 18);
             this.rb_alidayu.Name = "rb_alidayu";
             this.rb_alidayu.Size = new System.Drawing.Size(148, 19);
             this.rb_alidayu.TabIndex = 5;
@@ -267,21 +278,23 @@
             this.rb_alidayu.Text = "阿里大于短信平台";
             this.rb_alidayu.UseVisualStyleBackColor = true;
             // 
-            // cb_smsRecover
+            // rb_plugin
             // 
-            this.cb_smsRecover.AutoSize = true;
-            this.cb_smsRecover.Location = new System.Drawing.Point(78, 274);
-            this.cb_smsRecover.Name = "cb_smsRecover";
-            this.cb_smsRecover.Size = new System.Drawing.Size(89, 19);
-            this.cb_smsRecover.TabIndex = 5;
-            this.cb_smsRecover.Text = "接收短信";
-            this.cb_smsRecover.UseVisualStyleBackColor = true;
+            this.rb_plugin.AutoSize = true;
+            this.rb_plugin.Location = new System.Drawing.Point(391, 18);
+            this.rb_plugin.Name = "rb_plugin";
+            this.rb_plugin.Size = new System.Drawing.Size(58, 19);
+            this.rb_plugin.TabIndex = 6;
+            this.rb_plugin.TabStop = true;
+            this.rb_plugin.Text = "插件";
+            this.rb_plugin.UseVisualStyleBackColor = true;
             // 
             // Frame_SmsToolSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 502);
+            this.Controls.Add(this.rb_plugin);
             this.Controls.Add(this.rb_alidayu);
             this.Controls.Add(this.rb_modem);
             this.Controls.Add(this.label6);
@@ -327,5 +340,6 @@
         private System.Windows.Forms.RadioButton rb_modem;
         private System.Windows.Forms.RadioButton rb_alidayu;
         private System.Windows.Forms.CheckBox cb_smsRecover;
+        private System.Windows.Forms.RadioButton rb_plugin;
     }
 }
