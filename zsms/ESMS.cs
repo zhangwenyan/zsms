@@ -16,7 +16,7 @@ namespace zsms
             this.Mbno = mbno;
             this.Msg = msg;
         }
-        public int Id { get; set; }
+        public long Id { get; set; }
         public String Mbno { get; set; }
         public String Msg { get; set; }
 

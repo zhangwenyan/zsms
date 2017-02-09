@@ -21,6 +21,7 @@ namespace Dal
         /// <returns></returns>
         public Sms_OutBoxModel queryTask(out int total)
         {
+            dh.Execute("update " + tbname + " set sendTime={0} where sendTime is null", DateTime.Now);
             return dh.QueryByPage<Sms_OutBoxModel>(this.tbname, null, 1, 1, out total, Restrain.Lt("SendTime", DateTime.Now), Restrain.Order("sendTime")).FirstOrDefault();
         }
 

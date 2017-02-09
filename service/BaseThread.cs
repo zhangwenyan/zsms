@@ -50,6 +50,7 @@ namespace service
                 catch (Exception ex)
                 {
                     Log.Error(thread.Name, ex);
+                    addMsg("心跳出错"+ex.Message);
                 }
                 finally
                 {

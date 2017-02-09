@@ -184,16 +184,8 @@ namespace easysql
 
             foreach (DataRow dr in dt.Rows)
             {
-                var model = new T();
-                foreach (var p in prlist)
-                {
-                    var val = dr[p.Name];
-                    if (val != DBNull.Value)
-                    {
-                        p.SetValue(model, val, null);
-                    }
-                }
-
+                
+                var model = ToModel<T>(dr);
                 result.Add(model);
             }
 
@@ -202,28 +194,34 @@ namespace easysql
 
         public static T ToModel<T>(DataRow dr) where T : new()
         {
-            var result = new T();
-            Type type = result.GetType();
-            PropertyInfo[] pis = type.GetProperties();
-            foreach (var p in pis)
+            var model = new T();
+            Type type = model.GetType();
+            PropertyInfo[] prlist = type.GetProperties();
+            foreach (var p in prlist)
             {
-                object val = null;
-                try
-                {
-                    val = dr[p.Name];
-                }
-                catch
-                {
-                    //如果dr里面没有该列，则跳过
-                    continue;
-                }
+                object val = dr[p.Name];
                 if (val != DBNull.Value)
                 {
-                    p.SetValue(result, val, null);
-                }
+                    var valType = val.GetType();
+                    var pType = p.PropertyType;
+                    if (valType != pType)
+                    {//类型转换
 
+                        if (valType.Equals(typeof(Int64)) && pType.Equals(typeof(Int32)))
+                        {
+                            val = (int)(long)val;
+                        }
+                        else if (valType.Equals(typeof(String)) && pType.Equals(typeof(DateTime)))
+                        {
+                            val = DateTime.Parse(val.ToString());
+                        }
+                    }
+
+                    p.SetValue(model, val, null);
+                }
             }
-            return result;
+            return model;
+
         }
 
         /// <summary>

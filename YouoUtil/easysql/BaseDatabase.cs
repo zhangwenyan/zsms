@@ -19,6 +19,7 @@ namespace easysql
         protected DbConnection _dbConnection;
         protected int _executeTimeout = 60;//执行超时时间
         private DbTransaction _dbTranscation;//事务
+        private String databaseType;
 
         protected BaseDatabase(String paramNamePrefix,String paramPrefix){
             this._paramNamePrefix = paramNamePrefix;
