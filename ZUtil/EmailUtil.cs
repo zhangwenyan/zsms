@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace YouoUtil
+namespace ZUtil
 {
     /// <summary>
     /// 邮件操作工具类

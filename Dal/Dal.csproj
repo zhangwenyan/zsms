@@ -60,9 +60,9 @@
       <Project>{03cd4f94-db24-4906-9ba6-ff40b8317f98}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YouoUtil\YouoUtil.csproj">
-      <Project>{091c0f2f-59d8-4e19-b994-4d14bcb86d80}</Project>
-      <Name>YouoUtil</Name>
+    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

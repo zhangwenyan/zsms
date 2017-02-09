@@ -19,7 +19,6 @@ namespace easysql
         protected DbConnection _dbConnection;
         protected int _executeTimeout = 60;//执行超时时间
         private DbTransaction _dbTranscation;//事务
-        private String databaseType;
 
         protected BaseDatabase(String paramNamePrefix,String paramPrefix){
             this._paramNamePrefix = paramNamePrefix;
@@ -86,6 +85,7 @@ namespace easysql
         /// <returns></returns>
         public virtual DataTable ExecuteDataTable(String sql, params Object[] paramValues)
         {
+
             using (DbCommand cmd = CreateDbCommand())
             {
                 cmd.CommandTimeout = _executeTimeout;
@@ -119,7 +119,6 @@ namespace easysql
                 cmd.CommandTimeout = _executeTimeout;
                 sql = getLimitString(sql, ref start, maxResult);
                 RetreatCmd(sql, cmd, paramValues);
-                Console.WriteLine(sql);
                 using (DbDataAdapter adp = CreateAdapter(cmd))
                 {
                     DataTable dt = new DataTable();

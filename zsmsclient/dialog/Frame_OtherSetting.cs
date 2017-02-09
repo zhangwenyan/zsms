@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using config;
-using YouoUtil;
+using ZUtil;
 using Newtonsoft.Json;
 
 namespace zsmsclient.dialog

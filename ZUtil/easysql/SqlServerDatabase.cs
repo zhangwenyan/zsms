@@ -40,7 +40,6 @@ namespace easysql
         #endregion 必须重载的父类方法
         protected override string getLimitString(string sql, ref int start, int maxResult)
         {
-            // return sql;
             int selectIndex = sql.ToLower().IndexOf("select");
             var m = new Regex("select\\sdistinct").Match(sql.ToLower());
             int selectDistinctIndex = m.Success ? m.Index : -1;
@@ -60,7 +59,7 @@ namespace easysql
             if (match.Success)
             {
                 str = @"select * from (
-                select *,row_number() over ("+match.Groups[2].Value+") as _easysql_rn from ("
+                select *,row_number() over (" + match.Groups[2].Value + ") as _easysql_rn from ("
                     + match.Groups[1].Value +
                     @") easysql_query 
                   ) easysql_result where 1=1 ";

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace YouoUtil
+namespace ZUtil
 {
     /// <summary>
     /// 文件操作工具类

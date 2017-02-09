@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
-using YouoUtil;
+using ZUtil;
 namespace config
 {
     public class Config

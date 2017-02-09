@@ -64,13 +64,13 @@
       <Project>{3dd87654-9d78-421a-af0e-66d9784b8e6b}</Project>
       <Name>PluginSmsTool</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YouoUtil\YouoUtil.csproj">
-      <Project>{091c0f2f-59d8-4e19-b994-4d14bcb86d80}</Project>
-      <Name>YouoUtil</Name>
-    </ProjectReference>
     <ProjectReference Include="..\zsms\zsms.csproj">
       <Project>{29291294-8144-41a5-b87e-c80022df5c67}</Project>
       <Name>zsms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

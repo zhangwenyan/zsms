@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace YouoUtil
+namespace ZUtil
 {
     /// <summary>
     /// http工具类
@@ -30,29 +30,49 @@ namespace YouoUtil
         /// <returns></returns>
         public static String doPost(HttpPack pack)
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(pack.url);
-            Encoding encoding = Encoding.UTF8;
-            //encoding.GetBytes(postData);
-            byte[] bs = Encoding.ASCII.GetBytes(pack.postStr);
-            string responseData = String.Empty;
-            req.Method = "POST";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.ContentLength = bs.Length;
-            using (Stream reqStream = req.GetRequestStream())
-            {
-                reqStream.Write(bs, 0, bs.Length);
-                reqStream.Close();
-            }
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(pack.url);
 
-            using (HttpWebResponse response = (HttpWebResponse)req.GetResponse())
+            request.Method = "POST";
+            // request.ContentType = "application/json;charset=UTF-8";
+            if (pack.ContentType == null)
             {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream(), encoding))
+                request.ContentType = "application/x-www-form-urlencoded";
+            }
+            if (pack.cookieContainer != null)
+            {
+                request.CookieContainer = pack.cookieContainer;
+            }
+            if (pack.headers != null)
+            {
+                foreach (HeaderModel header in pack.headers)
                 {
-                    responseData = reader.ReadToEnd().ToString();
+                    request.Headers.Add(header.key, header.value);
                 }
-                return responseData;
             }
 
+            Stream reqStream = request.GetRequestStream();
+            if (!string.IsNullOrEmpty(pack.postStr))
+            {
+                StreamWriter sw = new StreamWriter(reqStream);
+                sw.Write(pack.postStr);
+                sw.Close();
+            }
+
+            reqStream.Close();
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream resStream = null;
+            if ((response.Headers["content-encoding"] != null) &&
+               (response.Headers["content-encoding"].ToLower() == "gzip"))
+            {
+                resStream = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+            }
+            else
+            {
+                resStream = response.GetResponseStream();
+            }
+            StreamReader sr = new StreamReader(resStream);
+            return sr.ReadToEnd();
         }
 
 

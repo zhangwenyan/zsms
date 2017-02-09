@@ -190,10 +190,6 @@
       <Project>{bd3f0e93-e8d9-4eac-9ec0-ca463c8aef47}</Project>
       <Name>service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YouoUtil\YouoUtil.csproj">
-      <Project>{091c0f2f-59d8-4e19-b994-4d14bcb86d80}</Project>
-      <Name>YouoUtil</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ZControl\ZControl.csproj">
       <Project>{f9d75142-e087-45d5-863b-090645984e8c}</Project>
       <Name>ZControl</Name>
@@ -201,6 +197,10 @@
     <ProjectReference Include="..\zsms\zsms.csproj">
       <Project>{29291294-8144-41a5-b87e-c80022df5c67}</Project>
       <Name>zsms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
