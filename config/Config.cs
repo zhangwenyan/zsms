@@ -48,6 +48,16 @@ namespace config
         public static List<dynamic> smsTemplateList = null;
 
 
+
+        public static String aliyuncs_smsFreeSignName = null;
+        public static String aliyuncs_smsTemplateCode = null;
+        public static String aliyuncs_url = null;
+        public static String aliyuncs_appkey = null;
+        public static String aliyuncs_secret = null;
+        public static List<dynamic> aliyuncs_smsTemplateList = null;
+
+
+
         public static String zProxy_url = null;
         public static String zProxy_secret = null;
 
@@ -92,6 +102,20 @@ namespace config
             {
                 smsTemplateList.Add(aliDayu.smsTemplateList[i]);
             }
+
+
+            var aliyuncs = dy.smsTools.aliyuncs;
+            aliyuncs_smsFreeSignName = aliyuncs.smsFreeSignName;
+            aliyuncs_smsTemplateCode = aliyuncs.smsTemplateCode;
+            aliyuncs_appkey = aliyuncs.appkey;
+            aliyuncs_secret = aliyuncs.secret;
+
+            aliyuncs_smsTemplateList = new List<dynamic>();
+            for(var i = 0; i < aliyuncs.smsTemplateList.Count; i++)
+            {
+                aliyuncs_smsTemplateList.Add(aliyuncs.smsTemplateList[i]);
+            }
+
 
 
             var modem = dy.smsTools.modem;

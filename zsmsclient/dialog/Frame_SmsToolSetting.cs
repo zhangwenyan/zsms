@@ -38,6 +38,14 @@ namespace zsmsclient.dialog
             txt_smsFreeSignName.Text = Config.aliDayu_smsFreeSignName;
             txt_smsTemplateCode.Text = Config.aliDayu_smsTemplateCode;
 
+
+            txt_aliyuncs_appkey.Text = Config.aliyuncs_appkey;
+            txt_aliyuncs_secret.Text = Config.aliyuncs_secret;
+            txt_aliyuncs_smsFreeSignName.Text = Config.aliyuncs_smsFreeSignName;
+            txt_aliyuncs_smsTemplateCode.Text = Config.aliyuncs_smsTemplateCode;
+             
+
+
             txt_zProxy_url.Text = Config.zProxy_url;
             txt_zProxy_sercet.Text = Config.zProxy_secret;
 
@@ -56,6 +64,9 @@ namespace zsmsclient.dialog
                     break;
                 case "zproxy":
                     rb_zProxy.Checked = true;
+                    break;
+                case "aliyuncs":
+                    rb_aliyuncs.Checked = true;
                     break;
             }
 
@@ -89,6 +100,10 @@ namespace zsmsclient.dialog
             {
                 smsTool = "zProxy";
             }
+            else if (rb_aliyuncs.Checked)
+            {
+                smsTool = "aliyuncs";
+            }
 
             dy.smsTool = smsTool;
             dy.smsTools.modem.portName = cb_portName.Text;
@@ -102,6 +117,14 @@ namespace zsmsclient.dialog
             dy.smsTools.aliDayu.alidayu_url = txt_alidayu_url.Text;
             dy.smsTools.aliDayu.alidayu_appkey = txt_alidayu_appkey.Text;
             dy.smsTools.aliDayu.alidayu_secret = txt_alidayu_secret.Text;
+
+
+            dy.smsTools.aliyuncs.smsFreeSignName = txt_aliyuncs_smsFreeSignName.Text;
+            dy.smsTools.aliyuncs.smsTemplateCode = txt_aliyuncs_smsTemplateCode.Text;
+            dy.smsTools.aliyuncs.appkey = txt_aliyuncs_appkey.Text;
+            dy.smsTools.aliyuncs.secret = txt_aliyuncs_secret.Text;
+
+
 
 
             dy.smsTools.zProxy.url = txt_zProxy_url.Text;

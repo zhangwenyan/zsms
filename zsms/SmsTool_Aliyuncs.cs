@@ -1,26 +1,16 @@
-﻿using System;
+﻿using Aliyun.Acs.Core;
+using Aliyun.Acs.Core.Exceptions;
+using Aliyun.Acs.Core.Profile;
+using Aliyun.Acs.Sms.Model.V20160927;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Top.Api;
-using Top.Api.Request;
-using Top.Api.Response;
 
 namespace zsms
 {
-    /// <summary>
-    /// 模板
-    /// </summary>
-    public class SmsTemplate
-    {
-        public String code { get; set; }
-        public String content { get; set; }
-    }
-    /// <summary>
-    /// 阿里大于短信平台短信工具
-    /// </summary>
-    public class SmsTool_Alidayu : BaseSmsTool
+    public class SmsTool_Aliyuncs:BaseSmsTool
     {
         private String smsFreeSignName;//签名
         private String smsTemplateCode;//基本模板编号
@@ -39,7 +29,7 @@ namespace zsms
         /// <param name="alidayu_url">阿里云api地址:http://gw.api.taobao.com/router/rest</param>
         /// <param name="alidayu_appkey">appey</param>
         /// <param name="alidayu_secret">secret</param>
-        public SmsTool_Alidayu(String smsFreeSignName,String smsTemplateCode,String alidayu_url,String alidayu_appkey,String alidayu_secret)
+        public SmsTool_Aliyuncs(String smsFreeSignName, String smsTemplateCode, String alidayu_url, String alidayu_appkey, String alidayu_secret)
         {
             this.smsFreeSignName = smsFreeSignName;
             this.smsTemplateCode = smsTemplateCode;
@@ -57,7 +47,7 @@ namespace zsms
         /// <param name="alidayu_appkey">appey</param>
         /// <param name="alidayu_secret">secret</param>
         /// <param name="smsTemplateList">模板list</param>
-        public SmsTool_Alidayu(String smsFreeSignName, String smsTemplateCode, String alidayu_url, String alidayu_appkey, String alidayu_secret,List<SmsTemplate> smsTemplateList)
+        public SmsTool_Aliyuncs(String smsFreeSignName, String smsTemplateCode, String alidayu_url, String alidayu_appkey, String alidayu_secret, List<SmsTemplate> smsTemplateList)
         {
             this.smsFreeSignName = smsFreeSignName;
             this.smsTemplateCode = smsTemplateCode;
@@ -75,28 +65,29 @@ namespace zsms
 
         public override string getMsg()
         {
-            return "阿里大于短信平台";
+            return "阿里云os短信平台";
         }
 
         public override void init()
         {
-            
+
         }
 
         public override void sendSms(ESms esms)
         {
-            ITopClient client = new DefaultTopClient(alidayu_url, alidayu_appkey, alidayu_secret, "json");
-            AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
-            req.SmsType = "normal";
-            req.SmsFreeSignName = this.smsFreeSignName;
+
+            IClientProfile profile = DefaultProfile.GetProfile("cn-hangzhou", alidayu_appkey, alidayu_secret);
+            IAcsClient client = new DefaultAcsClient(profile);
+            SingleSendSmsRequest request = new SingleSendSmsRequest();
+            request.SignName = this.smsFreeSignName;
+            request.RecNum = esms.Mbno;
+
 
 
             String smsTemplateCode = null;
             String smsParam = null;
 
-
             #region 匹配模板
-
             try
             {
                 foreach (var smsTemplate in smsTemplateList)
@@ -120,15 +111,16 @@ namespace zsms
                         smsParam = Newtonsoft.Json.JsonConvert.SerializeObject(map);
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.Write("代码有缺陷,匹配模板时出错:"+ex.Message);
+                Console.Write("代码有缺陷,匹配模板时出错:" + ex.Message);
             }
 
             #endregion 匹配模板
 
 
-            if(smsTemplateCode == null)
+            if (smsTemplateCode == null)
             {//使用基本模板
                 smsTemplateCode = this.smsTemplateCode;
                 smsParam = Newtonsoft.Json.JsonConvert.SerializeObject(new
@@ -138,21 +130,25 @@ namespace zsms
             }
 
 
-            if(String.IsNullOrEmpty(smsTemplateCode) || smsParam == null)
+            if (String.IsNullOrEmpty(smsTemplateCode) || smsParam == null)
             {
                 throw new SmsErrorException("短信内容没有匹配的模板");
             }
 
+            request.TemplateCode = smsTemplateCode;
+            request.ParamString = smsParam;
 
-            req.SmsParam = smsParam;
-            req.RecNum = esms.Mbno;
-            req.SmsTemplateCode = smsTemplateCode;
-            AlibabaAliqinFcSmsNumSendResponse rsp = client.Execute(req);
-
-            if(rsp.Result == null || !rsp.Result.Success)
+            try
             {
-                throw new Exception("发送失败:"+ rsp.SubErrMsg);
+                SingleSendSmsResponse rsp = client.GetAcsResponse(request);
+            }catch(Exception ex)
+            {
+                throw new Exception("发送失败:" + ex.Message);
             }
+            //if (rsp.Result == null || !rsp.Result.Success)
+            //{
+            //    throw new Exception("发送失败:" + rsp.SubErrMsg);
+            //}
         }
     }
 }

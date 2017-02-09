@@ -43,6 +43,18 @@ namespace service
                     }
                     smsTool = new SmsTool_Alidayu(Config.aliDayu_smsFreeSignName, Config.aliDayu_smsTemplateCode, Config.alidayu_url, Config.alidayu_appkey, Config.alidayu_secret, stList);
                     break;
+                case "aliyuncs":
+                    List<SmsTemplate> stList0 = new List<SmsTemplate>();
+                    foreach (dynamic template in Config.aliyuncs_smsTemplateList)
+                    {
+                        stList0.Add(new SmsTemplate()
+                        {
+                            code = template.code,
+                            content = template.content,
+                        });
+                    }
+                    smsTool = new SmsTool_Aliyuncs(Config.aliyuncs_smsFreeSignName, Config.aliyuncs_smsTemplateCode, Config.aliyuncs_url, Config.aliyuncs_appkey, Config.aliyuncs_secret, stList0);
+                    break;
                 case "modem":
                     smsTool = new SmsTool_AT(Config.modem_portName, Config.modem_bandRate,Config.modem_smsRecover);
                     break;
@@ -80,12 +92,12 @@ namespace service
 
         public override BaseThread createRun()
         {
-            Sms_OutBoxModel m = new Sms_OutBoxModel()
-            {
-                Mbno = "17681109309",
-                Msg = "测试启动"
-            };
-            sms_OutBoxDal.add(m);
+            //Sms_OutBoxModel m = new Sms_OutBoxModel()
+            //{
+            //    Mbno = "17681109309",
+            //    Msg = "测试启动"
+            //};
+            //sms_OutBoxDal.add(m);
 
             while (!isDispose)
             {
@@ -149,7 +161,15 @@ namespace service
                                 Mbno = outBox.Mbno,
                                 Msg = outBox.Msg
                             });
+
+                            addMsg("发送短信(" + outBox + ")成功");
+                            //将该短信从数据库里面转换为成功短信
+                            sms_OutBoxDal.changeToSendedById(outBox.Id);
+
                             break;
+                        }catch(SmsErrorException ex)
+                        {
+                            throw ex;
                         }
                         catch (Exception ex)
                         {
@@ -170,9 +190,7 @@ namespace service
                         return;
                     }
 
-                    addMsg("发送短信(" + outBox + ")成功");
-                    //将该短信从数据库里面转换为成功短信
-                    sms_OutBoxDal.changeToSendedById(outBox.Id);
+                
                 }
                 catch (Exception ex)
                 {
