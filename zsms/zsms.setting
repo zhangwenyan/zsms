@@ -28,7 +28,7 @@
     },
   "aliyuncs": {
       "smsFreeSignName": "燎火",
-      "smsTemplateCode": "",
+      "smsTemplateCode": "SMS_46010001",
       "appkey": "fUp8ugoXHBUx8rCQ",
       "secret": "Zamp8jopaIOzVLPnX8r804vb3SrXPY",
       "smsTemplateList": [

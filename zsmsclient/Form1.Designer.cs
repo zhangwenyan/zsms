@@ -71,13 +71,13 @@
             this.txt_msg.Multiline = true;
             this.txt_msg.Name = "txt_msg";
             this.txt_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_msg.Size = new System.Drawing.Size(390, 285);
+            this.txt_msg.Size = new System.Drawing.Size(441, 351);
             this.txt_msg.TabIndex = 2;
             // 
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(334, 33);
+            this.button4.Location = new System.Drawing.Point(385, 33);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(67, 28);
             this.button4.TabIndex = 6;
@@ -96,7 +96,7 @@
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(414, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(465, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -305,7 +305,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 356);
+            this.label1.Location = new System.Drawing.Point(357, 422);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 15);
             this.label1.TabIndex = 11;
@@ -316,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 380);
+            this.ClientSize = new System.Drawing.Size(465, 446);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btn_stopService);

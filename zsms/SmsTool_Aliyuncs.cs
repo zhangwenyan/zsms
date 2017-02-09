@@ -93,7 +93,7 @@ namespace zsms
                 foreach (var smsTemplate in smsTemplateList)
                 {
                     String regStr = Regex.Replace(smsTemplate.content, @"\$\{[a-z0-9]+\}", "(.{0,15})");
-                    Regex reg = new Regex(regStr);
+                    Regex reg = new Regex("^"+regStr+"$");
                     var m = reg.Match(esms.Msg);
                     if (m.Success)
                     {
