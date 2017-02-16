@@ -157,14 +157,14 @@ namespace service
                         {
                             smsTool.sendSms(new ESms()
                             {
-                                Id = outBox.Id,
+                                id = outBox.id,
                                 Mbno = outBox.Mbno,
                                 Msg = outBox.Msg
                             });
 
                             addMsg("发送短信(" + outBox + ")成功");
                             //将该短信从数据库里面转换为成功短信
-                            sms_OutBoxDal.changeToSendedById(outBox.Id);
+                            sms_OutBoxDal.changeToSendedById(outBox.id);
 
                             break;
                         }catch(SmsErrorException ex)
@@ -196,7 +196,7 @@ namespace service
                 {
                     addMsg("发送短信(" + outBox + ")失败,失败信息:" + ex.Message);
                     Log.Error("发送短信失败", ex);
-                    sms_OutBoxDal.changeToBad(outBox.Id, ex.Message);
+                    sms_OutBoxDal.changeToBad(outBox.id, ex.Message);
                 }
                 if (total > 1)
                 {

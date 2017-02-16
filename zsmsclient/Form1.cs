@@ -266,5 +266,10 @@ namespace zsmsclient
         {
 
         }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new dialog.AboutBox1().ShowDialog();
+        }
     }
 }

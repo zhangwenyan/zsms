@@ -7,7 +7,7 @@ namespace Model
 {
     public class Sms_InBoxModel:BaseModel
     {
-        public int Id { set; get; }
+        public int id { set; get; }
         public string Username { get; set; }
         public string Mbno { set; get; }
         public string Msg { set; get; }

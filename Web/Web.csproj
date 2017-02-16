@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -58,6 +62,166 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\base.js" />
+    <Content Include="js\jquery-easyui-1.4\datagrid-detailview.js" />
+    <Content Include="js\jquery-easyui-1.4\easyloader.js" />
+    <Content Include="js\jquery-easyui-1.4\easyui-validate.js" />
+    <Content Include="js\jquery-easyui-1.4\jquery-1.8.0.min.js" />
+    <Content Include="js\jquery-easyui-1.4\jquery.easyui.min.js" />
+    <Content Include="js\jquery-easyui-1.4\jquery.edatagrid.js" />
+    <Content Include="js\jquery-easyui-1.4\jquery.min.js" />
+    <Content Include="js\jquery-easyui-1.4\licence_gpl.txt" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-af.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-am.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-ar.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-bg.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-ca.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-cs.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-cz.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-da.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-de.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-el.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-en.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-es.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-fr.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-it.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-jp.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-nl.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-pl.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-pt_BR.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-ru.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-sv_SE.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-tr.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-zh_CN.js" />
+    <Content Include="js\jquery-easyui-1.4\locale\easyui-lang-zh_TW.js" />
+    <Content Include="js\jquery-easyui-1.4\readme.txt" />
+    <Content Include="js\jquery-easyui-1.4\themes\color.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\accordion.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\calendar.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\combo.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\combobox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\datagrid.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\datebox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\dialog.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\easyui.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\filebox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\accordion_arrows.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\blank.gif" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\calendar_arrows.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\combo_arrow.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\datagrid_icons.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\datebox_arrow.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\layout_arrows.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\linkbutton_bg.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\loading.gif" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\menu_arrows.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\messager_icons.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\pagination_icons.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\panel_tools.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\searchbox_button.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\slider_handle.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\spinner_arrows.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\tabs_icons.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\tree_icons.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\images\validatebox_warning.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\layout.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\linkbutton.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\menu.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\menubutton.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\messager.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\numberbox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\pagination.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\panel.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\progressbar.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\propertygrid.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\searchbox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\slider.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\spinner.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\splitbutton.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\tabs.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\textbox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\tooltip.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\tree.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\validatebox.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\default\window.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\icon.css" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\application_view_columns.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\arrow_divide.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\arrow_out.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\arrow_refresh.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\back.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\blank.gif" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\bricks.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\cancel.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\ch.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\chart_bar.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\clear.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\cut.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\edit_add.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\edit_remove.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\emoticon_smile.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\export.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\filesave.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\filter.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_blue.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_green.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_orange.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_pink.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_purple.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_red.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\flag_yellow.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\folder_user.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\fp.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\glsb.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\group.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\group_add.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\group_key.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\help.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\key.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\large_chart.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\large_clipart.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\large_picture.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\large_shapes.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\large_smartart.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\lock.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\lx.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\ly.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\man.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\map.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\mini_add.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\mini_edit.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\mini_refresh.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\no.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\ok.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\pencil.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\phone.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\print.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\qxbd.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\redo.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\reload.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\scgd.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\search.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\sum.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\th.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\tip.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\tip2.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\undo.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\user.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\user_green.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\wc.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\wenzi.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\world.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\wrench.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\zj.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\zone-resize.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\zoomin.png" />
+    <Content Include="js\jquery-easyui-1.4\themes\icons\zoomout.png" />
+    <Content Include="js\zeasyui-2.0.js" />
+    <Content Include="mysql.data.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dll\Newtonsoft.Json.dll" />
+    <Content Include="page\sms\Sms_BadOutBoxManager.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +229,19 @@
       <DependentUpon>api.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\BaseService.cs" />
+    <Compile Include="service\MsgException.cs" />
+    <Compile Include="service\Sms_BadOutBoxService.ashx.cs">
+      <DependentUpon>Sms_BadOutBoxService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="service\UserService.ashx.cs">
+      <DependentUpon>UserService.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="api.ashx" />
+    <Content Include="service\UserService.ashx" />
+    <Content Include="service\Sms_BadOutBoxService.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -85,6 +259,7 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

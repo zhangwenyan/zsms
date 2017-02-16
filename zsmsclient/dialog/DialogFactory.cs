@@ -114,5 +114,19 @@ namespace zsmsclient.dialog
             _Frame_StartSetting.Focus();
             return _Frame_StartSetting;
         }
+
+
+        //private static AboutBox1 _AboutBox1;
+        //partial static AboutBox1 showAboutBox()
+        //{
+        //    if (_AboutBox1 == null || _AboutBox1.IsDisposed)
+        //    {
+        //        _AboutBox1 = new AboutBox1();
+        //    }
+        //    _AboutBox1.Show();
+        //    _AboutBox1.Focus();
+        //    return _AboutBox1;
+
+        //}
     }
 }

@@ -6,18 +6,18 @@ namespace Model
 {
     public class Sms_SendedOutBoxModel : BaseModel
     {
-        public int Id { set; get; }
-        public string Username { set; get; }
-        public string Mbno { set; get; }
-        public string Msg { set; get; }
-        public DateTime SendTime { set; get; }
-        public int Total { set; get; }
-        public int Comport { set; get; }
-        public string V1 { set; get; }
-        public string V2 { set; get; }
-        public string V3 { set; get; }
-        public string V4 { set; get; }
-        public string V5 { set; get; }
+        public int id { set; get; }
+        public string username { set; get; }
+        public string mbno { set; get; }
+        public string msg { set; get; }
+        public DateTime sendTime { set; get; }
+        public int total { set; get; }
+        public int comport { set; get; }
+        public string v1 { set; get; }
+        public string v2 { set; get; }
+        public string v3 { set; get; }
+        public string v4 { set; get; }
+        public string v5 { set; get; }
 
     }
 }

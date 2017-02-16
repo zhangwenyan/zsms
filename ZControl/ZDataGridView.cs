@@ -14,7 +14,10 @@ namespace ZControl
         public delegate void DG();
         public delegate List<object> DGQueryByPage(int page, int pageSize, out int total);
         public DGQueryByPage QueryMethod;
-
+        /// <summary>
+        /// 隐藏列的名称
+        /// </summary>
+        public String[] hiddenColumns { get; set; }
 
         public int page { get; set; }
 
@@ -44,49 +47,24 @@ namespace ZControl
 
         }
 
-        private List<Object> testQueryMethod(int page, int rows, out int total)
+        public List<dynamic> getSelections()
         {
-            total = 34;
-            List<object> list = new List<object>();
-            list.Add(new
+            List<dynamic> list = new List<dynamic>();
+            var srs = dgv.SelectedRows;
+            foreach(DataGridViewRow sr in srs)
             {
-                username = "aaaa",
-                password = "1111"
-            });
-
-            list.Add(new
-            {
-                username = "bbbb",
-                password = "2222"
-            });
-            list.Add(new
-            {
-                username = "cccc",
-                password = "3333"
-            });
-            
-            list.Add(new
-            {
-                username = "bbbb",
-                password = "2222"
-            });
-            list.Add(new
-            {
-                username = "cccc",
-                password = "3333"
-            });
-
+                dynamic obj = sr.DataBoundItem;
+                list.Add(obj);
+            }
             return list;
-
         }
-
         private void ZDataGridView_Load(object sender, EventArgs e)
         {
             reload();
         }
+        
         public void reload()
         {
-
 
             if (QueryMethod == null)
             {
@@ -110,6 +88,7 @@ namespace ZControl
                 toolStripComboBox1.Text = pageSize.ToString();
             }
 
+            //            toolStripButton5.
             this.loadingPanel1.Start();
             var source = new List<object>();
             try
@@ -125,7 +104,7 @@ namespace ZControl
             {
                 this.loadingPanel1.Stop();
             }
-                btn_pr.Enabled = btn_prs.Enabled = page > 1;
+            btn_pr.Enabled = btn_prs.Enabled = page > 1;
                 int max = (int)Math.Ceiling(total * 1.0 / pageSize);
                 btn_nexts.Enabled = btn_next.Enabled = page < max;
 
@@ -143,6 +122,24 @@ namespace ZControl
                 toolStripLabel3.Text = string.Format("显示{0}到{1},共{2}记录",source.Count == 0?0:(page-1)*pageSize+1, (page-1)*pageSize+source.Count, total);
 
                 this.dgv.DataSource = source;
+            if (this.hiddenColumns == null)
+            {
+                if (this.dgv.Columns.Contains("id"))
+                {
+                    this.dgv.Columns["id"].Visible = false;
+                }
+            }
+            else
+            {
+                for(var i = 0; i < hiddenColumns.Length; i++)
+                {
+                    var columnsName = hiddenColumns[i];
+                    if (this.dgv.Columns.Contains(columnsName))
+                    {
+                        this.dgv.Columns[columnsName].Visible = false;
+                    }
+                }
+            }
 
         }
 

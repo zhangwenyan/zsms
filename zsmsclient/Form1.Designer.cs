@@ -212,7 +212,7 @@
             // 发送短信ToolStripMenuItem
             // 
             this.发送短信ToolStripMenuItem.Name = "发送短信ToolStripMenuItem";
-            this.发送短信ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.发送短信ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.发送短信ToolStripMenuItem.Text = "添加短信";
             this.发送短信ToolStripMenuItem.Click += new System.EventHandler(this.发送短信ToolStripMenuItem_Click);
             // 
@@ -228,13 +228,14 @@
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.关于ToolStripMenuItem.Text = "关于";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // 日志ToolStripMenuItem
             // 
             this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
-            this.日志ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.日志ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.日志ToolStripMenuItem.Text = "日志";
             this.日志ToolStripMenuItem.Click += new System.EventHandler(this.日志ToolStripMenuItem_Click);
             // 

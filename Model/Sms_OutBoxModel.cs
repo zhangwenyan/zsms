@@ -6,7 +6,7 @@ namespace Model
 {
     public class Sms_OutBoxModel:BaseModel
     {
-        public int Id { set; get; }
+        public int id { set; get; }
         public string Username { set; get; }
         public string Mbno { set; get; }
         public string Msg { set; get; }

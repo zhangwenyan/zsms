@@ -41,16 +41,16 @@ namespace Dal
                     return;
                 }
                 var sendedModel = new Sms_SendedOutBoxModel();
-                sendedModel.Username = model.Username;
-                sendedModel.Mbno = model.Mbno;
-                sendedModel.Msg = model.Msg;
-                sendedModel.SendTime = DateTime.Now;
-                sendedModel.V2 = model.V2;
-                sendedModel.V3 = model.Id.ToString();
+                sendedModel.username = model.Username;
+                sendedModel.mbno = model.Mbno;
+                sendedModel.msg = model.Msg;
+                sendedModel.sendTime = DateTime.Now;
+                sendedModel.v2 = model.V2;
+                sendedModel.v3 = model.id.ToString();
 
                 db.BeginTransaction();
                 db.Add("SendedOutBox", sendedModel);
-                db.DelById(tbname, model.Id);
+                db.DelById(tbname, model.id);
                 db.CommitTranscation();
             }
         }
@@ -72,18 +72,18 @@ namespace Dal
                 }
 
                 var badModel = new Sms_BadOutBoxModel();
-                badModel.Username = model.Username;
-                badModel.Mbno = model.Mbno;
-                badModel.Msg = model.Msg;
-                badModel.SendTime = DateTime.Now;//真实发送时间????
-                badModel.V2 = model.V2;//编号
-                badModel.V3 = model.Id.ToString();
-                badModel.Bad_why = badWhy;
-                badModel.Comport = model.Comport;
+                badModel.username = model.Username;
+                badModel.mbno = model.Mbno;
+                badModel.msg = model.Msg;
+                badModel.sendTime = DateTime.Now;//真实发送时间????
+                badModel.v2 = model.V2;//编号
+                badModel.v3 = model.id.ToString();
+                badModel.bad_why = badWhy;
+                badModel.comport = model.Comport;
 
                 db.BeginTransaction();//开启事务
                 db.Add("badoutbox", badModel);
-                db.DelById(tbname, (int)model.Id);
+                db.DelById(tbname, (int)model.id);
                 db.CommitTranscation();//提交事务
             }
         }
