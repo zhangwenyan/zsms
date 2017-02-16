@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Dal;
 using Model;
+using easysql;
 
 namespace zsmsclient.dialog
 {
@@ -26,7 +27,8 @@ namespace zsmsclient.dialog
         }
         private List<object> queryMethod(int page, int rows, out int total)
         {
-            List<Sms_BadOutBoxModel> smsList = dal.queryByPage(page, rows, out total);
+
+            List<Sms_BadOutBoxModel> smsList = dal.queryPage(null,page, rows, out total, Restrain.OrderDesc("sendTime"));
             List<object> result = new List<object>();
             smsList.ForEach(sms =>
             {

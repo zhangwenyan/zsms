@@ -10,12 +10,7 @@ namespace Dal
     {
         public Sms_SendedOutBoxDal() : base("SendedOutBox")
         {
-
         }
 
-        public List<Sms_SendedOutBoxModel> queryByPage(int page, int rows, out int total)
-        {
-            return dh.QueryByPage<Sms_SendedOutBoxModel>(tbname, null, page, rows, out total,Restrain.OrderDesc("SendTime"));
-        }
     }
 }

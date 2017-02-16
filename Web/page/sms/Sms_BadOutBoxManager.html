@@ -12,10 +12,12 @@
     var dg =null;
     $(function(){
         dlg = new Dlg($("#dlg"));
+        dlg.url = "/service/Sms_BadOutBoxService.ashx";
         // dlg.show();
 
         dg = new Dg($("#dg"));
         dg.url = "/service/Sms_BadOutBoxService.ashx";
+        dg.onDblClickRow = null;
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },
             { field: 'mbno', title: '手机号', width: 100 },
@@ -28,20 +30,15 @@
     </script>
     <div data-options="region:'center',noheader:true">
         <div id="dg">
-            <div class="toolbar" style="padding-top: 8px;padding-left:15px;display:none">
-                <div style="padding-bottom:5px">
-                    <a class="easyui-linkbutton btn_add" href="javascript:;" iconCls="icon-add" plain="true">添加</a>
-                    <span class="updateRecord">
-                        <a class="easyui-linkbutton btn_modify" href="javascript:;" iconCls="icon-edit" plain="true">修改</a>
-                        <a class="easyui-linkbutton btn_del" href="javascript:;" iconCls="icon-remove" plain="true">删除</a>
-                    </span>
-                    <a class="easyui-linkbutton btn_reload" iconcls="icon-reload" plain="true">重载</a>
-                </div>
+            <div class="toolbar" style="padding-top: 8px;padding-left:15px;padding-bottom:5px;display:none">
                 <div>
                     <form class="searchForm">
-                        名称:<input name="name" class="easyui-textbox" style="width:110px" />
-                        说明:<input name="comment" class="easyui-textbox" style="width:110px" />
+                        手机号:<input name="mbno" class="easyui-textbox" style="width:110px" />
+                        短信内容:<input name="msg" class="easyui-textbox" style="width:110px" />
                         <a class="easyui-linkbutton btn_query" iconcls="icon-search" plain="true">查询</a>
+                        <a class="easyui-linkbutton btn_del" href="javascript:;" iconCls="icon-remove" plain="true">删除</a>
+                        <a class="easyui-linkbutton btn_reload" iconcls="icon-reload" plain="true">重载</a>
+
                     </form>
                 </div>
             </div>
@@ -51,19 +48,20 @@
     <div style="display: none;">
         <div id="dlg">
             <form class="mainForm">
+                <input name="id" style="display:none;" />
                 <table>
                     <tr>
-                        <td>用户名:</td>
+                        <td>手机号:</td>
                         <td>
-                            <input name="username" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px" />
+                            <input name="mbno" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            密码:
+                            短信内容:
                         </td>
                         <td>
-                            <input name="password" type="password" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px" />
+                            <input name="msg" class="easyui-textbox" data-options="multiline:true,height:70,required:true,missingMessage:'不能为空'" style="width:220px;" />
                         </td>
                     </tr>
                 </table>

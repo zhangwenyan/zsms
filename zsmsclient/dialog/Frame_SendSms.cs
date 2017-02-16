@@ -27,8 +27,8 @@ namespace zsmsclient.dialog
             String msg = txt_msg.Text;
             Sms_OutBoxModel model = new Sms_OutBoxModel()
             {
-                Mbno = mbno,
-                Msg = msg
+                mbno = mbno,
+                msg = msg
             };
 
             try

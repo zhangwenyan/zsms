@@ -27,8 +27,8 @@ namespace Web
 
             DalFactory.createSms_OutBoxDal().add(new Sms_OutBoxModel()
             {
-                Mbno = mbno,
-                Msg = msg
+                mbno = mbno,
+                msg = msg
             });
 
             context.Response.ContentType = "text/plain";

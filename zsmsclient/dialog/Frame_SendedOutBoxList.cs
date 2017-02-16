@@ -28,7 +28,7 @@ namespace zsmsclient.dialog
         }
         private List<object> queryMethod(int page, int rows, out int total)
         {
-            List<Sms_SendedOutBoxModel> smsList = dal.queryByPage(page, rows, out total);
+            List<Sms_SendedOutBoxModel> smsList = dal.queryPage(null, page, rows, out total, Restrain.OrderDesc("SendTime"));
             List<object> result = new List<object>();
             smsList.ForEach(sms =>
             {

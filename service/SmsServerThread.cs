@@ -158,8 +158,8 @@ namespace service
                             smsTool.sendSms(new ESms()
                             {
                                 id = outBox.id,
-                                Mbno = outBox.Mbno,
-                                Msg = outBox.Msg
+                                Mbno = outBox.mbno,
+                                Msg = outBox.msg
                             });
 
                             addMsg("发送短信(" + outBox + ")成功");

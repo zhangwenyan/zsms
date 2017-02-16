@@ -11,9 +11,7 @@ namespace Dal
     {
         public Sms_BadOutBoxDal() : base("badoutbox") { }
 
-        public List<Sms_BadOutBoxModel> queryByPage(int page, int rows, out int total)
-        {
-            return dh.QueryByPage<Sms_BadOutBoxModel>(tbname, null, page, rows, out total,Restrain.OrderDesc("SendTime"));
-        }
+       
+
     }
 }

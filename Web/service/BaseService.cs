@@ -4,18 +4,99 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.SessionState;
-
+using Dal;
+using easysql;
 namespace Web.service
 {
-    public abstract class BaseService: IHttpHandler
+    public abstract class BaseService<T>: IHttpHandler where T : new()
     {
-        public bool IsReusable
+
+
+
+        protected PageInfo<T> requestPageInfo(HttpContext context)
         {
-            get
+            PageInfo<T> pi = new PageInfo<T>();
+            pi.page = int.Parse(context.Request["page"] ?? "1");
+            pi.rows = int.Parse(context.Request["rows"] ?? "20");
+            pi.query = requestModel(context);
+            String tmp = context.Request["startTime"];
+            if (!string.IsNullOrEmpty(tmp))
             {
-                return false;
+                pi.startTime = DateTime.Parse(tmp);
             }
+            tmp = context.Request["endTime"];
+            if (!string.IsNullOrEmpty(tmp))
+            {
+                pi.endTime = DateTime.Parse(tmp);
+            }
+            return pi;
         }
+
+        /// <summary>
+        /// 返回当前表单里面的bean
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        protected T requestModel(HttpContext context)
+        {
+            T bean = Activator.CreateInstance<T>();
+            Type type = typeof(T);
+            PropertyInfo[] pis = type.GetProperties();
+            foreach (PropertyInfo pi in pis)
+            {
+                string name = pi.Name;
+                Type pType = pi.PropertyType;
+
+                if (pType.Equals(typeof(String)))
+                {
+                    // var a = 
+                    string valuestr = context.Request.Form[name];
+                    if (valuestr != null)
+                    {
+                        pi.SetValue(bean, valuestr, null);
+                    }
+                }
+                else if (pType.Equals(typeof(int?)) || pType.Equals(typeof(int)))
+                {
+                    var valueintstr = context.Request[name];
+                    if (!string.IsNullOrEmpty(valueintstr))
+                    {
+                        pi.SetValue(bean, int.Parse(valueintstr), null);
+                    }
+                }
+                else if (pType.Equals(typeof(long?)) || pType.Equals(typeof(long)))
+                {
+                    var valuelongstr = context.Request[name];
+                    if (!string.IsNullOrEmpty(valuelongstr))
+                    {
+                        pi.SetValue(bean, long.Parse(valuelongstr), null);
+                    }
+                }
+
+                else if (pi.PropertyType.Equals(typeof(DateTime?)) || pi.PropertyType.Equals(typeof(DateTime)))
+                {
+                    string valuestr = context.Request[name];
+                    if (!string.IsNullOrEmpty(valuestr))
+                    {
+                        pi.SetValue(bean, DateTime.Parse(valuestr), null);
+                    }
+                }
+                else if (pi.PropertyType.Equals(typeof(bool?)) || pi.PropertyType.Equals(typeof(bool)))
+                {
+                    string valuestr = context.Request[name];
+                    if (!string.IsNullOrEmpty(valuestr))
+                    {
+                        pi.SetValue(bean, bool.Parse(valuestr), null);
+                    }
+                }
+
+            }
+
+            return bean;
+        }
+
+
+
 
         public void ProcessRequest(HttpContext context)
         {
@@ -40,21 +121,29 @@ namespace Web.service
                     if (type.Equals(typeof(HttpContext)))
                     {
                         ps[i] = context;
-                        continue;
                     }
-
-
-
-                    String valueStr = context.Request[p.Name];
-
-                    if (type.Equals(typeof(String)))
+                    else if (type.Equals(typeof(T)))
                     {
-                        ps[i] = valueStr;
+                        ps[i] = requestModel(context);
+                    }
+                    else if (type.Equals(typeof(PageInfo<T>)))
+                    {
+                        ps[i] = requestPageInfo(context);
                     }
                     else
                     {
-                        ps[i] = null;
+                        String valueStr = context.Request[p.Name];
+                        if (type.Equals(typeof(String)))
+                        {
+                            ps[i] = valueStr;
+                        }
+                        else
+                        {
+                            throw new Exception("无法判断的参数类型");
+                        }
                     }
+
+                   
                 }
                 result = method.Invoke(this, ps);
                 if (result == null && method.ReturnType == typeof(void))
@@ -94,6 +183,41 @@ namespace Web.service
 
 
         }
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        //public virtual object queryPage(PageInfo<T> pi)
+        //{
+        //    int total = 0;
+        //    var list = dal.queryPage(pi.query, pi.page, pi.rows, out total);
+        //    return new
+        //    {
+        //        total = total,
+        //        rows = list
+        //    };
+        //}
+
+        //public virtual void add(T model)
+        //{
+        //    dal.add(model);
+        //}
+
+        //public virtual void modify(T model)
+        //{
+        //    dal.modify(model);
+        //}
+
+        //public virtual void del(String ids)
+        //{
+        //    dal.del(ids);
+        //}
+
+
 
     }
 }

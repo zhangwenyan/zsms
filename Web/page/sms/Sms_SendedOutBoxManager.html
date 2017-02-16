@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/base.js"></script>
+</head>
+<body class="easyui-layout">
+
+    <script>
+    var dlg=null;
+    var dg =null;
+    $(function(){
+        dlg = new Dlg($("#dlg"));
+        dlg.url = "/service/Sms_SendedOutBoxService.ashx";
+        // dlg.show();
+
+        dg = new Dg($("#dg"));
+        dg.url = "/service/Sms_SendedOutBoxService.ashx";
+        dg.onDblClickRow = null;
+        dg.columns = [[
+            { field: "id", title: "ID", hidden: false, checkbox: true },
+            { field: 'mbno', title: '手机号', width: 100 },
+            { field: 'msg', title: '短信内容', width: 200 },
+            {field:"sendTime",title:"时间",width:100}
+        ]];
+        dg.init();
+        dg.dlg = dlg;
+
+    })
+    </script>
+    <div data-options="region:'center',noheader:true">
+        <div id="dg">
+            <div class="toolbar" style="padding-top: 8px;padding-left:15px;padding-bottom:5px;display:none">
+                <div>
+                    <form class="searchForm">
+                        手机号:<input name="mbno" class="easyui-textbox" style="width:110px" />
+                        短信内容:<input name="msg" class="easyui-textbox" style="width:110px" />
+                        <a class="easyui-linkbutton btn_query" iconcls="icon-search" plain="true">查询</a>
+                        <a class="easyui-linkbutton btn_del" href="javascript:;" iconCls="icon-remove" plain="true">删除</a>
+                        <a href="javascript:window.location.reload()" class="easyui-linkbutton" iconcls="icon-reload" plain="true">重载</a>
+                    </form>
+                </div>
+            </div>
+            <div />
+        </div>
+    </div>
+    <div style="display: none;">
+        <div id="dlg">
+            <form class="mainForm">
+                <input name="id" style="display:none;" />
+                <table>
+                    <tr>
+                        <td>手机号:</td>
+                        <td>
+                            <input name="mbno" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            短信内容:
+                        </td>
+                        <td>
+                            <input name="msg" class="easyui-textbox" data-options="multiline:true,height:70,required:true,missingMessage:'不能为空'" style="width:220px;" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -41,11 +41,11 @@ namespace Dal
                     return;
                 }
                 var sendedModel = new Sms_SendedOutBoxModel();
-                sendedModel.username = model.Username;
-                sendedModel.mbno = model.Mbno;
-                sendedModel.msg = model.Msg;
+                sendedModel.username = model.username;
+                sendedModel.mbno = model.mbno;
+                sendedModel.msg = model.msg;
                 sendedModel.sendTime = DateTime.Now;
-                sendedModel.v2 = model.V2;
+                sendedModel.v2 = model.v2;
                 sendedModel.v3 = model.id.ToString();
 
                 db.BeginTransaction();
@@ -55,10 +55,6 @@ namespace Dal
             }
         }
 
-        public List<Sms_OutBoxModel> queryByPage(int page, int rows, out int total)
-        {
-           return dh.QueryByPage<Sms_OutBoxModel>(tbname, null, page, rows, out total,Restrain.Order("sendTime"));
-        }
 
         public void changeToBad(int id,String badWhy)
         {
@@ -72,14 +68,14 @@ namespace Dal
                 }
 
                 var badModel = new Sms_BadOutBoxModel();
-                badModel.username = model.Username;
-                badModel.mbno = model.Mbno;
-                badModel.msg = model.Msg;
+                badModel.username = model.username;
+                badModel.mbno = model.mbno;
+                badModel.msg = model.msg;
                 badModel.sendTime = DateTime.Now;//真实发送时间????
-                badModel.v2 = model.V2;//编号
+                badModel.v2 = model.v2;//编号
                 badModel.v3 = model.id.ToString();
                 badModel.bad_why = badWhy;
-                badModel.comport = model.Comport;
+                badModel.comport = model.comport;
 
                 db.BeginTransaction();//开启事务
                 db.Add("badoutbox", badModel);
@@ -88,10 +84,5 @@ namespace Dal
             }
         }
 
-
-        public void add(Sms_OutBoxModel model)
-        {
-            dh.Add<Sms_OutBoxModel>(tbname, model);
-        }
     }
 }

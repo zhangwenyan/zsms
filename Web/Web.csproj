@@ -62,7 +62,198 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\style.css" />
+    <Content Include="images\404.png" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\btnbg.png" />
+    <Content Include="images\btnbg1.png" />
+    <Content Include="images\btnbg2.png" />
+    <Content Include="images\btn_gjzx_click.png" />
+    <Content Include="images\btn_gjzx_normal.png" />
+    <Content Include="images\btn_gjzx_sel.png" />
+    <Content Include="images\btn_jcpt_click.png" />
+    <Content Include="images\btn_jcpt_normal.png" />
+    <Content Include="images\btn_jcpt_sel.png" />
+    <Content Include="images\btn_jcsj_click.png" />
+    <Content Include="images\btn_jcsj_normal.png" />
+    <Content Include="images\btn_jcsj_sel.png" />
+    <Content Include="images\btn_tjzx_click.png" />
+    <Content Include="images\btn_tjzx_normal.png" />
+    <Content Include="images\btn_tjzx_sel.png" />
+    <Content Include="images\btn_ywgl_click.png" />
+    <Content Include="images\btn_ywgl_normal.png" />
+    <Content Include="images\btn_ywgl_sel.png" />
+    <Content Include="images\btn_yxjkyw_click.png" />
+    <Content Include="images\btn_yxjkyw_normal.png" />
+    <Content Include="images\btn_yxjkyw_sel.png" />
+    <Content Include="images\btn_zdhzyyw_click.png" />
+    <Content Include="images\btn_zdhzyyw_normal.png" />
+    <Content Include="images\btn_zdhzyyw_sel.png" />
+    <Content Include="images\button.png" />
+    <Content Include="images\buttonbg.png" />
+    <Content Include="images\buttonmo.png" />
+    <Content Include="images\bz_up_.png" />
+    <Content Include="images\bz_up_offline.png" />
+    <Content Include="images\bz_up_offline_adminOpen.png" />
+    <Content Include="images\bz_up_offline_error.png" />
+    <Content Include="images\bz_up_offline_star.png" />
+    <Content Include="images\bz_up_online.png" />
+    <Content Include="images\c01.png" />
+    <Content Include="images\c02.png" />
+    <Content Include="images\c03.png" />
+    <Content Include="images\cancel.png" />
+    <Content Include="images\cbg.png" />
+    <Content Include="images\clist.png" />
+    <Content Include="images\close.png" />
+    <Content Include="images\close1.png" />
+    <Content Include="images\cloud.png" />
+    <Content Include="images\copy.png" />
+    <Content Include="images\diskbg.png" />
+    <Content Include="images\dowload.png" />
+    <Content Include="images\down.png" />
+    <Content Include="images\editbj.png" />
+    <Content Include="images\eg_flower.png" />
+    <Content Include="images\execl.gif" />
+    <Content Include="images\exportcsv.gif" />
+    <Content Include="images\exportexecl.gif" />
+    <Content Include="images\Greenhq.png" />
+    <Content Include="images\history.png" />
+    <Content Include="images\ibtnbg.png" />
+    <Content Include="images\icon_bdzwh.png" />
+    <Content Include="images\icon_bdzydjjc.png" />
+    <Content Include="images\icon_bmrygl.png" />
+    <Content Include="images\icon_bpbjcx.png" />
+    <Content Include="images\icon_bpbjgl.png" />
+    <Content Include="images\icon_bpbjlxgl.png" />
+    <Content Include="images\icon_cdwh.png" />
+    <Content Include="images\icon_ckgjjl.png" />
+    <Content Include="images\icon_ckjxgd.png" />
+    <Content Include="images\icon_czrz.png" />
+    <Content Include="images\icon_czxtgl.png" />
+    <Content Include="images\icon_dnlck.png" />
+    <Content Include="images\icon_dnlgl.png" />
+    <Content Include="images\icon_dnllcgl.png" />
+    <Content Include="images\icon_dnlsh.png" />
+    <Content Include="images\icon_dnlsq.png" />
+    <Content Include="images\icon_gdcx.png" />
+    <Content Include="images\icon_gdlrfpzj.png" />
+    <Content Include="images\icon_gjgl.png" />
+    <Content Include="images\icon_gjtzgl.png" />
+    <Content Include="images\icon_hostswjgl - 副本.png" />
+    <Content Include="images\icon_hostswjgl.png" />
+    <Content Include="images\icon_ipdzck.png" />
+    <Content Include="images\icon_ipzygl.png" />
+    <Content Include="images\icon_ipzytj.png" />
+    <Content Include="images\icon_jgsxwh.png" />
+    <Content Include="images\icon_jhjxj.png" />
+    <Content Include="images\icon_kyxzbtjbb.png" />
+    <Content Include="images\icon_pggl.png" />
+    <Content Include="images\icon_pzgl.png" />
+    <Content Include="images\icon_qxcl.png" />
+    <Content Include="images\icon_qxclqr.png" />
+    <Content Include="images\icon_qxcx.png" />
+    <Content Include="images\icon_qxgl.png" />
+    <Content Include="images\icon_qxgl_2.png" />
+    <Content Include="images\icon_qxqr.png" />
+    <Content Include="images\icon_qxsb.png" />
+    <Content Include="images\icon_sbfx.png" />
+    <Content Include="images\icon_sblxwh.png" />
+    <Content Include="images\icon_sbtj.png" />
+    <Content Include="images\icon_sbtzcx.png" />
+    <Content Include="images\icon_sbtzwh.png" />
+    <Content Include="images\icon_scadadbecbsq.png" />
+    <Content Include="images\icon_scadadbgl.png" />
+    <Content Include="images\icon_scadadbjkbsh.png" />
+    <Content Include="images\icon_scadadbmbwh.png" />
+    <Content Include="images\icon_scadadbsjcx.png" />
+    <Content Include="images\icon_scadadbzdhbwh.png" />
+    <Content Include="images\icon_sccadadbzdhzgpf.png" />
+    <Content Include="images\icon_sccjgl.png" />
+    <Content Include="images\icon_sjzljcgj.png" />
+    <Content Include="images\icon_tpfqwh.png" />
+    <Content Include="images\icon_tplxgl.png" />
+    <Content Include="images\icon_wdgd - 复制.png" />
+    <Content Include="images\icon_wdgd.png" />
+    <Content Include="images\icon_wlpztpcx.png" />
+    <Content Include="images\icon_wlpztpwh.png" />
+    <Content Include="images\icon_wlsbyxtj - 复制.png" />
+    <Content Include="images\icon_wlsbyxtj.png" />
+    <Content Include="images\icon_xxtzgl.png" />
+    <Content Include="images\icon_ywgl.png" />
+    <Content Include="images\icon_yxqktjbb.png" />
+    <Content Include="images\init.png" />
+    <Content Include="images\inputbg.gif" />
+    <Content Include="images\itabbg.png" />
+    <Content Include="images\itabbg1.png" />
+    <Content Include="images\joinjg.png" />
+    <Content Include="images\jt.png" />
+    <Content Include="images\jth.png" />
+    <Content Include="images\lcmain.png" />
+    <Content Include="images\leftico.png" />
+    <Content Include="images\leftline.gif" />
+    <Content Include="images\leftmenubg.gif" />
+    <Content Include="images\lefttop.gif" />
+    <Content Include="images\libg.png" />
+    <Content Include="images\light.png" />
+    <Content Include="images\line.gif" />
+    <Content Include="images\line1.png" />
+    <Content Include="images\linkBg.gif" />
+    <Content Include="images\linkBgaa.gif" />
+    <Content Include="images\linkBg_port.gif" />
+    <Content Include="images\linkBg_switchPort.gif" />
+    <Content Include="images\list.gif" />
+    <Content Include="images\list1.gif" />
+    <Content Include="images\list2.png" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\loading2.gif" />
+    <Content Include="images\lock_edit.png" />
+    <Content Include="images\loginbg1.png" />
+    <Content Include="images\loginbg2.png" />
+    <Content Include="images\loginbg3.png" />
+    <Content Include="images\logininfo.png" />
+    <Content Include="images\loginpassword.png" />
+    <Content Include="images\loginsj.png" />
+    <Content Include="images\loginuser.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logoodl.png" />
+    <Content Include="images\mobiile.png" />
+    <Content Include="images\msg.png" />
+    <Content Include="images\navbg.png" />
+    <Content Include="images\qz_up_.png" />
+    <Content Include="images\qz_up_offline.png" />
+    <Content Include="images\qz_up_offline_adminOpen.png" />
+    <Content Include="images\qz_up_online.png" />
+    <Content Include="images\r.png" />
+    <Content Include="images\redhq.png" />
+    <Content Include="images\returninfo.gif" />
+    <Content Include="images\righttop.gif" />
+    <Content Include="images\rlist.gif" />
+    <Content Include="images\search.png" />
+    <Content Include="images\selectInfo.gif" />
+    <Content Include="images\sj.png" />
+    <Content Include="images\tcbg.gif" />
+    <Content Include="images\th.gif" />
+    <Content Include="images\toolbg.gif" />
+    <Content Include="images\topbg.gif" />
+    <Content Include="images\topleft.jpg" />
+    <Content Include="images\topright.jpg" />
+    <Content Include="images\ub1.png" />
+    <Content Include="images\ulist.png" />
+    <Content Include="images\up.png" />
+    <Content Include="images\updatemb.gif" />
+    <Content Include="images\upload.png" />
+    <Content Include="images\uploadcsv.gif" />
+    <Content Include="images\uploadmb.png" />
+    <Content Include="images\user.png" />
+    <Content Include="images\user_green.png" />
+    <Content Include="images\wz_up_.png" />
+    <Content Include="images\wz_up_offline.png" />
+    <Content Include="images\wz_up_offline_adminOpen.png" />
+    <Content Include="images\wz_up_online.png" />
+    <Content Include="index.html" />
     <Content Include="js\base.js" />
+    <Content Include="js\cloud.js" />
+    <Content Include="js\commom.js" />
     <Content Include="js\jquery-easyui-1.4\datagrid-detailview.js" />
     <Content Include="js\jquery-easyui-1.4\easyloader.js" />
     <Content Include="js\jquery-easyui-1.4\easyui-validate.js" />
@@ -216,11 +407,18 @@
     <Content Include="js\jquery-easyui-1.4\themes\icons\zone-resize.png" />
     <Content Include="js\jquery-easyui-1.4\themes\icons\zoomin.png" />
     <Content Include="js\jquery-easyui-1.4\themes\icons\zoomout.png" />
+    <Content Include="js\jquery.cookie.js" />
+    <Content Include="js\jquery.showLoading.min.js" />
+    <Content Include="js\showLoading.css" />
     <Content Include="js\zeasyui-2.0.js" />
     <Content Include="mysql.data.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="dll\Newtonsoft.Json.dll" />
+    <Content Include="page\home\index.html" />
+    <Content Include="page\home\Login.html" />
+    <Content Include="page\sms\Sms_SendedOutBoxManager.html" />
+    <Content Include="page\sms\Sms_OutBoxManager.html" />
     <Content Include="page\sms\Sms_BadOutBoxManager.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -231,17 +429,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\BaseService.cs" />
     <Compile Include="service\MsgException.cs" />
+    <Compile Include="service\PageInfo.cs" />
     <Compile Include="service\Sms_BadOutBoxService.ashx.cs">
       <DependentUpon>Sms_BadOutBoxService.ashx</DependentUpon>
     </Compile>
-    <Compile Include="service\UserService.ashx.cs">
-      <DependentUpon>UserService.ashx</DependentUpon>
+    <Compile Include="service\Sms_OutBoxService.ashx.cs">
+      <DependentUpon>Sms_OutBoxService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="service\Sms_SendedOutBoxService.ashx.cs">
+      <DependentUpon>Sms_SendedOutBoxService.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="api.ashx" />
-    <Content Include="service\UserService.ashx" />
     <Content Include="service\Sms_BadOutBoxService.ashx" />
+    <Content Include="service\Sms_OutBoxService.ashx" />
+    <Content Include="service\Sms_SendedOutBoxService.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -258,8 +461,15 @@
       <Project>{03cd4f94-db24-4906-9ba6-ff40b8317f98}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="images\新建文件夹 %282%29\" />
+    <Folder Include="images\新建文件夹\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
