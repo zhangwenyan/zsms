@@ -409,6 +409,7 @@
     <Content Include="js\jquery-easyui-1.4\themes\icons\zoomout.png" />
     <Content Include="js\jquery.cookie.js" />
     <Content Include="js\jquery.showLoading.min.js" />
+    <Content Include="js\plugin_easyui.js" />
     <Content Include="js\showLoading.css" />
     <Content Include="js\zeasyui-2.0.js" />
     <Content Include="js\zTree\.gitignore" />

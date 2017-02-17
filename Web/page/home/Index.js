@@ -89,7 +89,13 @@ $(function () {
     // 实例化menu的onClick事件
     $("#tabsMenu").menu({
         onClick: function (item) {
-            CloseTab(this, item.name);
+            if (item.name == "Max") {
+                var curTabTitle = $(this).data("tabTitle");
+                var tabs = $("#tabs").tabs("getTab", curTabTitle);
+                fullTab(tabs[0]);
+            } else {
+                CloseTab(this, item.name);
+            }
         }
     });
 
@@ -189,7 +195,7 @@ function addTab(title, url, iconCls,closable) {
      tab.tabs('select', title);
     } else {
         
-        var content = "<div style='width:100%;height:100%;position:relative;'><iframe style='position:absolute;width:100%;height:100%;padding:0px;' frameborder='0' scrolling='no' src='" + url + "'></iframe></div>";
+        var content = "<div class='iframePre' style='width:100%;height:100%;position:relative;'><iframe style='position:absolute;width:100%;height:100%;padding:0px;' frameborder='0' scrolling='no' src='" + url + "'></iframe></div>";
         tab.tabs("add", {
             title: title,
             iconCls: iconCls,
@@ -241,3 +247,28 @@ function newWin() {
 //    var targetObj = $("#mymenu").html('<div id="mymenu" class="easyui-accordion" data-options="fit:true,border:false">' + obj.data);
 //    $.parser.parse(targetObj); //重新渲染
 //}
+
+function fullTab(tab) {
+    console.log($(tab).find('.iframePre'));
+    runPrefixMethod($(tab).find('.iframePre')[0], "RequestFullScreen");
+}
+var runPrefixMethod = function (element, method) {
+    var usablePrefixMethod;
+    ["webkit", "moz", "ms", "o", ""].forEach(function (prefix) {
+        if (usablePrefixMethod) return;
+        if (prefix === "") {
+            // 无前缀，方法首字母小写
+            method = method.slice(0, 1).toLowerCase() + method.slice(1);
+        }
+        var typePrefixMethod = typeof element[prefix + method];
+        if (typePrefixMethod + "" !== "undefined") {
+            if (typePrefixMethod === "function") {
+                usablePrefixMethod = element[prefix + method]();
+            } else {
+                usablePrefixMethod = element[prefix + method];
+            }
+        }
+    }
+);
+    return usablePrefixMethod;
+};
