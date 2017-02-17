@@ -1,0 +1,42 @@
+﻿[
+	//{
+  //  "text": "模板",
+  //  "open": true,
+	//	"children":[
+	//		{
+	//			"text":"用户管理",
+  //      "iconCls": "icon-flagred",
+  //      "url":"../simple/UserManager.html"
+
+	//		}
+	//	]
+	
+	//} ,
+	{
+    "text": "短信管理",
+    "open": true,
+		"children":[
+			{
+				"text":"待发短信",
+        "iconCls": "icon-flagred",
+        "icon":"/images/loading.gif",
+        "url":"/page/sms/Sms_OutBoxManager.html"
+
+			},
+      {
+        "text": "已发短信",
+        "iconCls": "icon-flaggreen",
+        "url": "/page/sms/Sms_SendedOutBoxManager.html"
+      },
+      {
+       "text": "失败短信",
+        "iconCls": "icon-flagblue",
+        "url": "/page/sms/Sms_BadOutBoxManager.html"
+      }
+
+		]
+
+	}
+    
+    
+]

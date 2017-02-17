@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Model;
 using Dal;
+using easysql;
+
 namespace zsmsclient.dialog
 {
     public partial class Frame_InBoxList : Form
@@ -25,7 +27,7 @@ namespace zsmsclient.dialog
         }
         private List<object> queryMethod(int page, int rows, out int total)
         {
-            List<Sms_InBoxModel> smsList = dal.queryByPage(page, rows, out total);
+            List<Sms_InBoxModel> smsList = dal.queryPage(null,page, rows, out total, Restrain.OrderDesc("ArriveTime"));
             List<object> result = new List<object>();
             smsList.ForEach(sms =>
             {

@@ -13,16 +13,9 @@ namespace Web.service
     public class Sms_OutBoxService : BaseService<Sms_OutBoxModel>
     {
         private Sms_OutBoxDal dal = DalFactory.createSms_OutBoxDal();
-
         public object queryPage(PageInfo<Sms_OutBoxModel> pi)
         {
-            int total = 0;
-            var list = dal.queryPage(pi.query, pi.page, pi.rows, out total,Restrain.Order("SendTime"));
-            return new
-            {
-                total = total,
-                rows = list
-            };
+            return dal.queryPage(pi, Restrain.Order("SendTime"));
         }
 
         public void add(Sms_OutBoxModel model)

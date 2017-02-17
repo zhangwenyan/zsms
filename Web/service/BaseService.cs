@@ -5,12 +5,12 @@ using System.Reflection;
 using System.Web;
 using System.Web.SessionState;
 using Dal;
+using Model;
 using easysql;
 namespace Web.service
 {
     public abstract class BaseService<T>: IHttpHandler where T : new()
     {
-
 
 
         protected PageInfo<T> requestPageInfo(HttpContext context)
@@ -31,6 +31,8 @@ namespace Web.service
             }
             return pi;
         }
+
+    
 
         /// <summary>
         /// 返回当前表单里面的bean
@@ -190,33 +192,6 @@ namespace Web.service
                 return false;
             }
         }
-
-        //public virtual object queryPage(PageInfo<T> pi)
-        //{
-        //    int total = 0;
-        //    var list = dal.queryPage(pi.query, pi.page, pi.rows, out total);
-        //    return new
-        //    {
-        //        total = total,
-        //        rows = list
-        //    };
-        //}
-
-        //public virtual void add(T model)
-        //{
-        //    dal.add(model);
-        //}
-
-        //public virtual void modify(T model)
-        //{
-        //    dal.modify(model);
-        //}
-
-        //public virtual void del(String ids)
-        //{
-        //    dal.del(ids);
-        //}
-
 
 
     }

@@ -5,6 +5,7 @@ using System.Text;
 using easysql;
 using System.Configuration;
 using config;
+using Model;
 namespace Dal
 {
     /// <summary>
@@ -26,6 +27,19 @@ namespace Dal
         {
             return dh.QueryByPage<T>(tbname, bean, page, rows, out total, restrains);
         }
+
+        public virtual PageResultInfo queryPage(PageInfo<T> pi,params Restrain[] restrains)
+        {
+            int total = 0;
+            var list = queryPage(pi.query, pi.page, pi.rows, out total, restrains);
+            return new PageResultInfo()
+            {
+                total = total,
+                rows = list
+            };
+        }
+      
+
 
         public virtual void add(T model)
         {

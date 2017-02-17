@@ -411,11 +411,49 @@
     <Content Include="js\jquery.showLoading.min.js" />
     <Content Include="js\showLoading.css" />
     <Content Include="js\zeasyui-2.0.js" />
+    <Content Include="js\zTree\.gitignore" />
+    <Content Include="js\zTree\css\awesomeStyle\awesome.css" />
+    <Content Include="js\zTree\css\awesomeStyle\img\loading.gif" />
+    <Content Include="js\zTree\css\demo.css" />
+    <Content Include="js\zTree\css\metroStyle\img\line_conn.png" />
+    <Content Include="js\zTree\css\metroStyle\img\loading.gif" />
+    <Content Include="js\zTree\css\metroStyle\img\metro.gif" />
+    <Content Include="js\zTree\css\metroStyle\img\metro.png" />
+    <Content Include="js\zTree\css\metroStyle\metroStyle.css" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="js\zTree\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="js\zTree\css\zTreeStyle\img\loading.gif" />
+    <Content Include="js\zTree\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="js\zTree\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="js\zTree\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="js\zTree\js\jquery-1.4.4.min.js" />
+    <Content Include="js\zTree\js\jquery.ztree.all-3.5.js" />
+    <Content Include="js\zTree\js\jquery.ztree.all-3.5.min.js" />
+    <Content Include="js\zTree\js\jquery.ztree.core-3.5.js" />
+    <Content Include="js\zTree\js\jquery.ztree.core-3.5.min.js" />
+    <Content Include="js\zTree\js\jquery.ztree.excheck-3.5.js" />
+    <Content Include="js\zTree\js\jquery.ztree.excheck-3.5.min.js" />
+    <Content Include="js\zTree\js\jquery.ztree.exedit-3.5.js" />
+    <Content Include="js\zTree\js\jquery.ztree.exedit-3.5.min.js" />
+    <Content Include="js\zTree\js\jquery.ztree.exedit.js" />
+    <Content Include="js\zTree\js\jquery.ztree.exhide-3.5.js" />
+    <Content Include="js\zTree\js\jquery.ztree.exhide-3.5.min.js" />
+    <Content Include="js\zTree\log v3.x.txt" />
     <Content Include="mysql.data.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="dll\Newtonsoft.Json.dll" />
-    <Content Include="page\home\index.html" />
+    <Content Include="page\home\Home.html" />
+    <Content Include="page\home\Index.js" />
     <Content Include="page\home\Login.html" />
     <Content Include="page\sms\Sms_SendedOutBoxManager.html" />
     <Content Include="page\sms\Sms_OutBoxManager.html" />
@@ -429,9 +467,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\BaseService.cs" />
     <Compile Include="service\MsgException.cs" />
-    <Compile Include="service\PageInfo.cs" />
+    <Compile Include="service\PageResult.cs" />
     <Compile Include="service\Sms_BadOutBoxService.ashx.cs">
       <DependentUpon>Sms_BadOutBoxService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="service\Sms_InBoxService.ashx.cs">
+      <DependentUpon>Sms_InBoxService.ashx</DependentUpon>
     </Compile>
     <Compile Include="service\Sms_OutBoxService.ashx.cs">
       <DependentUpon>Sms_OutBoxService.ashx</DependentUpon>
@@ -445,6 +486,12 @@
     <Content Include="service\Sms_BadOutBoxService.ashx" />
     <Content Include="service\Sms_OutBoxService.ashx" />
     <Content Include="service\Sms_SendedOutBoxService.ashx" />
+    <Content Include="page\home\index.html" />
+    <Content Include="js\zTree\css\awesomeStyle\awesome.less" />
+    <Content Include="js\zTree\css\awesomeStyle\fa.less" />
+    <Content Include="js\zTree\README.md" />
+    <Content Include="page\home\menu.json" />
+    <Content Include="service\Sms_InBoxService.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

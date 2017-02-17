@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="info\PageInfo.cs" />
+    <Compile Include="info\PageResultInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sms_BadOutBoxModel.cs" />
     <Compile Include="Sms_InBoxModel.cs" />

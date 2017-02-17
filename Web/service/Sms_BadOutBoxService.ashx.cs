@@ -16,22 +16,13 @@ namespace Web.service
 
         public object queryPage(PageInfo<Sms_BadOutBoxModel> pi)
         {
-            int total = 0;
-            var list = dal.queryPage(pi.query, pi.page, pi.rows, out total, Restrain.OrderDesc("sendTime"));
-            return new
-            {
-                total = total,
-                rows = list
-            };
+            return dal.queryPage(pi, Restrain.OrderDesc("sendTime"));
         }
 
         public void del(String ids)
         {
             dal.del(ids);
         }
-
-
-
    
     }
 }

@@ -15,13 +15,7 @@ namespace Web.service
         private Sms_SendedOutBoxDal dal = DalFactory.createSms_SendedOutBoxDal();
         public object queryPage(PageInfo<Sms_SendedOutBoxModel> pi)
         {
-            int total = 0;
-            var list = dal.queryPage(pi.query, pi.page, pi.rows, out total, Restrain.OrderDesc("SendTime"));
-            return new
-            {
-                total = total,
-                rows = list
-            };
+            return dal.queryPage(pi, Restrain.OrderDesc("SendTime"));
         }
         public void del(String ids)
         {
