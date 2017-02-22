@@ -93,8 +93,22 @@ function Dlg(element) {
         fj.action = this.action;
         return fj;
     }
+    function validForm() {
+        var isValid = this.mainForm.form('validate');
+        if (!isValid) {
+            $.messager.alert("提示", "请正确填写每一项", "info");
+            return false;
+        }
+        return true;
+    }
+
     function submit() {
         var me = this;
+
+        if (this.validForm() == false) {
+            return false;
+        }
+
         var submitData = this.getSubmitData();
         $.messager.progress();
         $.post(this.url, submitData, function (result) {
@@ -122,7 +136,8 @@ function Dlg(element) {
         close: close,
         getFormJson: getFormJson,
         getSubmitData: getSubmitData,
-        submit: submit
+        submit: submit,
+        validForm: validForm
     };
 }(Dlg);
 
