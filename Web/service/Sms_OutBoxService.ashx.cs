@@ -26,7 +26,13 @@ namespace Web.service
             }
             else
             {
-                service.SmsMethod.sendSms(model.mbno, model.msg);
+                try
+                {
+                    SmsMethod.sendSms(model.mbno, model.msg);
+                }catch(Exception ex)
+                {
+                    throw new MsgException(ex.Message);
+                }
             }
 
             

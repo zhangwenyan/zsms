@@ -89,7 +89,7 @@ namespace zsms
             AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
             req.SmsType = "normal";
             req.SmsFreeSignName = this.smsFreeSignName;
-
+            String msg = esms.Msg.Replace(".", "．");
 
             String smsTemplateCode = null;
             String smsParam = null;
@@ -102,8 +102,11 @@ namespace zsms
                 foreach (var smsTemplate in smsTemplateList)
                 {
                     String regStr = Regex.Replace(smsTemplate.content, @"\$\{[a-z0-9]+\}", "(.{0,15})");
+                    regStr = regStr.Replace("[", "\\[");
+                    regStr = regStr.Replace("]", "\\]");
+                    regStr = regStr.Replace(".", "．");
                     Regex reg = new Regex("^" + regStr + "$");
-                    var m = reg.Match(esms.Msg);
+                    var m = reg.Match(msg);
                     if (m.Success)
                     {
 
@@ -133,7 +136,7 @@ namespace zsms
                 smsTemplateCode = this.smsTemplateCode;
                 smsParam = Newtonsoft.Json.JsonConvert.SerializeObject(new
                 {
-                    msg = esms.Msg
+                    msg = msg
                 });
             }
 

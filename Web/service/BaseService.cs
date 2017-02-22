@@ -163,6 +163,11 @@ namespace Web.service
             }
             catch (Exception ex)
             {
+                if (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                }
+
                 var r = new Dictionary<String, object>();
                 r.Add("success", false);
                 r.Add("error", true);
@@ -173,7 +178,7 @@ namespace Web.service
                 else
                 {
                     
-                    r.Add("msg", "系统错误:"+ex.Message);
+                    r.Add("msg", "系统错误");
                 }
                 result = r;
             }
