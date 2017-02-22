@@ -466,6 +466,9 @@
       <DependentUpon>api.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="router\rest.ashx.cs">
+      <DependentUpon>rest.ashx</DependentUpon>
+    </Compile>
     <Compile Include="service\BaseService.cs" />
     <Compile Include="service\MsgException.cs" />
     <Compile Include="service\Sms_BadOutBoxService.ashx.cs">
@@ -492,6 +495,7 @@
     <Content Include="js\zTree\README.md" />
     <Content Include="page\home\menu.json" />
     <Content Include="service\Sms_InBoxService.ashx" />
+    <Content Include="router\rest.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

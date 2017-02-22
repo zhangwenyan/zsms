@@ -12,7 +12,7 @@ namespace config
 
         public static bool justOne = bool.Parse(ConfigurationManager.AppSettings["justOne"] ?? "true");
         public static String zsmsSetting  = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase+"zsms.setting";
-        public static String databaseType = ConfigurationManager.AppSettings["databaseType"];
+        public static String dbType = ConfigurationManager.AppSettings["dbType"];
         public static String connstr = ConfigurationManager.AppSettings["connstr"];
         
         /// <summary>
@@ -76,9 +76,9 @@ namespace config
 
             var dy = JsonConvert.DeserializeObject<dynamic>(str);
 
-            if (String.IsNullOrEmpty(databaseType))
+            if (String.IsNullOrEmpty(dbType))
             {
-                databaseType = dy.databaseType;
+                dbType = dy.databaseType;
             }
             if (String.IsNullOrEmpty(connstr))
             {

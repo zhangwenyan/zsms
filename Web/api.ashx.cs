@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Dal;
 using Model;
+using ZUtil;
 
 namespace Web
 {
@@ -25,11 +26,7 @@ namespace Web
                 return;
             }
 
-            DalFactory.createSms_OutBoxDal().add(new Sms_OutBoxModel()
-            {
-                mbno = mbno,
-                msg = msg
-            });
+            ZUtil.SmsUtil.sendSms(mbno, msg);
 
             context.Response.ContentType = "text/plain";
             context.Response.Write("{\"success\":true}");

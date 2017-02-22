@@ -14,7 +14,7 @@ namespace Dal
     /// <typeparam name="T"></typeparam>
     public abstract class BaseDal<T> where T : new()
     {
-        protected BaseDBHelper dh = DBHelperFactory.Create(Config.databaseType, Config.connstr);
+        protected BaseDBHelper dh = DBHelperFactory.Create(Config.dbType, Config.connstr);
         protected log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected string tbname;
 

@@ -22,7 +22,7 @@ namespace zsmsclient.dialog
         private void Frame_DatabaseSetting_Load(object sender, EventArgs e)
         {
             txt_connStr.Text = Config.connstr;
-            cb_databaseType.Text = Config.databaseType;
+            cb_databaseType.Text = Config.dbType;
         }
 
         private void button2_Click(object sender, EventArgs e)

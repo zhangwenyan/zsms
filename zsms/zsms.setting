@@ -49,7 +49,7 @@
     },
     "zProxy": {
       "url": "http://localhost:5689/api.ashx",
-      "secret": "admin@888888  
+      "secret": "admin@888888"
     }
 
   }
