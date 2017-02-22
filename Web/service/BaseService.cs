@@ -11,7 +11,7 @@ namespace Web.service
 {
     public abstract class BaseService<T>: IHttpHandler where T : new()
     {
-
+        protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         protected PageInfo<T> requestPageInfo(HttpContext context)
         {
@@ -181,6 +181,8 @@ namespace Web.service
                     r.Add("msg", "系统错误");
                 }
                 result = r;
+
+                Log.Error("BaseService error", ex);
             }
             finally
             {

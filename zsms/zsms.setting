@@ -6,30 +6,30 @@
   "connstr": "user id=sa;password=youotech;initial catalog=smsdb;Server=.;",//数据库连接字符串
   "smsTools": {
   "aliDayu": {
-      "smsFreeSignName": "燎火",
-      "smsTemplateCode": "SMS_5075620",
+      "smsFreeSignName": "短信通知",
+      "smsTemplateCode": "SMS_10316s023",
       "alidayu_url": "http://gw.api.taobao.com/router/rest",
-      "alidayu_appkey": "23300185",
-      "alidayu_secret": "8b5196bef2e1ebcf5d1f75503e2a4cd8",
+      "alidayu_appkey": "23381830",
+      "alidayu_secret": "3d10b90e54b46de4cdb19be3417b25b8",
       "smsTemplateList": [
         {
           "code": "SMS_5001004",
           "content": "淮北vrv指标${msg}"
         },
         {
-          "code": "SMS_5030714",
-          "content": "一体化${msg}"
+          "code": "SMS_48775163",
+          "content": "${p0}监测未安装[${p1}]；未安装${p2}]；未安装${p3}]；未注册${p4}]；系统弱${p5}]；"
         },
         {
-          "code": "SMS_26180244",
-          "content": "您好${name}今天是${time}"
+          "code": "SMS_26305015",
+          "content": "您好${name}今天天气${weather}"
         }
       ]
     },
   "aliyuncs": {
       "smsFreeSignName": "燎火",
       "smsTemplateCode": "SMS_46010001",
-      "appkey": "fUp8ugoXHBUx8rCQ",
+      "appkey": "fUp8ugoXaHBssaUx8rCQ",
       "secret": "Zamp8jopaIOzVLPnX8r804vb3SrXPY",
       "smsTemplateList": [
         {

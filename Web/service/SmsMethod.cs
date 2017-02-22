@@ -8,8 +8,12 @@ namespace Web.service
 {
     public class SmsMethod
     {
+        protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public static void sendSms(String mbno, String msg)
         {
+
+            Log.Debug("发送短信:" + mbno + "," + msg);
             try
             {
                 SmsUtil.sendSms(mbno, msg);

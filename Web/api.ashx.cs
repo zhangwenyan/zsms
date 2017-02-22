@@ -15,11 +15,22 @@ namespace Web
     public class api : IHttpHandler
     {
 
+        protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public void ProcessRequest(HttpContext context)
         {
+            Log.Info("api接口有请求----");
+
+
+
             var secret = context.Request["secret"];
             var mbno = context.Request["mbno"];
             var msg = context.Request["msg"];
+
+
+            Log.Info("mbno:" + mbno + ",msg:" + msg+",secret:"+secret);
+            Log.Info("----");
+
 
             try
             {
