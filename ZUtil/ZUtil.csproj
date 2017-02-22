@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DllUtil.cs" />
     <Compile Include="easysql\BaseDatabase.cs" />
     <Compile Include="easysql\BaseDBHelper.cs" />
     <Compile Include="easysql\DatabaseFactory.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="easysql\SqlServerDatabase.cs" />
     <Compile Include="easysql\SqlServerHelper.cs" />
     <Compile Include="EmailUtil.cs" />
+    <Compile Include="ex\SmsUtilException.cs" />
     <Compile Include="FileUtil.cs" />
     <Compile Include="HttpUtil.cs" />
     <Compile Include="IpUtil.cs" />
@@ -71,9 +73,7 @@
     <Compile Include="SmsUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mysql.data.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="mysql.data.dll" />
     <Content Include="System.Data.SQLite.dll" />
     <Content Include="x64\SQLite.Interop.dll" />
     <Content Include="x86\SQLite.Interop.dll" />

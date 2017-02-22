@@ -20,7 +20,16 @@ namespace Web.service
 
         public void add(Sms_OutBoxModel model)
         {
-            dal.add(model);
+            if (ZUtil.SmsUtil.smsSendWay == "db")
+            {
+                dal.add(model);
+            }
+            else
+            {
+                service.SmsMethod.sendSms(model.mbno, model.msg);
+            }
+
+            
         }
         public void modify(Sms_OutBoxModel model)
         {

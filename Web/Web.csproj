@@ -471,6 +471,7 @@
     </Compile>
     <Compile Include="service\BaseService.cs" />
     <Compile Include="service\MsgException.cs" />
+    <Compile Include="service\SmsMethod.cs" />
     <Compile Include="service\Sms_BadOutBoxService.ashx.cs">
       <DependentUpon>Sms_BadOutBoxService.ashx</DependentUpon>
     </Compile>
@@ -496,6 +497,7 @@
     <Content Include="page\home\menu.json" />
     <Content Include="service\Sms_InBoxService.ashx" />
     <Content Include="router\rest.ashx" />
+    <None Include="Properties\PublishProfiles\Web.config.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -504,6 +506,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ZUtil\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dal\Dal.csproj">
       <Project>{44c53ac7-3ddb-4010-b8e6-e22b5d621071}</Project>
       <Name>Dal</Name>
@@ -511,10 +517,6 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{03cd4f94-db24-4906-9ba6-ff40b8317f98}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
-      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
-      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

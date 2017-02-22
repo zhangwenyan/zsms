@@ -12,26 +12,26 @@ namespace Web.router
     public class rest : IHttpHandler
     {
 
+
         public void ProcessRequest(HttpContext context)
         {
+            //兼容旧的模式
 
-            try
-            {
                 var mbno = context.Request["rec_num"];
                 var sms_param = context.Request["sms_param"];
                 String msg = JsonConvert.DeserializeObject<dynamic>(sms_param).msg;
-                SmsUtil.sendSms(mbno, msg);
 
-                context.Response.ContentType = "text/json";
-                context.Response.Write(JsonConvert.SerializeObject(new { success = true }));
-
-            }
-            catch (Exception ex)
-            {
-                context.Response.ContentType = "text/json";
-                context.Response.Write(JsonConvert.SerializeObject(new { success = false,msg = ex.Message }));
-            }
-          
+                try
+                {
+                    service.SmsMethod.sendSms(mbno, msg);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write("{\"success\":true}");
+                }
+                catch (Exception ex)
+                {
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(JsonConvert.SerializeObject(new { success = false, msg = ex.Message }));
+                }
 
         }
 

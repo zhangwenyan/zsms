@@ -11,7 +11,7 @@ namespace config
     {
 
         public static bool justOne = bool.Parse(ConfigurationManager.AppSettings["justOne"] ?? "true");
-        public static String zsmsSetting  = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase+"zsms.setting";
+        public static String zsmsSetting = null;
         public static String dbType = ConfigurationManager.AppSettings["dbType"];
         public static String connstr = ConfigurationManager.AppSettings["connstr"];
         
@@ -67,6 +67,14 @@ namespace config
 
         public static bool init()
         {
+           zsmsSetting = ConfigurationManager.AppSettings["zsmsSettingPath"] ?? System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "zsms.setting";
+
+            if (!FileUtil.IsExistFile(zsmsSetting)) {
+                zsmsSetting = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "bin\\zsms.setting";
+            }
+
+
+
             if (!FileUtil.IsExistFile(zsmsSetting))
             {
                 return false;

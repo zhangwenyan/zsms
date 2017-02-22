@@ -52,6 +52,10 @@
     <Compile Include="Sms_SendedOutBoxDal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ZUtil\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\config\config.csproj">
       <Project>{571affb5-818b-488f-9658-3c68fdd03aa8}</Project>
       <Name>config</Name>
@@ -59,10 +63,6 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{03cd4f94-db24-4906-9ba6-ff40b8317f98}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
-      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
-      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

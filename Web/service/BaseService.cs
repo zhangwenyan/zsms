@@ -172,7 +172,8 @@ namespace Web.service
                 }
                 else
                 {
-                    r.Add("msg", "系统错误");
+                    
+                    r.Add("msg", "系统错误:"+ex.Message);
                 }
                 result = r;
             }

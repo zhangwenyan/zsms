@@ -21,7 +21,10 @@
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },
             { field: 'mbno', title: '手机号', width: 100 },
-            { field: 'msg', title: '短信内容', width: 100 }
+            { field: 'msg', title: '短信内容', width: 100 },
+            {
+                field:"bad_why",title:"失败原因",width:100
+            }
         ]];
         dg.init();
         dg.dlg = dlg;

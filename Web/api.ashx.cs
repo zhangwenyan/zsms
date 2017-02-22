@@ -5,6 +5,7 @@ using System.Web;
 using Dal;
 using Model;
 using ZUtil;
+using Newtonsoft.Json;
 
 namespace Web
 {
@@ -20,16 +21,26 @@ namespace Web
             var mbno = context.Request["mbno"];
             var msg = context.Request["msg"];
 
-            if (secret != "admin@888888")
+            try
             {
-                context.Response.Write("{\"success\":false,\"msg\":\"验证失败\"}");
-                return;
+
+                if (secret != "admin@888888")
+                {
+                    throw new Exception("验证失败");
+                }
+
+                service.SmsMethod.sendSms(mbno, msg);
+                context.Response.ContentType = "text/json";
+                context.Response.Write("{\"success\":true}");
+            }
+            catch(Exception ex)
+            {
+                context.Response.ContentType = "text/json";
+                context.Response.Write(JsonConvert.SerializeObject(new { success = false, msg = ex.Message }));
             }
 
-            ZUtil.SmsUtil.sendSms(mbno, msg);
+       
 
-            context.Response.ContentType = "text/plain";
-            context.Response.Write("{\"success\":true}");
         }
 
         public bool IsReusable

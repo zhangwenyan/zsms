@@ -48,6 +48,10 @@
     <Compile Include="SmsServerThread.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ZUtil\ZUtil\ZUtil.csproj">
+      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
+      <Name>ZUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\config\config.csproj">
       <Project>{571affb5-818b-488f-9658-3c68fdd03aa8}</Project>
       <Name>config</Name>
@@ -67,10 +71,6 @@
     <ProjectReference Include="..\zsms\zsms.csproj">
       <Project>{29291294-8144-41a5-b87e-c80022df5c67}</Project>
       <Name>zsms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZUtil\ZUtil.csproj">
-      <Project>{e40fa745-f139-4923-aa68-d1ada7f85225}</Project>
-      <Name>ZUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
