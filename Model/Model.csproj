@@ -40,13 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="info\PageInfo.cs" />
-    <Compile Include="info\PageResultInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sms_BadOutBoxModel.cs" />
     <Compile Include="Sms_InBoxModel.cs" />
     <Compile Include="Sms_OutBoxModel.cs" />
     <Compile Include="Sms_SendedOutBoxModel.cs" />
+    <Compile Include="UserModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

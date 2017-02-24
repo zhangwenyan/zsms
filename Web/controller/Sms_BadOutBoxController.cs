@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Dal;
 using Model;
+using Dal;
+using eweb.info;
 using easysql;
-namespace Web.service
+
+namespace Web.controller
 {
-    /// <summary>
-    /// Sms_BadOutBoxService 的摘要说明
-    /// </summary>
-    public class Sms_BadOutBoxService : BaseService<Sms_BadOutBoxModel>
+    public class Sms_BadOutBoxController
     {
         private Sms_BadOutBoxDal dal = DalFactory.createSms_BadOutBoxDal();
 
@@ -23,6 +22,5 @@ namespace Web.service
         {
             dal.del(ids);
         }
-   
     }
 }

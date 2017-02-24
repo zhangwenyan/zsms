@@ -12,11 +12,11 @@
     var dg =null;
     $(function(){
         dlg = new Dlg($("#dlg"));
-        dlg.url = "/service/Sms_OutBoxService.ashx";
+        dlg.url = "/Sms_OutBox.action";
         // dlg.show();
 
         dg = new Dg($("#dg"));
-        dg.url = "/service/Sms_OutBoxService.ashx";
+        dg.url = "/Sms_OutBox.action";
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },
             { field: 'mbno', title: '手机号', width: 100 },

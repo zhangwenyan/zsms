@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using easysql;
-using System.Configuration;
 using config;
-using Model;
+using eweb.info;
 namespace Dal
 {
     /// <summary>

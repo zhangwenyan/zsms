@@ -12,11 +12,11 @@
     var dg =null;
     $(function(){
         dlg = new Dlg($("#dlg"));
-        dlg.url = "/service/Sms_BadOutBoxService.ashx";
+        dlg.url = "/Sms_BadOutBox.action";
         // dlg.show();
 
         dg = new Dg($("#dg"));
-        dg.url = "/service/Sms_BadOutBoxService.ashx";
+        dg.url = "/Sms_BadOutBox.action";
         dg.onDblClickRow = null;
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },

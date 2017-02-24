@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Dal;
+using easysql;
+using eweb.info;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Model;
-using Dal;
-using easysql;
-namespace Web.service
+
+namespace Web.controller
 {
-    /// <summary>
-    /// Sms_SendedOutBoxService 的摘要说明
-    /// </summary>
-    public class Sms_SendedOutBoxService : BaseService<Sms_SendedOutBoxModel>
+    public class Sms_SendedOutBoxController
     {
         private Sms_SendedOutBoxDal dal = DalFactory.createSms_SendedOutBoxDal();
         public object queryPage(PageInfo<Sms_SendedOutBoxModel> pi)
@@ -21,6 +20,5 @@ namespace Web.service
         {
             dal.del(ids);
         }
-      
     }
 }
