@@ -28,7 +28,7 @@ namespace zsmsclient.dialog
         private void Frame_SmsToolSetting_Load(object sender, EventArgs e)
         {
             cb_portName.Items.AddRange(SerialPort.GetPortNames());
-            cb_portName.Text = Config.modem_portName;
+            cb_portName.SelectedText = Config.modem_portName;
             txt_baudRate.Text = Config.modem_bandRate.ToString();
             cb_smsRecover.Checked = Config.modem_smsRecover;
 

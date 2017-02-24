@@ -18,19 +18,18 @@ namespace Web.router
         {
             //兼容旧的模式
 
-                Log.Info("rest.ashx接口有请求----"+context.Request.UserHostAddress);
-              
+                Log.Info("rest.ashx接口有请求----");
+
+
+                var mbno = context.Request["rec_num"];
+                var sms_param = context.Request["sms_param"];
+                String msg = JsonConvert.DeserializeObject<dynamic>(sms_param).msg;
+
+                Log.Info("mbno:"+mbno+",msg:"+msg);
+                Log.Info("----");
 
                 try
                 {
-
-                    var mbno = context.Request["rec_num"];
-                    var sms_param = context.Request["sms_param"];
-
-                    String msg = JsonConvert.DeserializeObject<dynamic>(sms_param).msg;
-
-                    Log.Info("mbno:" + mbno + ",msg:" + msg);
-                    Log.Info("----");
                     service.SmsMethod.sendSms(mbno, msg);
                     context.Response.ContentType = "text/json";
                     context.Response.Write("{\"success\":true}");
