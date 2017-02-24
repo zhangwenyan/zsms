@@ -84,7 +84,7 @@ namespace zsms
         }
 
         public override void sendSms(ESms esms)
-        {
+       {
             ITopClient client = new DefaultTopClient(alidayu_url, alidayu_appkey, alidayu_secret, "json");
             AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
             req.SmsType = "normal";
@@ -104,7 +104,6 @@ namespace zsms
                     String regStr = Regex.Replace(smsTemplate.content, @"\$\{[a-z0-9]+\}", "(.{0,15})");
                     regStr = regStr.Replace("[", "\\[");
                     regStr = regStr.Replace("]", "\\]");
-                    regStr = regStr.Replace(".", "．");
                     Regex reg = new Regex("^" + regStr + "$");
                     var m = reg.Match(msg);
                     if (m.Success)

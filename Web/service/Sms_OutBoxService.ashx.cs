@@ -12,6 +12,8 @@ namespace Web.service
     /// </summary>
     public class Sms_OutBoxService : BaseService<Sms_OutBoxModel>
     {
+        protected static log4net.ILog Log2 = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private Sms_OutBoxDal dal = DalFactory.createSms_OutBoxDal();
         public object queryPage(PageInfo<Sms_OutBoxModel> pi)
         {

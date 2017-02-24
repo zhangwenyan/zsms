@@ -11,7 +11,7 @@ namespace Web.service
 {
     public abstract class BaseService<T>: IHttpHandler where T : new()
     {
-        protected static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        protected log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         protected PageInfo<T> requestPageInfo(HttpContext context)
         {
@@ -110,7 +110,7 @@ namespace Web.service
                 MethodInfo method = curType.GetMethod(action, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 if (method == null)
                 {
-                    throw new MsgException("该方法尚未实现");
+                    throw new MsgException("该功能尚未实现");
                 }
 
 
