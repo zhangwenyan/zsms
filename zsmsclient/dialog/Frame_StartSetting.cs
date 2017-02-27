@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using config;
 using System.Configuration;
 using System.Reflection;
-
+using ZUtil;
 namespace zsmsclient.dialog
 {
     public partial class Frame_StartSetting : Form
@@ -68,26 +68,14 @@ namespace zsmsclient.dialog
             Config.autoMinimize = cb_autoMinimize.Checked;
             Config.justOne = cb_justOne.Checked;
 
-            changeSe("autoStartService", Config.autoStartService.ToString());
-            changeSe("autoMinimize", Config.autoMinimize.ToString());
-            changeSe("justOne", Config.justOne.ToString());
+            ConfigUtil.changeSetting("autoStartService", Config.autoStartService.ToString());
+            ConfigUtil.changeSetting("autoMinimize", Config.autoMinimize.ToString());
+            ConfigUtil.changeSetting("justOne", Config.justOne.ToString());
 
             MessageBox.Show("保存成功");
             this.Dispose();
         }
-        protected void changeSe(String key, String value)
-        {
-            //调用  
-            string assemblyConfigFile = Assembly.GetEntryAssembly().Location;
-            Configuration config = ConfigurationManager.OpenExeConfiguration(assemblyConfigFile);    //获取appSettings节点 
-            AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
-            //删除name，然后添加新值  
-            appSettings.Settings.Remove(key);
-            appSettings.Settings.Add(key, value);
-            //保存配置文件  
-            config.Save();
-        }
-
+     
         private void Frame_StartSetting_Load(object sender, EventArgs e)
         {
             cb_autoStartService.Checked = Config.autoStartService;

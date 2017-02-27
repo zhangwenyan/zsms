@@ -10,23 +10,23 @@ namespace config
     public class Config
     {
 
-        public static bool justOne = bool.Parse(ConfigurationManager.AppSettings["justOne"] ?? "true");
-        public static String zsmsSetting = null;
-        public static String dbType = ConfigurationManager.AppSettings["dbType"];
-        public static String connstr = ConfigurationManager.AppSettings["connstr"];
+        public static bool justOne = bool.Parse(ConfigUtil.readSetting("justOne","true"));
         
+        public static String zsmsSetting = null;
+        public static String dbType = ConfigUtil.readSetting("dbType", "mysql");
+        public static String connstr = ConfigUtil.readSetting("connstr");        
         /// <summary>
         /// 发送短信间隔
         /// </summary>
-        public static int sendSmsInv = int.Parse(ConfigurationManager.AppSettings["sendSmsInv"] ?? "1000");
+        public static int sendSmsInv = int.Parse(ConfigUtil.readSetting("sendSmsInv","1000"));
 
         /// <summary>
         /// 自动开始服务
         /// </summary>
-        public static bool autoStartService = bool.Parse(ConfigurationManager.AppSettings["autoStartService"] ?? "true");
+        public static bool autoStartService = bool.Parse(ConfigUtil.readSetting("autoStartService","true"));
 
 
-        public static bool autoMinimize = bool.Parse(ConfigurationManager.AppSettings["autoMinimize"] ?? "false");
+        public static bool autoMinimize = bool.Parse(ConfigUtil.readSetting("autoMinimize", "false"));
 
 
 
@@ -67,7 +67,7 @@ namespace config
 
         public static bool init()
         {
-           zsmsSetting = ConfigurationManager.AppSettings["zsmsSettingPath"] ?? System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "zsms.setting";
+            zsmsSetting = ConfigUtil.readSetting("zsmsSettingPath", System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "zsms.setting");
 
             if (!FileUtil.IsExistFile(zsmsSetting)) {
                 zsmsSetting = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "bin\\zsms.setting";
