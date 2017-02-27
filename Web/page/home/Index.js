@@ -8,24 +8,24 @@ $(function () {
      addTab("首页", "/page/home/Home.html", null, false);
 
 
-    //$("body").showLoading();
-    //$.post("/User", { action: "getLoginUser" }, function (result) {
-    //    if(result.success === false){
-    //        $.messager.progress({
-    //            title: "用户登录验证失败",
-    //            msg: "正在跳转回登录界面"
-    //        });
-    //        location.href = "Login.jsp";
-    //    }else{
-    //        $("#username a").html("欢迎您：" + result.nickname);
-    //        $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
-    //    }
+    $("body").showLoading();
+    $.post("/User.action", { action: "getLoginUser" }, function (result) {
+        if(result.success === false){
+            $.messager.progress({
+                title: "用户登录验证失败",
+                msg: "正在跳转回登录界面"
+            });
+            location.href = "/page/home/Login.html";
+        }else{
+            $("#username a").html("欢迎您：" + result.nickname);
+            $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
+        }
 
-    //},"json").error(onError).complete(function () {
-    //    $("body").hideLoading();
-    //});
+    },"json").error(onError).complete(function () {
+        $("body").hideLoading();
+    });
 
-     $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
+   //  $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
     $('.cs-navi-tab').click(function () {
         var $this = $(this);
         var href = $this.attr('src');

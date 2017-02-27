@@ -71,7 +71,7 @@
             //            $.messager.progress();
             $(".loginbtn").showLoading();
             $.ajax({
-                url: '/User',
+                url: '/User.action',
                 type: "post",
                 data: { action: "login", username: name, password: pwd, r: Math.random() },
                 dataType: "json",
@@ -132,9 +132,5 @@
             </form>
         </div>
     </div>
-    <div class="loginbm">
-        版权所有 2015 <a href="http://www.youotech.com/">youotech.com</a>
-    </div>
-
 </body>
 </html>

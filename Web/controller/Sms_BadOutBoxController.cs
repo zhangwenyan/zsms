@@ -6,6 +6,7 @@ using Model;
 using Dal;
 using eweb.info;
 using easysql;
+using eweb.attribute;
 
 namespace Web.controller
 {
@@ -17,7 +18,7 @@ namespace Web.controller
         {
             return dal.queryPage(pi, Restrain.OrderDesc("sendTime"));
         }
-
+        [Login]
         public void del(String ids)
         {
             dal.del(ids);

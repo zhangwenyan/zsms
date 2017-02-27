@@ -480,9 +480,7 @@
     <Compile Include="router\rest.ashx.cs">
       <DependentUpon>rest.ashx</DependentUpon>
     </Compile>
-    <Compile Include="service\BaseService.cs" />
-    <Compile Include="service\MsgException.cs" />
-    <Compile Include="service\SmsMethod.cs" />
+    <Compile Include="controller\SmsMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="api.ashx" />
