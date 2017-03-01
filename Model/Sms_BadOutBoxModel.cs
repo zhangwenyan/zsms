@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ZUtil.eweb.attribute;
+
 namespace Model
 {
+    [Table(tbName ="badOutBox")]
     public class Sms_BadOutBoxModel:BaseModel
     {
         public int id { set; get; }

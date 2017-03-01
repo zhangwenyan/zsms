@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using easysql;
 using config;
 using eweb.info;
+using ZUtil.eweb.attribute;
+
 namespace Dal
 {
     /// <summary>
@@ -13,16 +15,23 @@ namespace Dal
     {
         protected BaseDBHelper dh = DBHelperFactory.Create(Config.dbType, Config.connstr);
         protected log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        protected string tbname;
+        protected string tbName;
 
-        protected BaseDal(string tbname)
+        protected BaseDal()
         {
-            this.tbname = tbname;
+            var t = typeof(T);
+            var atts = t.GetCustomAttributes(typeof(Table), true);
+            if (atts.Length > 0)
+            {
+                Table table = (Table)atts[0];
+                this.tbName = table.tbName;
+            } 
+
         }
 
         public virtual  List<T> queryPage(T bean,int page, int rows, out int total,params Restrain[] restrains)
         {
-            return dh.QueryByPage<T>(tbname, bean, page, rows, out total, restrains);
+            return dh.QueryByPage<T>(tbName, bean, page, rows, out total, restrains);
         }
 
         public virtual PageResultInfo queryPage(PageInfo<T> pi,params Restrain[] restrains)
@@ -40,12 +49,12 @@ namespace Dal
 
         public virtual void add(T model)
         {
-            dh.Add(tbname, model);
+            dh.Add(tbName, model);
         }
 
         public virtual void modify(T model)
         {
-            dh.Modify(tbname, model);
+            dh.Modify(tbName, model);
         }
 
         public virtual void del(string ids)
@@ -55,7 +64,7 @@ namespace Dal
                 var idArr = ids.Split(',');
                 foreach(var id in idArr)
                 {
-                    db.DelById(tbname, int.Parse(id));
+                    db.DelById(tbName, int.Parse(id));
                 }
             }
         }

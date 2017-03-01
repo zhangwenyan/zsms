@@ -19,7 +19,7 @@ namespace Web.controller
         {
             return dal.queryPage(pi, Restrain.Order("SendTime"));
         }
-        [Login]
+        [CheckLogin]
         public void add(Sms_OutBoxModel model)
         {
             if (ZUtil.SmsUtil.smsSendWay == "db")
@@ -40,12 +40,12 @@ namespace Web.controller
 
 
         }
-        [Login]
+        [CheckLogin]
         public void modify(Sms_OutBoxModel model)
         {
             dal.modify(model);
         }
-        [Login]
+        [CheckLogin]
         public void del(String ids)
         {
             dal.del(ids);

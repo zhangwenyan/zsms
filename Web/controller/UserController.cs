@@ -5,11 +5,12 @@ using System.Web;
 using eweb.controller;
 using Model;
 using eweb.ex;
-
+using Dal;
 namespace Web.controller
 {
     public class UserController:BaseController<UserModel>
     {
+
         public void login(String username,String password,HttpContext context)
         {
             if(username=="admin" && password == "youotech")
@@ -42,6 +43,7 @@ namespace Web.controller
             context.Session.Remove("user");
             context.Response.Redirect("/page/home/Login.html");
         }
+      
 
     }
 }

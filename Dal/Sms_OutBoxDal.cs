@@ -9,20 +9,14 @@ namespace Dal
 {
     public class Sms_OutBoxDal:BaseDal<Sms_OutBoxModel>
     {
-        public Sms_OutBoxDal() : base("OutBox")
-        {
-
-        }
-
-
         /// <summary>
         /// 查询待发送短信,立即发送
         /// </summary>
         /// <returns></returns>
         public Sms_OutBoxModel queryTask(out int total)
         {
-            dh.Execute("update " + tbname + " set sendTime={0} where sendTime is null", DateTime.Now);
-            return dh.QueryByPage<Sms_OutBoxModel>(this.tbname, null, 1, 1, out total, Restrain.Lt("SendTime", DateTime.Now), Restrain.Order("sendTime")).FirstOrDefault();
+            dh.Execute("update " + tbName + " set sendTime={0} where sendTime is null", DateTime.Now);
+            return dh.QueryByPage<Sms_OutBoxModel>(this.tbName, null, 1, 1, out total, Restrain.Lt("SendTime", DateTime.Now), Restrain.Order("sendTime")).FirstOrDefault();
         }
 
 
@@ -34,7 +28,7 @@ namespace Dal
         {
             using(BaseDatabase db = dh.CreateDatabaseAndOpen())
             {
-                Sms_OutBoxModel model = db.QueryById<Sms_OutBoxModel>(tbname, id);
+                Sms_OutBoxModel model = db.QueryById<Sms_OutBoxModel>(tbName, id);
                 if (model == null)
                 {
                     Log.Info("将短信转换为已发送错误:找不到该短信");
@@ -50,7 +44,7 @@ namespace Dal
 
                 db.BeginTransaction();
                 db.Add("SendedOutBox", sendedModel);
-                db.DelById(tbname, model.id);
+                db.DelById(tbName, model.id);
                 db.CommitTranscation();
             }
         }
@@ -60,7 +54,7 @@ namespace Dal
         {
             using(BaseDatabase db = dh.CreateDatabaseAndOpen())
             {
-                var model = db.QueryById<Sms_OutBoxModel>(tbname, id);
+                var model = db.QueryById<Sms_OutBoxModel>(tbName, id);
                 if (model == null)
                 {
                     Log.Info("将短信转换为发送失败错误:找不到该短信");
@@ -79,7 +73,7 @@ namespace Dal
 
                 db.BeginTransaction();//开启事务
                 db.Add("badoutbox", badModel);
-                db.DelById(tbname, (int)model.id);
+                db.DelById(tbName, (int)model.id);
                 db.CommitTranscation();//提交事务
             }
         }

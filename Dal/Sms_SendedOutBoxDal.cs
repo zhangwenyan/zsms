@@ -8,9 +8,7 @@ namespace Dal
 {
     public class Sms_SendedOutBoxDal:BaseDal<Sms_SendedOutBoxModel>
     {
-        public Sms_SendedOutBoxDal() : base("SendedOutBox")
-        {
-        }
+     
 
     }
 }

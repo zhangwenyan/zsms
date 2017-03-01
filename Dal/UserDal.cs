@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using Model;
 using easysql;
-
 namespace Dal
 {
-    public class Sms_BadOutBoxDal:BaseDal<Sms_BadOutBoxModel>
+    public class UserDal:BaseDal<UserModel>
     {
-
+      
     }
 }

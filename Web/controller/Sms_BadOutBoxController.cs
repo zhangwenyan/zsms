@@ -18,7 +18,7 @@ namespace Web.controller
         {
             return dal.queryPage(pi, Restrain.OrderDesc("sendTime"));
         }
-        [Login]
+        [CheckLogin]
         public void del(String ids)
         {
             dal.del(ids);
