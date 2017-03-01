@@ -143,23 +143,54 @@ namespace zsms
 
             var qu = toQueryString(dic);
             String url = "http://sms.aliyuncs.com";
-            var str0 = HttpUtil.doPost(url, qu);
-            var t = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(str0);
-            if (String.IsNullOrEmpty(t.RequestId))
+            try
             {
-                //出错
-                if (!String.IsNullOrEmpty(t.Message))
-                {
-                    throw new Exception(t.Message);
-                }
-                throw new Exception("error");
+                HttpUtil.doPost(url, qu);
             }
-
+            catch(HttpStatusCodeException ex)
+            {
+                var t = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(ex.str);
+                //出错
+                String msg = "";
+                switch (t.Code)
+                {
+                    case "InvalidDayuStatus.Malformed":
+                        msg = "账户短信开通状态不正确";
+                        break;
+                    case "InvalidSignName.Malformed":
+                        msg = "短信签名不正确或签名状态不正确";
+                        break;
+                    case "InvalidTemplateCode.MalFormed":
+                        msg = "短信模板Code不正确或者模板状态不正确";
+                        break;
+                    case "InvalidRecNum.Malformed":
+                        msg = "目标手机号不正确，单次发送数量不能超过100";
+                        break;
+                    case "InvalidParamString.MalFormed":
+                        msg = "短信模板中变量不是json格式";
+                        break;
+                    case "InvalidParamStringTemplate.Malformed":
+                        msg = "短信模板中变量与模板内容不匹配";
+                        break;
+                    case "InvalidSendSms":
+                        msg = "触发业务流控";
+                        break;
+                    case "InvalidDayu.Malformed":
+                        msg = "变量不能是url，可以将变量固化在模板中";
+                        break;
+                    default:
+                        msg = "error";
+                        break;
+                }
+                throw new Exception(msg);
+            }
         }
         private class T
         {
             public String Message { get; set; }
             public String RequestId { get; set; }
+
+            public String Code { get; set;}
         }
 
         private static string toQueryString(Dictionary<String, String> dic)
