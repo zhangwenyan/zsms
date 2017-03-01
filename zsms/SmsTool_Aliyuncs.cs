@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -64,7 +65,7 @@ namespace zsms
 
         public override string getMsg()
         {
-            return "阿里云os短信平台";
+            return "阿里云cs短信平台";
         }
 
         public override void init()
