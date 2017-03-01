@@ -1,12 +1,11 @@
-﻿using Aliyun.Acs.Core;
-using Aliyun.Acs.Core.Exceptions;
-using Aliyun.Acs.Core.Profile;
-using Aliyun.Acs.Sms.Model.V20160927;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
+using ZUtil;
 
 namespace zsms
 {
@@ -76,17 +75,8 @@ namespace zsms
         public override void sendSms(ESms esms)
         {
 
-            IClientProfile profile = DefaultProfile.GetProfile("cn-hangzhou", alidayu_appkey, alidayu_secret);
-            IAcsClient client = new DefaultAcsClient(profile);
-            SingleSendSmsRequest request = new SingleSendSmsRequest();
-            request.SignName = this.smsFreeSignName;
-            request.RecNum = esms.Mbno;
-
-
-
             String smsTemplateCode = null;
             String smsParam = null;
-
             #region 匹配模板
             try
             {
@@ -135,20 +125,101 @@ namespace zsms
                 throw new SmsErrorException("短信内容没有匹配的模板");
             }
 
-            request.TemplateCode = smsTemplateCode;
-            request.ParamString = smsParam;
+            Dictionary<String, String> dic = new Dictionary<string, string>();
+            dic.Add("AccessKeyId", this.alidayu_appkey);
+            dic.Add("Action", "SingleSendSms");
+            dic.Add("Format", "JSON");
+            dic.Add("ParamString", smsParam);
+            dic.Add("RecNum", esms.Mbno);
+            dic.Add("SignName", this.smsFreeSignName);
+            dic.Add("SignatureMethod", "HMAC-SHA1");
+            dic.Add("SignatureNonce", Guid.NewGuid().ToString());
+            dic.Add("SignatureVersion", "1.0");
+            dic.Add("TemplateCode", smsTemplateCode);
+            dic.Add("Timestamp", DateTime.Now.AddHours(-8).ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            dic.Add("Version", "2016-09-27");
+            dic.Add("Signature", hsh(dic, this.alidayu_secret));
 
-            try
+            var qu = toQueryString(dic);
+            String url = "http://sms.aliyuncs.com";
+            var str0 = HttpUtil.doPost(url, qu);
+            var t = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(str0);
+            if (String.IsNullOrEmpty(t.RequestId))
             {
-                SingleSendSmsResponse rsp = client.GetAcsResponse(request);
-            }catch(Exception ex)
-            {
-                throw new Exception("发送失败:" + ex.Message);
+                //出错
+                if (!String.IsNullOrEmpty(t.Message))
+                {
+                    throw new Exception(t.Message);
+                }
+                throw new Exception("error");
             }
-            //if (rsp.Result == null || !rsp.Result.Success)
-            //{
-            //    throw new Exception("发送失败:" + rsp.SubErrMsg);
-            //}
+
         }
+        private class T
+        {
+            public String Message { get; set; }
+            public String RequestId { get; set; }
+        }
+
+        private static string toQueryString(Dictionary<String, String> dic)
+        {
+            // IDictionary<string, string> sortedParams = new SortedDictionary<string, string>(dic, StringComparer.Ordinal);
+            // IEnumerator<KeyValuePair<string, string>> dem = sortedParams.GetEnumerator();
+            // // 第二步：把所有参数名和参数值串在一起
+            String postStr = "";
+            foreach (var d in dic)
+            {
+                string key = d.Key;
+                string value = d.Value;
+                if (postStr != "")
+                {
+                    postStr += "&";
+                }
+                postStr += key + "=" + UrlEncode(value);
+            }
+            return postStr;
+
+        }
+
+        private static String hsh(Dictionary<String, String> parameters, String skey)
+        {
+            StringBuilder query = new StringBuilder("POST&%2F&");
+            foreach (var d in parameters)
+            {
+                string key = d.Key;
+                string value = d.Value;
+                if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+                {
+                    var temp = UrlEncode((query.Length == 9 ? "" : "&") + key + "=" + UrlEncode(value));
+                    query.Append(temp);
+                }
+            }
+            String tmp = query.ToString();
+            HMACSHA1 hmacsha1 = new HMACSHA1();
+            hmacsha1.Key = System.Text.Encoding.UTF8.GetBytes(skey + "&");
+            byte[] dataBuffer = System.Text.Encoding.UTF8.GetBytes(query.ToString());
+            byte[] hashBytes = hmacsha1.ComputeHash(dataBuffer);
+            return Convert.ToBase64String(hashBytes);
+        }
+
+        private static string UrlEncode(string temp)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < temp.Length; i++)
+            {
+                string t = temp[i].ToString();
+                string k = HttpUtility.UrlEncode(t, Encoding.UTF8);
+                if (t == k)
+                {
+                    stringBuilder.Append(t);
+                }
+                else {
+                    stringBuilder.Append(k.ToUpper());
+                }
+            }
+            return stringBuilder.ToString();
+        }
+
+
     }
 }
