@@ -20,7 +20,15 @@
         dg.onDblClickRow = null;
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },
-            { field: 'mbno', title: '手机号', width: 100 },
+            {
+                field: 'mbno', title: '手机号', width: 100, formatter: function (val, src) {
+                    var v = val;
+                    if (src.mbnoName) {
+                        v += "(" + src.mbnoName + ")";
+                    }
+                    return v;
+                }
+            },
             { field: 'msg', title: '短信内容', width: 200 },
             {field:"sendTime",title:"时间",width:100}
         ]];

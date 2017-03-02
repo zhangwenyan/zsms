@@ -414,6 +414,7 @@
     <Content Include="js\jquery-easyui-1.4\themes\icons\zoomout.png" />
     <Content Include="js\jquery.cookie.js" />
     <Content Include="js\jquery.showLoading.min.js" />
+    <Content Include="js\layer.js" />
     <Content Include="js\plugin_easyui.js" />
     <Content Include="js\showLoading.css" />
     <Content Include="js\zeasyui-2.0.js" />
@@ -461,6 +462,8 @@
     <Content Include="page\home\Home.html" />
     <Content Include="page\home\Index.js" />
     <Content Include="page\home\Login.html" />
+    <Content Include="page\mbno\MbnoGroupManager.html" />
+    <Content Include="page\mbno\MbnoManager.html" />
     <Content Include="page\sms\Sms_SendedOutBoxManager.html" />
     <Content Include="page\sms\Sms_OutBoxManager.html" />
     <Content Include="page\sms\Sms_BadOutBoxManager.html" />
@@ -470,6 +473,9 @@
     <Compile Include="api.ashx.cs">
       <DependentUpon>api.ashx</DependentUpon>
     </Compile>
+    <Compile Include="controller\MbnoController.cs" />
+    <Compile Include="controller\MbnoGroupController.cs" />
+    <Compile Include="controller\MenuController.cs" />
     <Compile Include="controller\Sms_BadOutBoxController.cs" />
     <Compile Include="controller\Sms_InBoxController.cs" />
     <Compile Include="controller\Sms_OutBoxController.cs" />
@@ -517,6 +523,7 @@
   <ItemGroup>
     <Folder Include="images\新建文件夹 %282%29\" />
     <Folder Include="images\新建文件夹\" />
+    <Folder Include="js\skin\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

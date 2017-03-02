@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
     <Compile Include="DalFactory.cs" />
+    <Compile Include="MbnoDal.cs" />
+    <Compile Include="MbnoGroupDal.cs" />
+    <Compile Include="MenuDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sms_BadOutBoxDal.cs" />
     <Compile Include="Sms_InBoxDal.cs" />

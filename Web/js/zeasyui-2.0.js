@@ -158,6 +158,26 @@ function Dg(element) {
     this.border = false;
     this.pageSize = 20;
     var me = this;
+    this.onLoadError = function () {
+        $.messager.alert("错误", "载入列表出错,请刷新页面后重试", "error");
+    },
+    this.loadFilter = function (data) {
+        if (data.success === false) {
+            $.messager.alert("载入列表出错", data.msg, "error");
+            return {tota1:0,rows:[]}
+        }
+        if (me.zloadFilterSuccess) {
+            me.zloadFilterSuccess(data);
+        }
+        if (data.rows) {
+            return data;
+        } else {
+            return {
+                total:  data.length,
+                rows: data
+            }
+        }
+    };
     this.onDblClickRow = function (rowIndex, rowData) {//双击表格事件,默认为调用修改方法
         me.element.datagrid("uncheckAll").datagrid("checkRow", rowIndex);
         me.showModify.call(me);

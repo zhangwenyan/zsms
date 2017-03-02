@@ -6,21 +6,30 @@ using eweb.controller;
 using Model;
 using eweb.ex;
 using Dal;
+using eweb.attribute;
+
 namespace Web.controller
 {
     public class UserController:BaseController<UserModel>
     {
-
+        private UserDal dal = new UserDal();
         public void login(String username,String password,HttpContext context)
         {
-            if(username=="admin" && password == "youotech")
+            var userModel = dal.queryByUsername(username);
+            if (userModel == null)
             {
-                context.Session.Add("user", new { nickname="管理员" });
+                throw new MsgException("用户名不存在");
             }
-            else
+
+            if(userModel.status != USERSTATUS.NORMAL)
+            {
+                throw new MsgException("用户当前状态不能登录");
+            }
+            if (!userModel.password.Equals(password))
             {
                 throw new MsgException("用户名或密码错误");
             }
+            context.Session.Add("user", userModel);
         }
         public object getLoginUser(HttpContext context)
         {
@@ -32,11 +41,13 @@ namespace Web.controller
                 };
             }
 
+            UserModel um = (UserModel)context.Session["user"];
             return new
             {
-                nickname="管理员"
+                nickname= um.nickname
             };
         }
+
 
         public void logout(HttpContext context)
         {

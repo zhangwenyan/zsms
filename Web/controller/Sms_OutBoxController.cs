@@ -15,6 +15,7 @@ namespace Web.controller
     public class Sms_OutBoxController
     {
         private Sms_OutBoxDal dal = DalFactory.createSms_OutBoxDal();
+
         public object queryPage(PageInfo<Sms_OutBoxModel> pi)
         {
             return dal.queryPage(pi, Restrain.Order("SendTime"));

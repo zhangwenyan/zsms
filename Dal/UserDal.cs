@@ -8,6 +8,10 @@ namespace Dal
 {
     public class UserDal:BaseDal<UserModel>
     {
-      
+        public UserModel queryByUsername(String username)
+        {
+            return dh.Query<UserModel>(tbName, null, Restrain.Eq("username", username)).FirstOrDefault();
+        }
+
     }
 }

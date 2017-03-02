@@ -4,11 +4,29 @@ using System.Linq;
 using System.Text;
 using Model;
 using easysql;
+using eweb.info;
+using Model.info;
 
 namespace Dal
 {
     public class Sms_OutBoxDal:BaseDal<Sms_OutBoxModel>
     {
+
+        public override PageResultInfo queryPage(PageInfo<Sms_OutBoxModel> pi, params Restrain[] restrains)
+        {
+            int total = 0;
+            String sql = @"
+                select outBox.*,mbno.name as mbnoName from outBox
+                left join mbno on mbno.mbno=outBox.mbno
+            ";
+            var list = dh.QueryPageBySql<Sms_OutBoxInfo>(sql, pi.page, pi.rows, out total, restrains);
+            return new PageResultInfo()
+            {
+                total = total,
+                rows = list
+            };
+        }
+
         /// <summary>
         /// 查询待发送短信,立即发送
         /// </summary>

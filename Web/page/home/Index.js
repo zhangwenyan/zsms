@@ -11,11 +11,9 @@ $(function () {
     $("body").showLoading();
     $.post("/User.action", { action: "getLoginUser" }, function (result) {
         if(result.success === false){
-            $.messager.progress({
-                title: "用户登录验证失败",
-                msg: "正在跳转回登录界面"
-            });
-            location.href = "/page/home/Login.html";
+             layer.msg("用户登录验证失败,正在跳转回登录界面", function () {
+                 location.href = "/page/home/Login.html";
+             });
         }else{
             $("#username a").html("欢迎您：" + result.nickname);
             $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
@@ -105,20 +103,26 @@ $(function () {
 var settingMenu = {
     async: {
         enable: true,
-        url: "menu.json",
+        url: "/Menu.action?action=myMenuTree",
         autoParam: ["id", "name=n"],
-        type:"get"
+        type:"post"
     },
     callback:{
         onClick: openTab,
         beforeAsync: function () {
-            $("#mymenu").showLoading();
+            layer.load();
         },
-        onAsyncSuccess: function () {
-            $("#mymenu").hideLoading();
+        onAsyncSuccess: function (a, b, c, data) {
+            layer.closeAll();
+            var data = eval("(" + data + ")");
+            if (data.success === false) {
+                layer.msg("加载用户菜单出错("+data.msg+"),将跳转到登录界面", function () {
+                    location.href = "/page/home/Login.html";
+                });
+            }
         },
         onAsyncError: function () {
-            $("#mymenu").hideLoading();
+            layer.closeAll();
         },
         onRightClick: function (e) {
             //e.preventDefault();

@@ -1,16 +1,16 @@
 ﻿{
-  "smsTool": "aliyuncs",
+  "smsTool": "alidayu",
   "errorWaitTime": "3000", //失败等待时间
   "tryCount": 4, //尝试次数
   "databaseType": "sqlserver",//数据库类型(sqlserver,mysql),如果app.config中配置了则以app.config为准
   "connstr": "user id=sa;password=youotech;initial catalog=smsdb;Server=.;",//数据库连接字符串
   "smsTools": {
   "aliDayu": {
-      "smsFreeSignName": "短信通知",
-      "smsTemplateCode": "SMS_10316s023",
+      "smsFreeSignName": "燎火",
+      "smsTemplateCode": "SMS_5075620",
       "alidayu_url": "http://gw.api.taobao.com/router/rest",
-      "alidayu_appkey": "23381830",
-      "alidayu_secret": "3d10b90e54b46de4cdb19be3417b25b8",
+      "alidayu_appkey": "23300185",
+      "alidayu_secret": "8b5196bef2e1ebcf5d1f75503e2a4cd8",
       "smsTemplateList": [
         {
           "code": "SMS_5001004",

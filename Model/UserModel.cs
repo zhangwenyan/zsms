@@ -13,5 +13,12 @@ namespace Model
         public String username { get; set; }
         public String password { get; set; }
 
+        public String nickname { get; set; }
+        public USERSTATUS status { get; set; }
+
+    }
+    public enum USERSTATUS
+    {
+        NORMAL = 1
     }
 }

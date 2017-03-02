@@ -12,24 +12,15 @@
     var dg =null;
     $(function(){
         dlg = new Dlg($("#dlg"));
-        dlg.url = "/Sms_OutBox.action";
+        dlg.url = "/Mbno.action";
         // dlg.show();
 
         dg = new Dg($("#dg"));
-        dg.url = "/Sms_OutBox.action";
+        dg.url = "/Mbno.action";
         dg.columns = [[
             { field: "id", title: "ID", hidden: false, checkbox: true },
-            {
-                field: 'mbno', title: '手机号', width: 100, formatter: function (val, src) {
-                    var v = val;
-                    if (src.mbnoName) {
-                        v += "(" + src.mbnoName + ")";
-                    }
-                    return v;
-                }
-            },
-            { field: 'msg', title: '短信内容', width: 200 },
-            {field:"sendTime",title:"时间",width:100}
+            { field: 'mbno', title: '手机号', width: 100 },
+            { field: 'name', title: '名称', width: 200 }
         ]];
         dg.init();
         dg.dlg = dlg;
@@ -50,7 +41,7 @@
                 <div>
                     <form class="searchForm">
                         手机号:<input name="mbno" class="easyui-textbox" style="width:110px" />
-                        短信内容:<input name="msg" class="easyui-textbox" style="width:110px" />
+                        名称:<input name="name" class="easyui-textbox" style="width:110px" />
                         <a class="easyui-linkbutton btn_query" iconcls="icon-search" plain="true">查询</a>
                     </form>
                 </div>
@@ -71,10 +62,10 @@
                     </tr>
                     <tr>
                         <td>
-                            短信内容:
+                            名称:
                         </td>
                         <td>
-                            <input name="msg" class="easyui-textbox" data-options="multiline:true,height:70,required:true,missingMessage:'不能为空'" style="width:220px;" />
+                            <input name="name" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px;" />
                         </td>
                     </tr>
                 </table>

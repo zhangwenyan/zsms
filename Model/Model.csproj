@@ -40,12 +40,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="info\Sms_OutBoxInfo.cs" />
+    <Compile Include="info\Sms_SendedOutBoxInfo.cs" />
+    <Compile Include="info\Sms_BadOutBoxInfo.cs" />
+    <Compile Include="MbnoGroupModel.cs" />
+    <Compile Include="MbnoMbnoGroupModel.cs" />
+    <Compile Include="MbnoModel.cs" />
+    <Compile Include="MenuModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleMenuModel.cs" />
+    <Compile Include="RoleModel.cs" />
     <Compile Include="Sms_BadOutBoxModel.cs" />
     <Compile Include="Sms_InBoxModel.cs" />
     <Compile Include="Sms_OutBoxModel.cs" />
     <Compile Include="Sms_SendedOutBoxModel.cs" />
     <Compile Include="UserModel.cs" />
+    <Compile Include="UserRoleModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ZUtil\ZUtil\ZUtil.csproj">
