@@ -10,7 +10,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            ZUtil.SmsUtil.sendSms("1768110930s9", "dasd111111111f");
+            ZUtil.SmsUtil.sendSms("17681109309", "您好呀,今天天气晴朗");
         }
     }
 }

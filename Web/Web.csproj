@@ -67,7 +67,7 @@
   <ItemGroup>
     <Content Include="css\style.css" />
     <Content Include="dll\eweb.dll" />
-    <Content Include="log4net.dll" />
+    <Content Include="dll\log4net.dll" />
     <Content Include="images\404.png" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\btnbg.png" />
@@ -454,7 +454,7 @@
     <Content Include="js\zTree\js\jquery.ztree.exhide-3.5.js" />
     <Content Include="js\zTree\js\jquery.ztree.exhide-3.5.min.js" />
     <Content Include="js\zTree\log v3.x.txt" />
-    <Content Include="mysql.data.dll">
+    <Content Include="dll\mysql.data.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="dll\Newtonsoft.Json.dll" />
@@ -490,7 +490,7 @@
     <Content Include="page\home\menu.json" />
     <Content Include="router\rest.ashx" />
     <Content Include="Log4Net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Web.config.pubxml" />
     <None Include="Web.Debug.config">
