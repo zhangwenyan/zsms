@@ -68,7 +68,8 @@
             this.cb_databaseType.FormattingEnabled = true;
             this.cb_databaseType.Items.AddRange(new object[] {
             "sqlserver",
-            "mysql"});
+            "mysql",
+            "sqlite"});
             this.cb_databaseType.Location = new System.Drawing.Point(180, 63);
             this.cb_databaseType.Name = "cb_databaseType";
             this.cb_databaseType.Size = new System.Drawing.Size(205, 23);

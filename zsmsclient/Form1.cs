@@ -173,12 +173,14 @@ namespace zsmsclient
                 new Thread(delegate ()
                 {
                     service.Dispose();
+                 
                 }).Start();
             }
         }
         private void btn_stopService_Click(object sender, EventArgs e)
         {
             stopService();
+            addMsg("停止短信服务");
         }
 
         private void btn_startService_Click(object sender, EventArgs e)
