@@ -14,9 +14,9 @@ namespace Web.controller
     {
         private Sms_BadOutBoxDal dal = DalFactory.createSms_BadOutBoxDal();
 
-        public object queryPage(PageInfo<Sms_BadOutBoxModel> pi)
+        public object queryPage(PageInfo<Sms_BadOutBoxModel> pi,String mbnoName)
         {
-            return dal.queryPage(pi, Restrain.OrderDesc("sendTime"));
+            return dal.queryPage(pi,mbnoName);
         }
         [CheckLogin]
         public void del(String ids)

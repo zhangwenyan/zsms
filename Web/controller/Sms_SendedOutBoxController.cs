@@ -13,10 +13,9 @@ namespace Web.controller
     public class Sms_SendedOutBoxController
     {
         private Sms_SendedOutBoxDal dal = DalFactory.createSms_SendedOutBoxDal();
-        public object queryPage(PageInfo<Sms_SendedOutBoxModel> pi)
+        public object queryPage(PageInfo<Sms_SendedOutBoxModel> pi,String mbnoName)
         {
-
-            return dal.queryPage(pi, Restrain.OrderDesc("SendTime"));
+            return dal.queryPage(pi, mbnoName);
         }
         [CheckLogin]
         public void del(String ids)

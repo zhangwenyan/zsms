@@ -12,14 +12,23 @@ namespace Dal
     public class Sms_OutBoxDal:BaseDal<Sms_OutBoxModel>
     {
 
-        public override PageResultInfo queryPage(PageInfo<Sms_OutBoxModel> pi, params Restrain[] restrains)
+        public PageResultInfo queryPage(PageInfo<Sms_OutBoxModel> pi,String mbnoName)
         {
             int total = 0;
             String sql = @"
                 select outBox.*,mbno.name as mbnoName from outBox
                 left join mbno on mbno.mbno=outBox.mbno
+                where 1=1
             ";
-            var list = dh.QueryPageBySql<Sms_OutBoxInfo>(sql, pi.page, pi.rows, out total, restrains);
+            List<Object> paramValues = new List<object>();
+            if (!String.IsNullOrEmpty(mbnoName))
+            {
+                sql += " and mbno.name like {"+paramValues.Count+"}";
+                paramValues.Add("%" + mbnoName + "%");
+            }
+
+            sql += " order by sendTime desc";
+            var list = dh.QueryPageBySql<Sms_OutBoxInfo>(sql, pi.page, pi.rows, out total, paramValues.ToArray());
             return new PageResultInfo()
             {
                 total = total,
