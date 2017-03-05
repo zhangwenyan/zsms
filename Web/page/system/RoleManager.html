@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/js/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css" />
+    <script type="text/javascript" src="/js/zTree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script>
+        $(function () {
+            var setting_left = {
+                async: {
+                    enable: true,
+                    url: "/Role.action?action=tree",
+                    dataFilter: function (treeId, parentNode, rList) {
+                        for (var i = 0; i < rList.length; i++) {
+                            var r = rList[i];
+                            r.entity = {
+                                flag: "2",
+                                id: r.id
+                            };
+                        }
+                        var root = [];
+                        root.push({
+                            name: "角色",
+                            id: 0,
+                            open: true,
+                            children: rList,
+                            entity: {
+                                flag: "1"
+                            }
+                        });
+                        return root;
+                    }
+                },
+                data: {
+                    key: {
+                        name: "name",
+                        url: "xUrl"
+                    },
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pid"
+                    }
+                },
+                callback: {
+                    beforeAsync: function () {
+                        $("#panel_west").showLoading();
+                    },
+                    onAsyncError: function () {
+                        $("#panel_west").hideLoading();
+                    },
+                    onClick: function (event, treeId, node) {
+                        var treeObj = $.fn.zTree.getZTreeObj("tree_center");
+                        if (node.entity.flag == "1") {
+                            treeObj.checkAllNodes(false);
+                        } else if (node.entity.flag == "2") {
+                            treeObj.checkAllNodes(false);
+                            $.messager.progress();
+                            $.post("/RoleMenu.action", { action: "queryByRoleId", roleId: node.id }, function (result) {
+                                if (result.success === false) {
+                                    $.messager.alert("错误", result.msg, "error");
+                                } else {
+                                    for (var i = 0; i < result.length; i++) {
+                                        var n = treeObj.getNodeByParam("id", result[i].menuId, null);
+                                        if (node == null) {
+                                            continue;
+                                        }
+                                        treeObj.checkNode(n, true, false);
+                                        if (result[i].limits != "" && result[i].limits != null) {
+                                            var as = result[i].Limits.split(',');
+                                            for (var j = 0; j < as.length; j++) {
+                                                var node2 = treeObj.getNodeByParam("id", as[j], null);
+                                                treeObj.checkNode(node2, true, true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }, "json").complete(function () {
+                                $.messager.progress('close');
+                            }).error(onError);
+
+                        }
+                    },
+                    onAsyncSuccess: function (event, treeId) {
+                        $("#panel_west").hideLoading();
+                    }
+                }
+            };
+            $.fn.zTree.init($("#tree_left"), setting_left);
+
+            function refreshLeftTree() {
+                $.fn.zTree.init($("#tree_left"), setting_left);
+            }
+
+
+            var setting_center = {
+                async: {
+                    enable: true,
+                    url: "/Menu.action?action=tree"
+                },
+                check: {
+                    enable: true,
+                    chkStyle: "checkbox",
+                    chkboxType: { "Y": "ps", "N": "ps" }
+                },
+                data: {
+                    key: {
+                        name: "text",
+                        url: "xUrl"
+                    },
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pid"
+                    }
+                },
+                callback: {
+                    beforeAsync: function () {
+                        $("#panel_center").showLoading();
+                    },
+                    onAsyncError: function () {
+                        $("#panel_center").hideLoading();
+                    },
+                    onAsyncSuccess: function (event, treeId) {
+                        $("#panel_center").hideLoading();
+                    }
+
+                }
+            };
+            $.fn.zTree.init($("#tree_center"), setting_center);
+
+
+            var dlg = new Dlg($("#dlg"));
+
+
+            $(".btn_add").click(function () {
+                dlg.iconCls = 'icon-add';
+                dlg.title = "添加角色";
+                dlg.url = "/Role.action";
+                dlg.action = "add";
+                dlg.submitCallback = function () {
+                    $.fn.zTree.init($("#tree_left"), setting_left);
+                };
+                dlg.show();
+            });
+
+            $(".btn_modify").click(function () {
+
+                var treeObj = $.fn.zTree.getZTreeObj("tree_left");
+                var records = treeObj.getSelectedNodes();
+                if (records.length == 0) {
+                    $.messager.alert("提示", "请在角色列表内选择一个角色", "info");
+                    return false;
+                }
+                else if (records.length != 1) {
+                    $.messager.alert("提示", "每次只能操作一个角色", "info");
+                    return false;
+                }
+
+                var record = records[0];
+                if (record.entity && record.entity.flag == 1) {
+                    $.messager.alert("提示", "请选择某个角色", "info");
+                    return false;
+                }
+
+                dlg.iconCls = 'icon-modify';
+                dlg.title = "修改角色";
+                dlg.url = "/Role.action";
+                dlg.action = "modify";
+                dlg.resetForm();
+                dlg.loadForm(record);
+
+                dlg.submitCallback = function () {
+                    refreshLeftTree();
+                }
+                dlg.show();
+            });
+
+
+            $(".btn_del").click(function () {
+                var treeObj = $.fn.zTree.getZTreeObj("tree_left");
+                var records = treeObj.getSelectedNodes();
+                if (records.length == 0) {
+                    $.messager.alert("提示", "请选择需要删除的角色", "info");
+                    return false;
+                }
+                else if (records.length != 1) {
+                    $.messager.alert("提示", "每次只能删除一个角色", "info");
+                    return false;
+                }
+                var record = records[0];
+
+                if (record.entity && record.entity.flag == 1) {
+                    $.messager.alert("提示", "请选择某个角色", "info");
+                    return false;
+                }
+
+                var me = this;
+
+
+                $.messager.confirm('确认', '您确认要删除该角色吗?', function (r) {
+                    if (r) {
+                        $.messager.progress();
+
+                        $.post("/Role.action", { action: "delById", id: record.id }, function (result) {
+                            if (result.success) {
+                                refreshLeftTree();
+                                $.messager.show({
+                                    title: "成功",
+                                    msg: "操作成功"
+                                });
+                            } else {
+                                $.messager.alert("提示", result.msg, "info");
+                            }
+                        }, "json").complete(function () {
+                            $.messager.progress("close");
+                        }).error(onError);
+                    }
+                });
+            });
+
+            $(".btn_save").click(function () {
+                var treeObj = $.fn.zTree.getZTreeObj("tree_left");
+                var records = treeObj.getSelectedNodes();
+                if (records.length != 1) {
+                    $.messager.alert("提示", "请在角色列表内选择一个角色", "info");
+                    return false;
+                }
+
+                var selectedNode = records[0];
+                if (selectedNode.entity && selectedNode.entity.flag == 1) {
+                    $.messager.alert("提示", "请选择某个角色", "info");
+                    return false;
+                }
+
+
+                var treeObj_center = $.fn.zTree.getZTreeObj("tree_center");
+                var nodes = treeObj_center.getCheckedNodes(true);
+
+                if (nodes.length <= 0) {
+                    $.messager.alert("提示", "请先给角色分配权限", "info");
+                    return false;
+                }
+
+                var menuIds = "";
+                for (var i = 0; i < nodes.length; i++) {
+                    if (menuIds != "") {
+                        menuIds += ",";
+                    }
+                    menuIds += nodes[i].id;
+                }
+                $.messager.progress();
+                $.post("/RoleMenu.action", { action: "save", roleId: selectedNode.id, menuIds: menuIds }, function (result) {
+                    if (result.success === false) {
+                        $.messager.alert("失败", result.msg, "error");
+                        return;
+                    }
+                    $.messager.show({ title: "提示", msg: "操作成功！" });
+
+                }, "json").complete(function () {
+                    $.messager.progress("close");
+                }).error(onError);
+
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+ 
+
+    </script>
+</head>
+<body class="easyui-layout">
+
+    <div style="display:none;">
+        <div id="dlg">
+            <form class="mainForm">
+                <input name="id" style="display:none;" />
+                <table>
+                    <tr>
+                        <td>名称:</td>
+                        <td>
+                            <input name="name" class="easyui-textbox" data-options="required:true,missingMessage:'不能为空'" style="width:220px" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="panel_north" data-options="region:'north',collapsible:false,split:false" style="padding:3px 2px;background-color: #fafafa;overflow-y:hidden;">
+        <a class="easyui-linkbutton btn_add" href="javascript:;" iconCls="icon-add" plain="true">添加角色</a>
+        <a class="easyui-linkbutton btn_modify" href="javascript:;" iconCls="icon-edit" plain="true">修改角色</a>
+        <a class="easyui-linkbutton btn_del" href="javascript:;" iconCls="icon-remove" plain="true">删除角色</a>
+        <a class="easyui-linkbutton btn_save" href="javascript:;" iconCls="icon-save" plain="true">保存</a>
+        <a href="javascript:window.location.reload()" class="easyui-linkbutton" plain="true" iconcls="icon-reload">重载</a>
+    </div>
+
+
+    <div id="panel_west" data-options="region:'west',title:'角色列表',split:true" style="width:200px;">
+        <ul id="tree_left" class="ztree"></ul>
+    </div>
+
+    <div id="panel_center" style="padding:5px;" data-options="region:'center',title:'菜单列表'" >
+        <ul id="tree_center" class="ztree"></ul>
+    </div>  
+
+</body>
+</html>

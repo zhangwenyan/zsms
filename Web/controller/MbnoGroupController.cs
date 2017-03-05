@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using Dal;
 using Model;
-using eweb.attribute;
-using eweb.info;
+using eweb;
 
 namespace Web.controller
 {

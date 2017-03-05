@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZUtil.eweb.attribute;
+using eweb;
 namespace Model
 {
     [Table(tbName ="outbox")]

@@ -8,7 +8,8 @@ $(function () {
      addTab("首页", "/page/home/Home.html", null, false);
 
 
-    $("body").showLoading();
+   /// $("body").showLoading();
+  //   $.messager.progress();
     $.post("/User.action", { action: "getLoginUser" }, function (result) {
         if(result.success === false){
              layer.msg("用户登录验证失败,正在跳转回登录界面", function () {
@@ -20,7 +21,8 @@ $(function () {
         }
 
     },"json").error(onError).complete(function () {
-        $("body").hideLoading();
+       // $("body").hideLoading();
+    //    $.messager.progress('close');
     });
 
    //  $.fn.zTree.init($("#tree"), settingMenu); //加载菜单树
@@ -121,6 +123,11 @@ var settingMenu = {
                 });
             }
         },
+        dataFilter: function (treeId, parentNode, rList) {
+            if (rList.success === false) {
+                return [];
+            }
+        },
         onAsyncError: function () {
             layer.closeAll();
         },
@@ -130,7 +137,6 @@ var settingMenu = {
             //    left: event.pageX,
             //    top: event.pageY
             //});
-
 
         }
     },

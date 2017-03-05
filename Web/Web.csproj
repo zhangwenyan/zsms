@@ -467,6 +467,8 @@
     <Content Include="page\sms\Sms_SendedOutBoxManager.html" />
     <Content Include="page\sms\Sms_OutBoxManager.html" />
     <Content Include="page\sms\Sms_BadOutBoxManager.html" />
+    <Content Include="page\system\RoleManager.html" />
+    <Content Include="page\system\UserManager.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +478,8 @@
     <Compile Include="controller\MbnoController.cs" />
     <Compile Include="controller\MbnoGroupController.cs" />
     <Compile Include="controller\MenuController.cs" />
+    <Compile Include="controller\RoleController.cs" />
+    <Compile Include="controller\RoleMenuController.cs" />
     <Compile Include="controller\Sms_BadOutBoxController.cs" />
     <Compile Include="controller\Sms_InBoxController.cs" />
     <Compile Include="controller\Sms_OutBoxController.cs" />

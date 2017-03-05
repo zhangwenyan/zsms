@@ -1,7 +1,6 @@
 ﻿using Dal;
 using easysql;
-using eweb.attribute;
-using eweb.info;
+using eweb;
 using Model;
 using System;
 using System.Collections.Generic;

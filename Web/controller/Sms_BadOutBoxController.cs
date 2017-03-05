@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using Model;
 using Dal;
-using eweb.info;
 using easysql;
-using eweb.attribute;
+using eweb;
 
 namespace Web.controller
 {

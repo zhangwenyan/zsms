@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using easysql;
 using config;
-using eweb.info;
-using ZUtil.eweb.attribute;
+using eweb;
 
 namespace Dal
 {
@@ -66,6 +65,71 @@ namespace Dal
                 {
                     db.DelById(tbName, int.Parse(id));
                 }
+            }
+        }
+
+
+        /// <summary>
+        ///  添加唯一字段的数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="msg">当添加后数量大约1时的提示信息</param>
+        /// <param name="restrains"></param>
+        public void addOnly(T model, String msg, params Restrain[] restrains)
+        {
+            BaseDatabase db = dh.CreateDatabaseAndOpen();
+            try
+            {
+                db.BeginTransaction();
+                db.Add(tbName, model);
+                var count = db.Total<object>(tbName, null, restrains);
+                if (count > 1)
+                {
+                    throw new MsgException(msg);
+                }
+                db.CommitTranscation();
+            }
+            catch (Exception ex)
+            {
+                db.RollbackTranscation();
+                throw ex;
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
+
+
+
+        /// <summary>
+        ///  修改唯一字段的数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="msg">当修改后数量大约1时的提示信息</param>
+        /// <param name="restrains"></param>
+        public void modifyOnly(T model, String msg, params Restrain[] restrains)
+        {
+            BaseDatabase db = dh.CreateDatabaseAndOpen();
+            try
+            {
+                db.BeginTransaction();
+                db.Modify(tbName, model);
+                var count = db.Total<object>(tbName, null, restrains);
+                if (count > 1)
+                {
+                    throw new MsgException(msg);
+                }
+                db.CommitTranscation();
+            }
+            catch (Exception ex)
+            {
+                db.RollbackTranscation();
+                throw ex;
+            }
+            finally
+            {
+                db.Dispose();
             }
         }
     }

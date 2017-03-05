@@ -1,5 +1,4 @@
 ﻿using Dal;
-using eweb.info;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +6,7 @@ using System.Web;
 using easysql;
 using Model;
 using Web.service;
-using eweb.ex;
-using eweb.attribute;
+using eweb;
 
 namespace Web.controller
 {

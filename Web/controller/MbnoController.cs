@@ -5,8 +5,7 @@ using System.Web;
 using Dal;
 using Model;
 using easysql;
-using eweb.info;
-using eweb.attribute;
+using eweb;
 
 namespace Web.controller
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Dal;
 using Model;
-using eweb.attribute;
+using eweb;
 
 namespace Web.controller
 {
@@ -16,6 +16,12 @@ namespace Web.controller
         {
             UserModel um = (UserModel)context.Session["user"];
             return dal.queryMenuByUserId(um.id);
+        }
+
+
+        public object tree()
+        {
+            return dal.tree();
         }
     }
 }

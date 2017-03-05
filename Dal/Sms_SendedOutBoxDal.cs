@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using easysql;
-using eweb.info;
+using eweb;
 using Model.info;
 
 namespace Dal

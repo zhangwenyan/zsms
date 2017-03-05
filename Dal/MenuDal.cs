@@ -22,5 +22,10 @@ namespace Dal
 
             return dh.QueryBySql<MenuModel>(sql, userid);
         }
+
+        public object tree()
+        {
+            return dh.Query<MenuModel>(tbName, null);
+        }
     }
 }

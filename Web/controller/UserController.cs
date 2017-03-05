@@ -2,17 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using eweb.controller;
 using Model;
-using eweb.ex;
 using Dal;
-using eweb.attribute;
+using eweb;
+using easysql;
 
 namespace Web.controller
 {
     public class UserController:BaseController<UserModel>
     {
         private UserDal dal = new UserDal();
+
+        public object queryPage(PageInfo<UserModel> pi)
+        {
+
+            return dal.queryPage(pi);
+        }
+
+
+        [CheckLogin]
+        public void add(UserModel model)
+        {
+            dal.addOnly(model, "用户名已经存在", Restrain.Eq("username", model.username));
+        }
+        [CheckLogin]
+        public void modify(UserModel model)
+        {
+            model.username = null;//禁止修改用户名
+            dal.modify(model);
+        }
+        [CheckLogin]
+        public void del(String ids)
+        {
+            dal.del(ids);
+        }
+
         public void login(String username,String password,HttpContext context)
         {
             var userModel = dal.queryByUsername(username);
@@ -31,16 +55,9 @@ namespace Web.controller
             }
             context.Session.Add("user", userModel);
         }
+        [CheckLogin]
         public object getLoginUser(HttpContext context)
         {
-            if (context.Session["user"] == null)
-            {
-                return new
-                {
-                    nickname = "游客"
-                };
-            }
-
             UserModel um = (UserModel)context.Session["user"];
             return new
             {
