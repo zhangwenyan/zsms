@@ -8,6 +8,7 @@
     <link href="../../css/style.css" rel="stylesheet" type="text/css" />
     <script src="/js/jquery.cookie.js" type="text/javascript"></script>
     <script src="../../js/cloud.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/layer.js"></script>
     <style type="text/css">
         dl, dt, dd, span {
             margin: 0;
@@ -69,7 +70,8 @@
 
 
             //            $.messager.progress();
-            $(".loginbtn").showLoading();
+           // $(".loginbtn").showLoading();
+            layer.load();
             $.ajax({
                 url: '/User.action',
                 type: "post",
@@ -93,6 +95,7 @@
                 },
                 complete: function () {
                     $(".loginbtn").hideLoading();
+                    layer.closeAll();
                 }
             });
         }
@@ -108,7 +111,7 @@
         </div>
     </div>
     <div class="loginbody">
-        <span class="systemlogo"></span>
+        <!--<span class="systemlogo"></span>-->
         <div class="loginbox">
             <form id="login-fm" method="post">
                 <ul>
